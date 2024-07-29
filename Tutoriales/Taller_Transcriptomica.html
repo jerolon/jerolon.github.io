@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jero">
+
+<title>Taller Transcriptomica Summer Retreat</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="Taller_Transcriptomica_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Taller_Transcriptomica_files/libs/quarto-html/quarto.js"></script>
+<script src="Taller_Transcriptomica_files/libs/quarto-html/popper.min.js"></script>
+<script src="Taller_Transcriptomica_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Taller_Transcriptomica_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Taller_Transcriptomica_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Taller_Transcriptomica_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Taller_Transcriptomica_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Taller_Transcriptomica_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Taller_Transcriptomica_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Taller Transcriptomica Summer Retreat</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jero </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="cargando-librerias" class="level2">
+<h2 class="anchored" data-anchor-id="cargando-librerias">Cargando librerias</h2>
+<p>Cargamos varias librerias del tidyverse para hacernos mas facil la vida con los dataframes. Cargamos <code>Seurat</code> para hacer la manipulacion de los datos de scRNA-seq.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(Seurat))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(dplyr))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(magrittr))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tximport)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"RColorBrewer"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="cargando-archivos" class="level2">
+<h2 class="anchored" data-anchor-id="cargando-archivos">Cargando archivos</h2>
+<p>Cargando archivos<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Hair cells</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>hc10x <span class="ot">&lt;-</span> <span class="fu">LoadSeuratRds</span>(<span class="st">"data/haircells10X_clase9.RDS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Support cells</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sc10x <span class="ot">&lt;-</span> <span class="fu">LoadSeuratRds</span>(<span class="st">"data/supportcells10X_clase9.RDS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="hair-cells-con-una-tecnica-de-single-cell-alternativa" class="level4">
+<h4 class="anchored" data-anchor-id="hair-cells-con-una-tecnica-de-single-cell-alternativa">Hair cells con una tecnica de single cell alternativa</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>hcSCRB <span class="ot">&lt;-</span> <span class="fu">LoadSeuratRds</span>(<span class="st">"data/haircells1SCRB_clase9.RDS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exploracion" class="level3">
+<h3 class="anchored" data-anchor-id="exploracion">Exploracion</h3>
+<p>Los archivos ya fueron filtrados. En <code>hc10x@metadata</code> hay features extra para cada celula, por ejemplo, el numero de transcritos expresados, el numero de moleculas de RNA detectadas, y que porcentaje de estos pertenecen a transcritos mitocondriales, ribosomales, de hemoglobina o EGFP.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">VlnPlot</span>(hc10x, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"nFeature_RNA"</span>, <span class="st">"nCount_RNA"</span>, <span class="st">"percent.mt"</span>, <span class="st">"percent.ribo"</span>, <span class="st">"percent.hemo"</span>, <span class="st">"EGFP"</span>), <span class="at">ncol =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/exploratory%20violin-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Algunas de las distribuciones estan truncadas porque filtramos los valores extremos de acuerdo a valores de MADS, una especie de desviacion estandard basada en la media, como se sugiere en <a href="https://www.sc-best-practices.org/preprocessing_visualization/quality_control.html#filtering-low-quality-cells" class="uri">https://www.sc-best-practices.org/preprocessing_visualization/quality_control.html#filtering-low-quality-cells</a></p>
+<p>Adicionalmente, se corrigio el “background” de la sopa de RNA usando la libreria <code>SoupX</code> y se clasificaron algunas celulas como <em>dobletes</em> basado en el algoritmo de la libreria <code>scDblFinder</code>. Para mas info, ver la referencia anterior.</p>
+<p>El score de dobletes correlaciona con la cantidad de RNA detectado y el numero de genes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#FeatureScatter(hc10x, feature1 = "log1p_nCount", feature2 = "log1p_nGenes")</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>hc10x<span class="sc">@</span>meta.data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(log1p_nCount, log1p_nGenes, <span class="at">col =</span> scDblFinder_score)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/dobletes-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La correcion de <code>SoupX</code> solo tiene sentido con tecnicas basadas en microfluidos como 10X Chromium. La tecnica SCRB no involucra una “sopa”, la libreria de cDNA se hace para cada celula individual y no hay ninguna celula en este dataset con un numero suficientemente bajo de lecturas para calcular la sopa.</p>
+<p>El calculo de dobletes tiene mas sentido porque esta basado en FACS. Las celulas del neuromasto son dificiles de disociar completamente. El porcentaje de dobletes correlaciona con el numero de celulas porque es una funcion de la velocidad a la que pasan las celulas en la corriente de microfluidos.</p>
+<p>Porcentaje de dobletes en SCRB:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Hair cells SCRB</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>(tab <span class="ot">&lt;-</span> (hcSCRB<span class="sc">@</span>meta.data<span class="sc">$</span>scDblFinder_class <span class="sc">%&gt;%</span> table))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>.
+singlet doublet 
+    178       6 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Porcentaje</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">reduce</span>(<span class="fu">rev</span>(tab), <span class="st">`</span><span class="at">/</span><span class="st">`</span>) <span class="sc">*</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.370787</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Hair cells 10X</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>(tab <span class="ot">&lt;-</span> (hc10x<span class="sc">@</span>meta.data<span class="sc">$</span>scDblFinder_class <span class="sc">%&gt;%</span> table))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>.
+singlet doublet 
+   2679     140 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Porcentaje</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">reduce</span>(<span class="fu">rev</span>(tab), <span class="st">`</span><span class="at">/</span><span class="st">`</span>) <span class="sc">*</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.225831</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Support cells</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>(tab <span class="ot">&lt;-</span> sc10x<span class="sc">@</span>meta.data<span class="sc">$</span>scDblFinder_class <span class="sc">%&gt;%</span> table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>.
+singlet doublet 
+   7899     836 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">reduce</span>(<span class="fu">rev</span>(tab), <span class="st">`</span><span class="at">/</span><span class="st">`</span>) <span class="sc">*</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10.58362</code></pre>
+</div>
+</div>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Singles</th>
+<th>Dobletes</th>
+<th>Porcentaje</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Hair cells SCRB</strong></td>
+<td>178</td>
+<td>6</td>
+<td>3.37</td>
+</tr>
+<tr class="even">
+<td><strong>Hair cells 10X</strong></td>
+<td>2679</td>
+<td>140</td>
+<td>5.22</td>
+</tr>
+<tr class="odd">
+<td><strong>Support cells 10X</strong></td>
+<td>7899</td>
+<td>836</td>
+<td>10.5</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="normalizacion-y-pipeline-standard-con-seurat" class="level3">
+<h3 class="anchored" data-anchor-id="normalizacion-y-pipeline-standard-con-seurat">Normalizacion y pipeline standard con Seurat</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>hc10x <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(hc10x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Normalizing layer: counts</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>hc10x <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(hc10x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding variable features for layer counts</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>hc10x <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(hc10x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Centering and scaling data matrix</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>hc10x <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(hc10x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>PC_ 1 
+Positive:  ttc36, bhmt, pah, pcbd1, LOC100537277, hpdb, si:dkey-12l12.1-1, slc16a10, c1qtnf5, ecrg4a 
+       ucp1, LOC100535731, tspan18b, fah, qdpra, notum1b, mxra8b, plpp3, and2, serpine2 
+       prrx1a, twist1a, tmem176, gstz1, kazald3, mxra8a, timp2a-1, twist3, col1a1a, ptx3a 
+Negative:  zgc:111983, icn2, si:ch211-207n23.2, cldne, lye, mid1ip1a, si:ch211-95j8.2, si:ch211-195b11.3, krt17, dhrs13a.2 
+       si:dkey-247k7.2, anxa1b, LOC100535170, si:ch211-117m20.5, si:ch211-157c3.4, anxa1c, elovl7b, si:ch73-204p21.2, si:dkey-87o1.2, hrc 
+       zgc:163030, si:ch73-52f15.5, agr1, zgc:193505, soul2, cd9b, si:dkey-222n6.2, plekhf1, LOC101882496, tmem176l.4 
+PC_ 2 
+Positive:  aldob, sepp1a-1, zgc:85975, cd63, sepp1a, pah, mgst1.2, ttc36, si:dkey-12l12.1-1, f3b 
+       ecrg4a, and2, LOC100537277, slc16a10, sept9a, c1qtnf5, fah, msx2b, LOC100535731, bambia 
+       tspan18b, pcbd1, zgc:111983, hpdb, lye, msx1b, notum1b, si:ch211-95j8.2, icn2, cldne 
+Negative:  s100t, anxa5a, zgc:109934, zgc:173594, s100s, transEGFP, wu:fj16a03, zgc:171713, tuba1a, si:dkey-222f2.1 
+       zgc:173593, LOC100006428, tuba1c, zgc:101772, LOC558816, rasd1, barhl1a, mt2, pcp4b, adcyap1b 
+       zgc:195356, zgc:55461, nkx3.2, meig1-1, zgc:198419, zgc:55461-1, gstp1, atp1a1b, LOC101884954-1, barhl1a-2 
+PC_ 3 
+Positive:  fcer1gl, zgc:64051, LOC100151049, si:ch211-102c2.4, ncf1, LOC100537803, zgc:153073, si:dkey-27i16.2, ccr9a, samsn1a 
+       il1b, spi1b, arpc1b, si:dkey-262k9.4, srgn-1, wasb, cmklr1, ctss2.1, lcp1, LOC100536989 
+       spi1a, grap2b, ptpn6, ppp1r18, LOC100536213-1, LOC108180725, si:dkey-53k12.2, cd83, si:dkey-5n18.1, plek 
+Negative:  krt5, wu:fb18f06, s100t, zgc:109934, anxa5a, zgc:173594, s100s, zgc:171713, wu:fj16a03, transEGFP 
+       si:dkey-222f2.1, tuba1a, zgc:173593, LOC100006428, zgc:101772, tuba1c, LOC558816, cyt1, zgc:92242, barhl1a 
+       rasd1, zgc:153665, abcb5, cyt1l, pcp4b, si:ch211-105c13.3, krtt1c19e, zgc:195356, krt4-1, zgc:153911 
+PC_ 4 
+Positive:  cldn1, col17a1a, si:ch1073-406l10.2, cxl34b.11, epgn, zgc:136930, col1a2, mmp30, rbp4, col1a1b 
+       si:dkey-183i3.5, zgc:86896, krt91, pfn1, col11a1a, crp4, ptgdsb.1, krtt1c19e, spaca4l, tmsb1 
+       postnb, cfd-2, itgb4, sparc, LOC100331704, tmsb4x, lgals1l1, si:dkey-102c8.3, LOC100538177, si:dkey-33c14.3 
+Negative:  gstp1, s100t, anxa5a, zgc:109934, mdh1aa, zgc:171713, zgc:173594, s100s, si:dkey-222f2.1, txn 
+       transEGFP, tuba1a, zgc:173593, wu:fj16a03, tuba1c, LOC100006428, zgc:101772, rasd1, abcb5, LOC558816 
+       zgc:153665, mt2, barhl1a, zgc:153911, cd82a, si:ch211-98n17.5-1, si:dkeyp-110c7.4, rtn4b, nkx3.2, hmgn2 
+PC_ 5 
+Positive:  tnnc2, ckma, ckmb, aldoab, atp2a1, acta1b, tpma, tnnt3b, myl1, actn3a 
+       tnni2a.4, mylz3, smyd1a, mybphb, myoz1b, actc1b, mylpfb, nme2b.2, pvalb2, tmod4 
+       tmem38a, atp2a1l, LOC100007086-1, slc25a4-1, LOC100537702, ldb3b, mylpfa-2, ampd1, pvalb1, ckmt2b 
+Negative:  zgc:171713, s100t, si:dkey-222f2.1, gstp1, zgc:109934, anxa5a, si:dkeyp-110c7.4, tuba1a, zgc:173594, transEGFP 
+       zgc:173593, s100s, si:dkey-205h13.2, cbln18, si:dkey-4p15.5, cbln20, LOC100536887, wu:fj16a03, LOC100147871, txn 
+       zgc:101772, tuba1c, LOC100006428, LOC100329486, si:dkey-33m11.8, negaly6, si:ch73-199e17.1, LOC558816, krt1-c5, nkx3.2 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>hc10x <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(hc10x, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Computing nearest neighbor graph</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Computing SNN</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>hc10x <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(hc10x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 2819
+Number of edges: 103587
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.8682
+Number of communities: 19
+Elapsed time: 0 seconds</code></pre>
+</div>
+</div>
+<p>Inspired by these earlier applications, we define a new similarity between two data points based on the ranking of their shared neighborhood <span class="citation" data-cites="xu2015">(<a href="#ref-xu2015" role="doc-biblioref">Xu and Su 2015</a>)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>hc10x <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(hc10x, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The default method for RunUMAP has changed from calling Python UMAP via reticulate to the R-native UWOT using the cosine metric
+To use Python UMAP via reticulate, set umap.method to 'umap-learn' and metric to 'correlation'
+This message will be shown once per session</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:10:09 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:10:09 Read 2819 rows and found 30 numeric columns</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:10:09 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:10:09 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>0%   10   20   30   40   50   60   70   80   90   100%</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>[----|----|----|----|----|----|----|----|----|----|</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>**************************************************|
+13:10:10 Writing NN index file to temp file C:\Users\mwaso\AppData\Local\Temp\RtmpO4WP0i\file6b30385b6f1b
+13:10:10 Searching Annoy index using 1 thread, search_k = 3000
+13:10:10 Annoy recall = 100%
+13:10:11 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+13:10:11 Initializing from normalized Laplacian + noise (using RSpectra)
+13:10:11 Commencing optimization for 500 epochs, with 114940 positive edges
+13:10:20 Optimization finished</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DimPlot</span>(hc10x, <span class="at">group.by =</span> <span class="fu">c</span>(<span class="st">"seurat_clusters"</span>), <span class="at">reduction =</span> <span class="st">"umap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/dimplotch-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="integracion-para-anotacion" class="level2">
+<h2 class="anchored" data-anchor-id="integracion-para-anotacion">Integracion para anotacion</h2>
+<p>Por suerte, para el pez cebra ya existe una referencia de datos de single cell en diferentes etapas del desarrollo: <a href="https://zebrahub.ds.czbiohub.org/cbg?name=cbg_5dpf">Zebrafish atlas</a>. Los datasets originales se distribuyen en el formato AnnData que usa el ecosistema de scanpy, pero es posible convertirlos a Seurat con:</p>
+<p>(No correr este codigo)</p>
+<pre><code>library(zellconverter)
+sce &lt;- zellconverter::readH5AD("zf_atlas_5dpf_v4_release.h5ad")
+as.Seurat(sce, counts = "counts", data = "X")</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>zf_atlas5dpf <span class="ot">&lt;-</span> <span class="fu">LoadSeuratRds</span>(<span class="st">"data/zf_atlas_5dpf_v4_release.RDS"</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(zf_atlas5dpf, <span class="at">reduction =</span> <span class="st">"X_umap"</span>, <span class="at">group.by =</span> <span class="st">"zebrafish_anatomy_ontology_class"</span>) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">LabelClusters</span>(<span class="at">plot =</span> plot, <span class="at">id =</span> <span class="st">"zebrafish_anatomy_ontology_class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/loadatlas-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La referencia del atlas ya viene con umap, clusters y normalizacion calculada. Sin embargo, para este pipeline, necesitamos calcular los componentes principales para integrar con nuestros datos, tambien hay que re-calcular el UMAP porque usaremos el modelo resultante posteriormente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Los datos en data ya estan normalizados</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co">#zf_atlas5dpf &lt;- NormalizeData(zf_atlas5dpf)</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>zf_atlas5dpf <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(zf_atlas5dpf)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>zf_atlas5dpf <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(zf_atlas5dpf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Centering and scaling data matrix</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>zf_atlas5dpf <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(zf_atlas5dpf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>PC_ 1 
+Positive:  si:dkey-194e6.1, pdzk1ip1, BX530068.1, cx32.3, cdh17, pdzk1, si:ch211-139a5.9, g6pca.2, epdl2, slc2a11l 
+       acy3.2, fbp1b, cubn, eps8l3a, dpys, slc22a6l, hoga1, ezra, slc23a1, eps8l3b 
+       slc22a7b.1, slc26a1, cox6a2, grhprb, cdaa, slc2a11a, ggt1b, npr1b, pnp6, slc2a2 
+Negative:  krt4, cyt1, icn2, anxa1b, dhrs13a.2, ppl, evpla, si:ch211-125o16.4, cyt1l, abcb5 
+       si:ch211-195b11.3, cldne, mid1ip1a, si:dkey-222n6.2, scel, zgc:193505, si:dkey-247k7.2, agr1, zgc:111983, si:dkeyp-51b9.3 
+       si:ch211-157c3.4, znf185, si:ch211-207n23.2, si:cabz01007794.1, stard14, abca12, icn, si:dkey-202l22.6, krt17, s100w 
+PC_ 2 
+Positive:  sparc, tmsb4x, col1a2, rbp4, col1a1a, dcn, col1a1b, actc1b, fmoda, rgs5a 
+       ptgdsb.1, hpdb, soul5, zgc:153704, si:ch211-156j16.1, cnmd, glula, eno1a, pvalb2, col9a2 
+       col2a1a, tgfbi, vim, ttn.2, CR318588.4, rbp5, apoa2, cxcl12a, col9a3, ecrg4a 
+Negative:  dhrs13a.2, evpla, anxa1b, icn2, si:ch211-125o16.4, abcb5, cldne, ppl, stard14, si:ch211-195b11.3 
+       si:dkey-247k7.2, agr1, si:ch211-207n23.2, scel, znf185, zgc:193505, zgc:111983, si:dkey-222n6.2, si:ch211-157c3.4, mid1ip1a 
+       si:dkeyp-51b9.3, si:cabz01007794.1, krt4, cyt1l, abca12, zgc:100868, si:dkey-202l22.6, cyt1, soul2, krt17 
+PC_ 3 
+Positive:  apoa1b, abcb11b, apoa2, zgc:112265, cfhl4, fgb, fga, c3a.1, si:ch211-212c13.8, CR626907.1 
+       cfb, apoba, si:dkey-105h12.2, vtnb, fgg, c3a.2, serpinc1, itih2, cp, c3b.2 
+       si:ch1073-464p5.5, ambp, a2ml, gc, serpinf2a, apom, c9, ces2a, si:ch211-288g17.4, serpina1 
+Negative:  fcer1gl, spi1b, si:dkey-5n18.1, mpeg1.1, laptm5, plxnc1, ptprc, coro1a, wasb, lcp1 
+       itgae.1, ctss2.2, ctss2.1, MFAP4-3, havcr1, slc22a21, si:ch211-147m6.1, il1b, grna, cmklr1 
+       fcer1g, si:ch211-194m7.3, ccr9a, ccl34b.1, marco, ctsl.1, si:ch211-194m7.4, rgs13, c1qb, ptpn6 
+PC_ 4 
+Positive:  abcb11b, zgc:171534, cfb, apoa2, apoa1b, cfhl4, fgb, CR626907.1, cfh, si:dkey-105h12.2 
+       serpinf2a, zgc:112265, fga, apoba, itih2, si:ch211-212c13.8, a2ml, c3a.1, fgg, si:ch211-288g17.4 
+       shbg, serpinc1, cp, vtnb, c3b.2, c3a.2, zgc:172051, ambp, si:ch73-281k2.5, apom 
+Negative:  srl, desma, tmem38a, cav3, ldb3b, acta1a, casq2, atp2a1, txlnba, si:ch211-266g18.10 
+       obscnb, SRL, actn3b, cavin4a, klhl31, ckmb, ryr1a, neb, trdn, myom1a 
+       txlnbb, prx, aldoab, pvalb4, obsl1b, CABZ01072309.2, tnnt3a, ldb3a, CABZ01078594.1, tpm2 
+PC_ 5 
+Positive:  srl, desma, tmem38a, casq2, ldb3b, txlnba, si:ch211-266g18.10, actn3b, SRL, cavin4a 
+       acta1a, atp2a1, cav3, obscnb, aldoab, klhl31, ryr1a, ckmb, trdn, myom1a 
+       txlnbb, neb, zgc:171534, nme2b.2, pvalb4, arpp21, cfh, obsl1b, abcb11b, cfb 
+Negative:  sparc, col11a1a, ptgdsb.1, si:dkey-194e6.1, col9a2, cnmd, col1a1a, col9a3, si:ch211-139a5.9, lrp2a 
+       col1a2, pdzk1ip1, col2a1a, slc2a11l, cdh17, cubn, pdzk1, slc20a1a, slc22a6l, col11a2 
+       zgc:175280, col1a1b, acy3.2, epyc, slc22a7b.1, slc2a11a, ucmab, slc26a1, slc23a1, pnp6 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#zf_atlas5dpf &lt;- FindNeighbors(zf_atlas5dpf)</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co">#zf_atlas5dpf &lt;- FindClusters(zf_atlas5dpf)</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>zf_atlas5dpf <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(zf_atlas5dpf, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, <span class="at">reduction =</span> <span class="st">"pca"</span>, <span class="at">return.model =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>UMAP will return its model</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:10:53 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:10:53 Read 24987 rows and found 30 numeric columns</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:10:53 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:10:53 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>0%   10   20   30   40   50   60   70   80   90   100%</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>[----|----|----|----|----|----|----|----|----|----|</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>**************************************************|
+13:10:57 Writing NN index file to temp file C:\Users\mwaso\AppData\Local\Temp\RtmpO4WP0i\file6b306c3ac72
+13:10:57 Searching Annoy index using 1 thread, search_k = 3000
+13:11:07 Annoy recall = 100%
+13:11:07 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+13:11:09 Initializing from normalized Laplacian + noise (using RSpectra)
+13:11:11 Commencing optimization for 200 epochs, with 1120824 positive edges
+13:11:41 Optimization finished</code></pre>
+</div>
+</div>
+<p>Podemos usar esto como un filtro de cuales celulas son del tejido de interes y cuales no. En este caso, podemos ver que hay un sobrelape entre las celulas que expresan el transgenico y las celulas del neuromasto.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creamos un objeto con las celulas ancla, pares de celulas en comun entre ambos datasets</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>hc_anchors <span class="ot">&lt;-</span> <span class="fu">FindTransferAnchors</span>(<span class="at">reference =</span> zf_atlas5dpf, <span class="at">query =</span> hc10x, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, <span class="at">reference.reduction =</span> <span class="st">"pca"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Projecting cell embeddings</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding neighborhoods</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>    Found 2297 anchors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">TransferData</span>(<span class="at">anchorset =</span> hc_anchors, <span class="at">refdata =</span> zf_atlas5dpf<span class="sc">$</span>zebrafish_anatomy_ontology_class, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding integration vectors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding integration vector weights</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Predicting cell labels</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>hc10x <span class="ot">&lt;-</span> <span class="fu">AddMetaData</span>(hc10x, <span class="at">metadata =</span> predictions)</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">FeaturePlot</span>(hc10x, <span class="at">reduction =</span>  <span class="st">"umap"</span>, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"transEGFP"</span>) )</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(hc10x, <span class="at">reduction =</span> <span class="st">"umap"</span>, <span class="at">group.by =</span> <span class="st">"predicted.id"</span>) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="fu">LabelClusters</span>(<span class="at">plot =</span> plot, <span class="at">id =</span> <span class="st">"predicted.id"</span>) <span class="sc">+</span> plot2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: ggrepel: 2 unlabeled data points (too many overlaps). Consider
+increasing max.overlaps</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/transfer%20labels-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Esta es otra manera de visualizar lo anterior, en este caso, proyectamos las celulas experimentales sobre las coordenadas de UMAP del atlas orginal.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>hc10x <span class="ot">&lt;-</span> <span class="fu">MapQuery</span>(<span class="at">anchorset =</span> hc_anchors, <span class="at">reference =</span> zf_atlas5dpf, <span class="at">query =</span> hc10x, <span class="at">refdata =</span> zf_atlas5dpf<span class="sc">$</span>zebrafish_anatomy_ontology_class, <span class="at">reference.reduction =</span> <span class="st">"pca"</span>, <span class="at">reduction.model =</span> <span class="st">"umap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding integration vectors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding integration vector weights</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Predicting cell labels</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Layer counts isn't present in the assay object; returning NULL
+Warning: Layer counts isn't present in the assay object; returning NULL
+Warning: Layer counts isn't present in the assay object; returning NULL</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Integrating dataset 2 with reference dataset</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding integration vectors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Integrating data</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Computing nearest neighbors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Running UMAP projection</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:12:10 Read 2819 rows</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:12:10 Processing block 1 of 1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:12:10 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+13:12:10 Initializing by weighted average of neighbor coordinates using 1 thread
+13:12:10 Commencing optimization for 67 epochs, with 84570 positive edges
+13:12:11 Finished</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(zf_atlas5dpf, <span class="at">reduction =</span> <span class="st">"umap"</span>, <span class="at">group.by =</span> <span class="st">"zebrafish_anatomy_ontology_class"</span>, <span class="at">label =</span> T, <span class="at">repel =</span> T) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(hc10x, <span class="at">reduction =</span> <span class="st">"ref.umap"</span>, <span class="at">group.by =</span> <span class="st">"predicted.id"</span>, <span class="at">label =</span> T, <span class="at">repel =</span> T) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: ggrepel: 1 unlabeled data points (too many overlaps). Consider
+increasing max.overlaps</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: ggrepel: 1 unlabeled data points (too many overlaps). Consider
+increasing max.overlaps</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/projected-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Es un poco enganoso, el tamano de los clusters representados en el UMAP no necesariamente representa el numero de celulas de cada uno. De hecho, las celulas del neuromasto representan el grupo mayoritario con 1123 de 2819 celulas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>hc10x[[<span class="st">"predicted.id"</span>]] <span class="sc">%&gt;%</span> table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>predicted.id
+         cardiac muscle  central nervous system     enteric musculature 
+                      7                       1                      27 
+         epidermal cell         epithelial cell                     fin 
+                   1008                       4                     261 
+hematopoietic stem cell               intestine              macrophage 
+                     30                      26                      37 
+        median fin fold                  muscle                myoblast 
+                     46                      41                      55 
+                myotome               neuromast                  neuron 
+                     52                    1123                      66 
+             neutrophil               notochord            pectoral fin 
+                     23                       3                       6 
+               periderm         pharyngeal arch 
+                      1                       2 </code></pre>
+</div>
+</div>
+<p>La correlacion entre las probabilidad de ser neuromasto y la expresion del trangenico es alta. El cluster de 0 expresion de transEGFP pero alta probabilidad de neuromasto, ilustra una de las limitantes de scRNA-seq: no todos los genes expresados se detectan en el 100% de las celulas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">FeatureScatter</span>(hc10x, <span class="st">"transEGFP"</span>, <span class="st">"prediction.score.neuromast"</span>, <span class="at">smooth =</span> T, <span class="at">group.by =</span> <span class="st">"predicted.id"</span>, <span class="at">slot =</span> <span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The `&lt;scale&gt;` argument of `guides()` cannot be `FALSE`. Use "none" instead as
+of ggplot2 3.3.4.
+ℹ The deprecated feature was likely used in the Seurat package.
+  Please report the issue at &lt;https://github.com/satijalab/seurat/issues&gt;.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
+ℹ Please use `after_stat(density)` instead.
+ℹ The deprecated feature was likely used in the Seurat package.
+  Please report the issue at &lt;https://github.com/satijalab/seurat/issues&gt;.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/GFPhc-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="anotando-las-scrb-hair-cells" class="level2">
+<h2 class="anchored" data-anchor-id="anotando-las-scrb-hair-cells">Anotando las SCRB hair cells</h2>
+<p>Tambien vamos a anotar las hair cells de la tecnica de pozos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>hcSCRB <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(hcSCRB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Normalizing layer: counts</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>hcSCRB <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(hcSCRB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding variable features for layer counts</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>hcSCRB <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(hcSCRB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Centering and scaling data matrix</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>hcSCRB <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(hcSCRB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>PC_ 1 
+Positive:  zgc:193811, si:dkey-250d21.1, pcp4b, seh1l, alg11, mapre2, emx2, osbpl5, phf20b, b9d2 
+       mcu, mgst3a, cirbpb, fam49bb, pfn2l, zgc:101569, cbln20, dedd1, sptssa, bloc1s2 
+       tmem18, gmfb, stx5al, eif4a1a, blcap, pcgf1, cyb5d1, tmed2, tomm22, apbb3 
+Negative:  vipb, egr4, hpcal4, phox2bb, LOC110438943-1, atp1b3a, hand2, nalcn, si:ch73-71c20.5, zgc:158463 
+       kif1ab, arrdc2, si:dkeyp-115e12.6-1, gap43, LOC100005446, rpl17, lin37, LOC795227, arid6, kif26aa 
+       ap4m1, spout1, zgc:55461, nf2a, LOC110439214, coa7, star, si:dkey-6n6.2, LOC108191643, krt91 
+PC_ 2 
+Positive:  vipb, hand2, LOC110439214, wu:fj16a03, si:dkey-6n6.2, star, atp1b3a, spout1, adcyap1b, hpcal4 
+       phox2bb, akap17a, kif26aa, ap4m1, si:ch73-1a9.3, coa7, stx12, plxna4, LOC795227, arid6 
+       zmp:0000001301, fam206a, rnf150a, spg21, nup107, arrdc2, pdcd5, snrpd2, zgc:136930, skida1 
+Negative:  slc1a3a, si:dkey-205h13.2, LOC100147871, si:dkey-4p15.5, cbln18, foxq1a, phlda2, LOC100536887, si:dkeyp-110c7.4, si:dkey-33m11.8 
+       cbln20, zgc:77517, add3a, LOC101886389, zgc:171713, zgc:77517-1, LOC100329486, mbnl2, si:ch73-347e22.8, lfng 
+       junba, igfbp1a, fndc7a, si:ch211-195b11.3, abca12, LOC563933, cldnb, chrna7, aqp3a, sdc2 
+PC_ 3 
+Positive:  LOC100005446, hpcal4, tsr3, ap4m1, nalcn, atp1b3a, kif26aa, skida1, pgm1, LOC795227 
+       hand2, spout1, grnb, si:dkeyp-68b7.7, dlc1, star, arrdc2, nf2a, bhmt, atp13a1 
+       supt6h, ywhag2-1, aim1b, si:dkey-6n6.2, gap43, znf408, eif2b1, ak4, zc4h2, LOC101882691 
+Negative:  zgc:152830, zbed4, dpm3, mrc1a, acin1b, kitlga, mbnl2, abca12, csrnp1b, hif1al 
+       ccng2, ehbp1, rad50, snapin, copg2, rabif, lcor, gid8a, si:ch211-253h3.1, dhrs4 
+       fam110b, ccdc127b, si:dkey-34l15.1-1, itgb4, ddx39b, zgc:158463, adkb, gale, wu:fc21g02, LOC110439372 
+PC_ 4 
+Positive:  LOC108190653, nalcn, itgb4, gap43, ap4m1, hpcal4, grb10a, si:ch73-71c20.5, spout1, LOC795227 
+       kif26aa, hand2, atp1b3a, gng12a, smurf1, LOC100005446, trmt13, si:dkeyp-115e12.6-1, star, LOC101887000 
+       coa7, gpr78b, aim1b, LOC100329486, stox2b, lcor, dlc1, nf2a, mgst2, skida1 
+Negative:  zgc:55461, mrps11, si:ch211-148l7.4, rplp2l, rtca, rassf2a, dynlt3, ptmab, gstp1, rps20 
+       si:ch211-236g6.1, LOC110440166, ccdc135, tcea2, LOC101885587, zgc:66433, dlx4b, ubiad1, shisa2a, dnase1l4.1 
+       pigs, tmem30ab, sap30bp, pwwp2b, si:ch73-52e5.1, transEGFP, rpl27, zgc:110046, rps9, lmo7b 
+PC_ 5 
+Positive:  dhtkd1, inpp4aa, clstn1, dnase1l1, tdrd3, spg11, clrn2, prrc2c, si:zfos-1011f11.1, cadm4 
+       si:ch73-347e22.8, mrpl13, soul2, zfyve9a, laptm4a, nup93, sdc2, ube3c, pak2a, zcchc9 
+       actl6a, si:dkey-286j15.1-1, ago2, chrna7, eif3ja, hs6st2, wu:fi15d04, ppp6r3, cldnb, kmt2e 
+Negative:  LOC108190653, gsnb, gale, grb10a, tbc1d17, ppp5c, arl13b, lcor, crebrf, zgc:162344 
+       rpap3, arhgap32a, dfna5b, mgst2, si:ch211-39i22.1, zbed4, timm23a, si:ch73-111k22.3, si:dkey-46g23.1, rbm28 
+       itgb4, tprb, dapk3, dhrs4, phb, abhd15a, uqcc2, copb2, urm1, lmo7b </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>hcSCRB <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(hcSCRB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Computing nearest neighbor graph</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Computing SNN</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>hcSCRB <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(hcSCRB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 184
+Number of edges: 6821
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.5791
+Number of communities: 2
+Elapsed time: 0 seconds</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>hcSCRB <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(hcSCRB, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, <span class="at">reduction =</span> <span class="st">"pca"</span>, <span class="at">return.model =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>UMAP will return its model</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:12:18 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:12:18 Read 184 rows and found 30 numeric columns</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:12:18 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:12:18 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>0%   10   20   30   40   50   60   70   80   90   100%</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>[----|----|----|----|----|----|----|----|----|----|</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>**************************************************|
+13:12:18 Writing NN index file to temp file C:\Users\mwaso\AppData\Local\Temp\RtmpO4WP0i\file6b3050434401
+13:12:18 Searching Annoy index using 1 thread, search_k = 3000
+13:12:18 Annoy recall = 100%
+13:12:19 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+13:12:19 Initializing from normalized Laplacian + noise (using RSpectra)
+13:12:19 Commencing optimization for 500 epochs, with 6864 positive edges
+13:12:20 Optimization finished</code></pre>
+</div>
+</div>
+<p>La tecnica de pozos gana en terminos de especificidad. El 100% de las celulas son del neuromasto y la deteccion de conteos del transgenico es casi igual de alta.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>scrb_anchors <span class="ot">&lt;-</span> <span class="fu">FindTransferAnchors</span>(<span class="at">reference =</span> zf_atlas5dpf, <span class="at">query =</span> hcSCRB, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, <span class="at">reference.reduction =</span> <span class="st">"pca"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Projecting cell embeddings</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding neighborhoods</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>    Found 75 anchors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">TransferData</span>(<span class="at">anchorset =</span> scrb_anchors, <span class="at">refdata =</span> zf_atlas5dpf<span class="sc">$</span>zebrafish_anatomy_ontology_class, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, <span class="at">k.weight =</span> <span class="dv">35</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding integration vectors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding integration vector weights</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Predicting cell labels</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>hcSCRB <span class="ot">&lt;-</span> <span class="fu">AddMetaData</span>(hcSCRB, <span class="at">metadata =</span> predictions)</span>
+<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">FeaturePlot</span>(hcSCRB, <span class="at">reduction =</span>  <span class="st">"umap"</span>, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"transEGFP"</span>) )</span>
+<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(hcSCRB, <span class="at">reduction =</span> <span class="st">"umap"</span>, <span class="at">group.by =</span> <span class="st">"predicted.id"</span>) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span>
+<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="fu">LabelClusters</span>(<span class="at">plot =</span> plot, <span class="at">id =</span> <span class="st">"predicted.id"</span>) <span class="sc">+</span> plot2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/findanchors-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>sc10x <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(sc10x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Normalizing layer: counts</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>sc10x <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(sc10x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding variable features for layer counts</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>sc10x <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(sc10x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Centering and scaling data matrix</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>sc10x <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(sc10x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>PC_ 1 
+Positive:  tmsb4x, rbp4, sparc, zgc:136930, krt91, ptgdsb.1, si:dkey-183i3.5, pfn1, cxl34b.11, col1a2 
+       col1a1b, cotl1, aqp3a, col1a1a, postnb, krtt1c19e, ecrg4b, epgn, spaca4l, si:dkey-33c14.3 
+       ptgdsb.2, lxn, lgals1l1, apoeb, krt8-1, igfbp7, cfd-2, krt5, mmp30, mycb 
+Negative:  cldne, zgc:111983, dhrs13a.2, lye, si:ch211-195b11.3, zgc:193505, si:dkey-247k7.2, si:ch211-207n23.2, icn2, agr1 
+       zgc:163030, si:ch211-157c3.4, si:ch211-95j8.2, si:ch73-52f15.5, si:ch211-117m20.5, soul2, abcb5, anxa1c, LOC101886350, apodb 
+       krt17, hrc, si:dkey-87o1.2, zgc:110333, si:ch211-79k12.1, elovl7b, si:dkey-222n6.2, mid1ip1a, fut9d, plekhf1 
+PC_ 2 
+Positive:  cyt1, krt4-1, krt5, actb2, cyt1l, krtt1c19e, aldob, pfn1, wu:fa03e10, si:dkey-33c14.3 
+       krt91, cxl34b.11, si:dkey-183i3.5, zgc:136930, ptgdsb.1, rbp4, col1a1b, col1a2, ecrg4b, postnb 
+       epgn, s100w, lxn, lgals1l1, ptgdsb.2, pycard, krt17, aep1, si:ch73-52f15.5, caspb 
+Negative:  zgc:171713, si:dkey-222f2.1, si:dkey-205h13.2, negaly6, LOC100536887, krt1-c5, LOC799574, si:ch211-153b23.5, cldn8, LOC100147871 
+       cbln20, zgc:77517-1, tmsb, pvalb8, zgc:77517, selm, six1b, cldnh, marcksl1b, ndnfl 
+       si:dkeyp-110c7.4, si:dkey-4p15.5, sox21a, klf17, cbln18, calr, dnajb11, stm, sdf2l1, tspan35 
+PC_ 3 
+Positive:  ucp1, LOC100537277, hpdb, and2, ttc36, si:dkey-12l12.1-1, bhmt, pah, ptx3a, LOC100535731 
+       c1qtnf5, ecrg4a, tmem176, fmoda, prrx1a, mxra8b, qdpra, kazald3, ntd5-1, plpp3 
+       twist3, msx3, crabp2a, notum1b, fah, mdh1aa, si:ch1073-291c23.2, and1, vstm4a, hoxa13b 
+Negative:  krt5, cyt1, krt4-1, krtt1c19e, si:dkey-205h13.2, LOC100536887, zgc:171713, pfn1, LOC799574, negaly6 
+       cbln20, krt1-c5, LOC100147871, zgc:136930, si:dkey-183i3.5, si:dkey-222f2.1, krt91, spaca4l, cyt1l, si:dkey-33c14.3 
+       tmsb, si:dkey-4p15.5, si:dkeyp-110c7.4, cxl34b.11, cbln18, cldn8, ndnfl, stm, klf17, LOC100329486 
+PC_ 4 
+Positive:  stmn1a, ptmab, si:ch211-222l21.1, hmgb2b, tubb2b, si:ch211-288g17.3, pcna, tuba8l, h2afvb, si:ch211-156b7.4 
+       cks1b, hmga1a, rpa2, hmgb2a, h2afx, rpa3, mad2l1, kiaa0101, si:dkey-6i22.5, col1a1a 
+       aurkb, rrm1, ube2c, cdk1, hmgn2, asf1ba, h3f3a, mcm2, fen1, tyms 
+Negative:  gapdh, lgals2b, apoa1a-1, s100a10a, fabp2, apoa4b.1, chia.2, krt92, pck1, slc13a2 
+       rtn4b, tm4sf4, apoc2, calml4a, cd36, epdl2, fbp1b, zgc:153968, fabp1b.1, pklr 
+       gpx4a, pnp4b, cyp3a65, afp4, si:ch211-133l5.7, plac8.1, zgc:158846-1, si:dkey-69o16.5, si:dkeyp-73b11.8, vil1 
+PC_ 5 
+Positive:  LOC100537277, cyt1, hpdb, and2, crabp2a, ttc36, LOC100535731, si:dkey-12l12.1-1, ptx3a, cbln18 
+       LOC100147871, pah, si:dkeyp-110c7.4, cbln20, c1qtnf5, LOC100536887, LOC100329486, si:dkey-4p15.5, zgc:77517, prrx1a 
+       fmoda, cyt1l, mxra8b, plpp3, krt5, tmem176, ntd5-1, kazald3, msx3, zgc:171713 
+Negative:  tubb2b, cks1b, cdk1, mad2l1, aurkb, ube2c, ccna2, rrm1, hmgb2b, pcna 
+       incenp, kiaa0101, hmga1a, mki67, si:dkey-6i22.5, ckbb, si:ch211-156b7.4, stmn1a, si:ch211-288g17.3, rpa2 
+       h2afx, spc24, LOC100330864, hmgn2, si:ch211-222l21.1, gapdh, rpa3, zgc:194627, asf1ba, zgc:110540 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a>sc10x <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(sc10x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Computing nearest neighbor graph</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Computing SNN</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>sc10x <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(sc10x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 8735
+Number of edges: 284722
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.8577
+Number of communities: 17
+Elapsed time: 1 seconds</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>sc10x <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(sc10x, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, <span class="at">reduction =</span> <span class="st">"pca"</span>, <span class="at">return.model =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>UMAP will return its model</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:12:52 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:12:52 Read 8735 rows and found 30 numeric columns</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:12:52 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:12:52 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>0%   10   20   30   40   50   60   70   80   90   100%</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>[----|----|----|----|----|----|----|----|----|----|</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>**************************************************|
+13:12:54 Writing NN index file to temp file C:\Users\mwaso\AppData\Local\Temp\RtmpO4WP0i\file6b3064f57c78
+13:12:54 Searching Annoy index using 1 thread, search_k = 3000
+13:12:56 Annoy recall = 100%
+13:12:57 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+13:12:57 Initializing from normalized Laplacian + noise (using RSpectra)
+13:12:58 Commencing optimization for 500 epochs, with 359674 positive edges
+13:13:24 Optimization finished</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creamos un objeto con las celulas ancla, pares de celulas en comun entre ambos datasets</span></span>
+<span id="cb143-2"><a href="#cb143-2" aria-hidden="true" tabindex="-1"></a>sc_anchors <span class="ot">&lt;-</span> <span class="fu">FindTransferAnchors</span>(<span class="at">reference =</span> zf_atlas5dpf, <span class="at">query =</span> sc10x, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, <span class="at">reference.reduction =</span> <span class="st">"pca"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Projecting cell embeddings</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding neighborhoods</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>    Found 1744 anchors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb148"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">TransferData</span>(<span class="at">anchorset =</span> sc_anchors, <span class="at">refdata =</span> zf_atlas5dpf<span class="sc">$</span>zebrafish_anatomy_ontology_class, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding integration vectors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding integration vector weights</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Predicting cell labels</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb152"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a>sc10x <span class="ot">&lt;-</span> <span class="fu">AddMetaData</span>(sc10x, <span class="at">metadata =</span> predictions)</span>
+<span id="cb152-2"><a href="#cb152-2" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">FeaturePlot</span>(sc10x, <span class="at">reduction =</span>  <span class="st">"umap"</span>, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"transEGFP"</span>) )</span>
+<span id="cb152-3"><a href="#cb152-3" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sc10x, <span class="at">reduction =</span> <span class="st">"umap"</span>, <span class="at">group.by =</span> <span class="st">"predicted.id"</span>) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span>
+<span id="cb152-4"><a href="#cb152-4" aria-hidden="true" tabindex="-1"></a><span class="fu">LabelClusters</span>(<span class="at">plot =</span> plot, <span class="at">id =</span> <span class="st">"predicted.id"</span>) <span class="sc">+</span> plot2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/transferlabels_support-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>En el caso de las support cells, usamos el mejor marcador transgenico disponible en aquel momento. Aunque la expresion de EGFP es mucho mayor en el neuromasto, la expresion de fondo en otro tipo de celulas mucho mas numerosas es suficiente como para que entraran a la secuenciacion.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="im/Gw57-2.png" class="img-fluid figure-img"></p>
+<figcaption>Expresion de EGFP en la linea Gw57</figcaption>
+</figure>
+</div>
+<p>Por ello la correlacion de la probabilidad de neuromasto con la expresion de EGFP transgenica es mucho menor.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb153"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">FeatureScatter</span>(sc10x, <span class="st">"transEGFP"</span>, <span class="st">"prediction.score.neuromast"</span>, <span class="at">smooth =</span> T, <span class="at">group.by =</span> <span class="st">"predicted.id"</span>, <span class="at">slot =</span> <span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/GFPsupport-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb154"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">VlnPlot</span>(sc10x, <span class="st">"transEGFP"</span>, <span class="at">group.by =</span> <span class="st">"predicted.id"</span>, <span class="at">slot =</span> <span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/GFPsupport-2.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Tambien podemos comparar otros features para ver la calidad de nuestro dataset. Calculamos el porcentaje de genes expresados de hemoglobina en cada celula.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb155"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a>zf_atlas5dpf[[<span class="st">"percent.hemo"</span>]] <span class="ot">&lt;-</span> <span class="fu">PercentageFeatureSet</span>(zf_atlas5dpf, <span class="at">pattern =</span> <span class="st">"^hb[^p]"</span>)</span>
+<span id="cb155-2"><a href="#cb155-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-3"><a href="#cb155-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">VlnPlot</span>(zf_atlas5dpf, <span class="st">"percent.hemo"</span>, <span class="at">group.by =</span> <span class="st">"zebrafish_anatomy_ontology_class"</span>, <span class="at">log =</span> T) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span>
+<span id="cb155-4"><a href="#cb155-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb155-5"><a href="#cb155-5" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">VlnPlot</span>(sc10x, <span class="st">"percent.hemo"</span>, <span class="at">group.by =</span> <span class="st">"predicted.id"</span>, <span class="at">slot =</span> <span class="st">"data"</span>, <span class="at">log =</span> T) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Usamos escala logaritmica porque la sangre domina tanto</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb156"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/hemoatlas-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Parece que no hay tanta contaminacion con celulas sanguineas en el dataset</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb157"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Groups with fewer than two datapoints have been dropped.
+ℹ Set `drop = FALSE` to consider such groups for position adjustment purposes.
+Groups with fewer than two datapoints have been dropped.
+ℹ Set `drop = FALSE` to consider such groups for position adjustment purposes.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/hemodataset-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Aca podemos ver claramente que el umbral de expresion usado para porcentaje mitocondrial es de 15%. Esto es la gran variedad de tipos celulares: hay una cierta tendencia de las celulas mas activas metabolicamente a expresar un mayor porcentaje de transcritos mitocondriales: higado, misculo y celulas que invercambian iones (pronephric e ionocitos).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb159"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb159-1"><a href="#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">VlnPlot</span>(zf_atlas5dpf, <span class="st">"pct_counts_mt"</span>, <span class="at">group.by =</span> <span class="st">"zebrafish_anatomy_ontology_class"</span>) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/mitoatlas-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Quizas podriamos haber sido mas laxos con nuestro filtro</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb160"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">VlnPlot</span>(hc10x, <span class="st">"percent.mt"</span>, <span class="at">group.by =</span> <span class="st">"predicted.id"</span>) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Groups with fewer than two datapoints have been dropped.
+ℹ Set `drop = FALSE` to consider such groups for position adjustment purposes.
+Groups with fewer than two datapoints have been dropped.
+ℹ Set `drop = FALSE` to consider such groups for position adjustment purposes.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/mitohaircells-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="integracion-de-dataset-del-neuromasto" class="level2">
+<h2 class="anchored" data-anchor-id="integracion-de-dataset-del-neuromasto">Integracion de dataset del neuromasto</h2>
+<p>Vamos a tomar de cada dataset solo las celulas anotadas como neuromasto, como este solo es un ejercicio por diversion, tomaremos tambien las celulas de neuromasto del atlas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb162"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb162-1"><a href="#cb162-1" aria-hidden="true" tabindex="-1"></a>haircells10x <span class="ot">&lt;-</span> <span class="fu">subset</span>(hc10x, <span class="at">subset =</span> predicted.id <span class="sc">==</span> <span class="st">"neuromast"</span>)</span>
+<span id="cb162-2"><a href="#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="do">##All scrb cells were neuromast cells</span></span>
+<span id="cb162-3"><a href="#cb162-3" aria-hidden="true" tabindex="-1"></a>supportcells10x <span class="ot">&lt;-</span> <span class="fu">subset</span>(sc10x, <span class="at">subset =</span> predicted.id <span class="sc">==</span> <span class="st">"neuromast"</span>)</span>
+<span id="cb162-4"><a href="#cb162-4" aria-hidden="true" tabindex="-1"></a>neuromast_atlas <span class="ot">&lt;-</span> <span class="fu">subset</span>(zf_atlas5dpf, <span class="at">subset =</span>  zebrafish_anatomy_ontology_class <span class="sc">==</span> <span class="st">"neuromast"</span>)</span>
+<span id="cb162-5"><a href="#cb162-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-6"><a href="#cb162-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Anadimos una columna de metadatos extra para distinguirlos despues de la integracion</span></span>
+<span id="cb162-7"><a href="#cb162-7" aria-hidden="true" tabindex="-1"></a>supportcells10x<span class="sc">$</span>dataset <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"support"</span>,<span class="fu">length</span>(<span class="fu">Cells</span>(supportcells10x)))</span>
+<span id="cb162-8"><a href="#cb162-8" aria-hidden="true" tabindex="-1"></a>hcSCRB<span class="sc">$</span>dataset <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"haircellSCRB"</span>,<span class="fu">length</span>(<span class="fu">Cells</span>(hcSCRB)))</span>
+<span id="cb162-9"><a href="#cb162-9" aria-hidden="true" tabindex="-1"></a>neuromast_atlas<span class="sc">$</span>dataset <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"Atlas"</span>,<span class="fu">length</span>(<span class="fu">Cells</span>(neuromast_atlas)))</span>
+<span id="cb162-10"><a href="#cb162-10" aria-hidden="true" tabindex="-1"></a>haircells10x<span class="sc">$</span>dataset <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"haircells10x"</span>, <span class="fu">length</span>(<span class="fu">Cells</span>(haircells10x)))</span>
+<span id="cb162-11"><a href="#cb162-11" aria-hidden="true" tabindex="-1"></a>integrated <span class="ot">&lt;-</span> <span class="fu">c</span>(neuromast_atlas, haircells10x, hcSCRB, supportcells10x)</span>
+<span id="cb162-12"><a href="#cb162-12" aria-hidden="true" tabindex="-1"></a>anchors <span class="ot">&lt;-</span> <span class="fu">FindIntegrationAnchors</span>(integrated)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in CheckDuplicateCellNames(object.list = object.list): Some cell names
+are duplicated across objects provided. Renaming to enforce unique cell names.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Computing 2000 integration features</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Scaling features for provided objects</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Different features in new layer data than already exists for
+scale.data</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Different features in new layer data than already exists for
+scale.data
+Warning: Different features in new layer data than already exists for
+scale.data</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding all pairwise anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Running CCA</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Merging objects</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding neighborhoods</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>    Found 1318 anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Filtering anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>    Retained 521 anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Running CCA</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Merging objects</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding neighborhoods</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>    Found 849 anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Filtering anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in FilterAnchors(object = object.pair, assay = assay, slot = slot, :
+Number of anchor cells is less than k.filter. Retaining all anchors.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Running CCA</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Merging objects</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding neighborhoods</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>    Found 918 anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Filtering anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in FilterAnchors(object = object.pair, assay = assay, slot = slot, :
+Number of anchor cells is less than k.filter. Retaining all anchors.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Running CCA</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Merging objects</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding neighborhoods</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>    Found 849 anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Filtering anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in FilterAnchors(object = object.pair, assay = assay, slot = slot, :
+Number of anchor cells is less than k.filter. Retaining all anchors.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Running CCA</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Merging objects</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding neighborhoods</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>    Found 946 anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Filtering anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in FilterAnchors(object = object.pair, assay = assay, slot = slot, :
+Number of anchor cells is less than k.filter. Retaining all anchors.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Running CCA</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Merging objects</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding neighborhoods</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>    Found 760 anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Filtering anchors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in FilterAnchors(object = object.pair, assay = assay, slot = slot, :
+Number of anchor cells is less than k.filter. Retaining all anchors.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb211"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb211-1"><a href="#cb211-1" aria-hidden="true" tabindex="-1"></a>integrated <span class="ot">&lt;-</span> <span class="fu">IntegrateData</span>(anchors, <span class="at">verbose =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Merging dataset 3 into 2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Extracting anchors for merged samples</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding integration vectors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding integration vector weights</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Integrating data</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Layer counts isn't present in the assay object; returning NULL</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Merging dataset 4 into 1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Extracting anchors for merged samples</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding integration vectors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding integration vector weights</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Integrating data</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Layer counts isn't present in the assay object; returning NULL</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Merging dataset 1 4 into 2 3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Extracting anchors for merged samples</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding integration vectors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finding integration vector weights</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Integrating data</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Layer counts isn't present in the assay object; returning NULL</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb230"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb230-1"><a href="#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DefaultAssay</span>(integrated) <span class="ot">&lt;-</span> <span class="st">"integrated"</span></span>
+<span id="cb230-2"><a href="#cb230-2" aria-hidden="true" tabindex="-1"></a>integrated <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(integrated)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Centering and scaling data matrix</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb232"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb232-1"><a href="#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Variable features were calculated automatically</span></span>
+<span id="cb232-2"><a href="#cb232-2" aria-hidden="true" tabindex="-1"></a>integrated <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(integrated)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>PC_ 1 
+Positive:  pvalb8, cabp2b, gpx2, atp2b1a, otofb, si:ch211-255p10.3, gpx1b, s100t, calml4a, s100s 
+       nptna, myo15ab, tmem240b, osbpl1a, tspan13b, si:ch211-145b13.5, tmc2b, atp1a3b, tekt3, si:dkeyp-72h1.1 
+       anxa5a, rabl6b, wu:fj16a03, si:ch211-163l21.7, mt2, kif1aa, ptpn20, dnajc5b, zmp:0000001301, si:ch211-243g18.2 
+Negative:  cldnb, si:dkey-205h13.2, si:ch211-195b11.3, phlda2, negaly6, junba, tmem176l.4, cd9b, si:dkey-4p15.5, krt1-c5 
+       slc1a3a, cldnh, zgc:158343, zgc:162730, cbln20, elf3, zfp36l1b, soul5, tmsb4x, si:dkeyp-110c7.4 
+       pdia3, krt8, apodb, cbln18, tmsb, btg2, si:dkey-33m11.8, rplp2l, egr2a, zgc:165423 
+PC_ 2 
+Positive:  wu:fj16a03, tmem176l.4, cbln18, s100s, cbln20, si:dkeyp-110c7.4, slc1a3a, soul5, negaly6, si:dkey-4p15.5 
+       zgc:165423, si:dkey-33m11.8, si:dkey-205h13.2, glula, foxq1a, phlda2, si:ch211-255p10.3, apodb, soul2, zgc:162730 
+       si:ch73-199e17.1, tmem176l.2, zfp36l1b, krt1-c5, zgc:158343, mb, tspan35, si:ch211-71m22.1, egr2a, cadm4 
+Negative:  tuba1c, gstp1, rnf41l, tuba1a, ptmab, atoh1a, otofa, si:ch211-243g18.2, si:dkey-280e21.3, zgc:153665 
+       si:ch211-114n24.6, shisa2a, capn8, jam2a, zgc:162989, pax2a, rplp0, hsp90ab1, camk2n1a, scg3 
+       si:ch211-236g6.1, sh2d4bb, gipc3, espnlb, fxyd1, dld, nqo1, nap1l4b, anxa4, rbm24a 
+PC_ 3 
+Positive:  pvalb8, si:ch211-114n24.6, zgc:165423, osbpl1a, cbln18, gapdhs, si:dkey-4p15.5, tekt3, si:ch73-199e17.1, si:dkeyp-110c7.4 
+       cbln20, gpx2, zgc:153911, s100t, nqo1, gpx1b, si:dkey-33m11.8, eno1a, nptna, tspan13b 
+       slc1a3a, anxa5a, soul5, hbegfb, si:ch211-71m22.1, daw1, cd109, tmem176l.2, hsp70.1, si:dkey-222f2.1 
+Negative:  si:ch211-222l21.1, krt91, si:ch211-236g6.1, pmp22a, cyt1, dld, rbp4, krtt1c19e, pfn1, and2 
+       rnf41l, rplp2l, mycn, rpl23, rpl11, rps15a, cyt1l, col1a2, ppiaa, rpl29 
+       zgc:136930, si:dkey-183i3.5, kdm6bb, rps9, jam2a, rps25, rsl1d1, rps21, dla, rps20 
+PC_ 4 
+Positive:  zgc:153665, otofa, atp1a1b, hsp70.1, gstp1, hsp70l, fxyd1, hsp70.3, nap1l4b, camk2n1a 
+       si:ch211-195b15.8, zgc:153911, jdp2b, desma, fam131c, espnla, cd82a, dnajb1b, tbata, atp2b3b 
+       krt5, degs2, zgc:193505, cxcl14, wu:fb18f06, fam228a, socs3a, ddit3, si:dkey-280e21.3, sh2d4bb 
+Negative:  s100s, si:dkeyp-72h1.1, adcyap1b, si:ch211-255p10.3, wu:fj16a03, rabl6b, gramd2aa, atp6v1c2, cox5aa, si:ch211-222l21.1 
+       hoxb7a, rnf41l, mt2, cabp2b, dld, spink4, atp1b1b, ptpdc1a, six2b, rbx1 
+       atp1a3b, calm2a, ndufa4, ttll2, zgc:154006, tmem240b, aif1l, dla, eny2, snrpe 
+PC_ 5 
+Positive:  s100a10b, col1a1a, postnb, col1a2, col1a1b, pfn1, rbp4, si:dkey-248g15.3, krt91, cxl34b.11 
+       eif4ebp3l, krt5, rplp0, hsp90ab1, cyt1l, cyt1, rpl22, lgals3b, atp1b3a, tmsb4x 
+       eef1a1l1, zgc:136930, id1, ran, rpl10, rpl15, rpl39, pdlim1, tekt3, itgb4 
+Negative:  dld, rnf41l, espnlb, zgc:171699, jam2a, atoh1a, shisa2a, kdm6bb, mtmr8, amer2 
+       cldnh, scg3, dlb, sox1b, dla, tmsb, lfng, si:ch211-236g6.1, cxcr4b, marcksb 
+       si:ch211-222l21.1, nuak1a, marcksl1b, tuba1c, otofa, pax2a, her4.2, tuba1a, lrrc73, eny2 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb234"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb234-1"><a href="#cb234-1" aria-hidden="true" tabindex="-1"></a>integrated <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(integrated, <span class="at">reduction =</span> <span class="st">"pca"</span>, , <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:15:14 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:15:14 Read 1773 rows and found 30 numeric columns</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:15:14 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>13:15:14 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>0%   10   20   30   40   50   60   70   80   90   100%</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>[----|----|----|----|----|----|----|----|----|----|</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>**************************************************|
+13:15:14 Writing NN index file to temp file C:\Users\mwaso\AppData\Local\Temp\RtmpO4WP0i\file6b305b525c03
+13:15:14 Searching Annoy index using 1 thread, search_k = 3000
+13:15:15 Annoy recall = 100%
+13:15:15 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+13:15:16 Initializing from normalized Laplacian + noise (using RSpectra)
+13:15:16 Commencing optimization for 500 epochs, with 75598 positive edges
+13:15:22 Optimization finished</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb242"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb242-1"><a href="#cb242-1" aria-hidden="true" tabindex="-1"></a>integrated <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(integrated, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Computing nearest neighbor graph
+Computing SNN</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb244"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb244-1"><a href="#cb244-1" aria-hidden="true" tabindex="-1"></a>integrated <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(integrated, <span class="at">resolution =</span> <span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 1773
+Number of edges: 84997
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.8227
+Number of communities: 4
+Elapsed time: 0 seconds</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb246"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb246-1"><a href="#cb246-1" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(integrated, <span class="at">reduction =</span> <span class="st">"umap"</span>, <span class="at">group.by =</span> <span class="st">"dataset"</span>, <span class="at">pt.size =</span> <span class="dv">2</span>)</span>
+<span id="cb246-2"><a href="#cb246-2" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(integrated, <span class="at">reduction =</span> <span class="st">"umap"</span>, <span class="at">group.by =</span> <span class="st">"seurat_clusters"</span>, <span class="at">label =</span>T)</span>
+<span id="cb246-3"><a href="#cb246-3" aria-hidden="true" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/integration-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Los clusters no parecen deberse a efectos de batch. Aunque el hecho de que hayamos enriquecido diferentes tipos celulares en cada dataset ya anticipa cuales celulas son haircells y cuales son support cells.</p>
+</section>
+<section id="encontrar-marcadores-de-cada-cluster" class="level2">
+<h2 class="anchored" data-anchor-id="encontrar-marcadores-de-cada-cluster">Encontrar marcadores de cada cluster</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb247"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb247-1"><a href="#cb247-1" aria-hidden="true" tabindex="-1"></a>integrated.markers <span class="ot">&lt;-</span> <span class="fu">FindAllMarkers</span>(integrated, <span class="at">only.pos =</span> <span class="cn">TRUE</span>)  <span class="co">#función para encontrar todos los marcadores</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Calculating cluster 0</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mean.fxn(object[features, cells.1, drop = FALSE]): NaNs wurden
+erzeugt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mean.fxn(object[features, cells.2, drop = FALSE]): NaNs wurden
+erzeugt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>For a (much!) faster implementation of the Wilcoxon Rank Sum Test,
+(default method for FindMarkers) please install the presto package
+--------------------------------------------
+install.packages('devtools')
+devtools::install_github('immunogenomics/presto')
+--------------------------------------------
+After installation of presto, Seurat will automatically use the more 
+efficient implementation (no further action necessary).
+This message will be shown once per session</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Calculating cluster 1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mean.fxn(object[features, cells.1, drop = FALSE]): NaNs wurden
+erzeugt
+Warning in mean.fxn(object[features, cells.1, drop = FALSE]): NaNs wurden
+erzeugt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Calculating cluster 2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mean.fxn(object[features, cells.1, drop = FALSE]): NaNs wurden
+erzeugt
+Warning in mean.fxn(object[features, cells.1, drop = FALSE]): NaNs wurden
+erzeugt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Calculating cluster 3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mean.fxn(object[features, cells.1, drop = FALSE]): NaNs wurden
+erzeugt
+Warning in mean.fxn(object[features, cells.1, drop = FALSE]): NaNs wurden
+erzeugt</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb258"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb258-1"><a href="#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cuantos marcadores hay por cluster</span></span>
+<span id="cb258-2"><a href="#cb258-2" aria-hidden="true" tabindex="-1"></a>integrated.markers <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">numerodemarcardores =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  cluster numerodemarcardores
+  &lt;fct&gt;                 &lt;int&gt;
+1 0                       435
+2 1                       691
+3 2                       283
+4 3                       635</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb260"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb260-1"><a href="#cb260-1" aria-hidden="true" tabindex="-1"></a>byclustertop10markers <span class="ot">&lt;-</span> integrated.markers <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span> </span>
+<span id="cb260-2"><a href="#cb260-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_log2FC), <span class="at">.by_group =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(gene) <span class="sc">%&gt;%</span> <span class="fu">unique</span>()</span>
+<span id="cb260-3"><a href="#cb260-3" aria-hidden="true" tabindex="-1"></a><span class="fu">DotPlot</span>(integrated, <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"lightgray"</span>, <span class="st">"red"</span>), <span class="at">col.min =</span> <span class="dv">0</span>, <span class="at">features =</span> byclustertop10markers, <span class="at">group.by =</span> <span class="st">"seurat_clusters"</span>) <span class="sc">+</span> </span>
+<span id="cb260-4"><a href="#cb260-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Scaling data with a low number of groups may produce misleading
+results</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/markers-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="anotacion-de-clusters" class="level2">
+<h2 class="anchored" data-anchor-id="anotacion-de-clusters">Anotacion de clusters</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb262"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb262-1"><a href="#cb262-1" aria-hidden="true" tabindex="-1"></a>Seurat<span class="sc">::</span><span class="fu">DoHeatmap</span>(integrated, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"negaly6"</span>, <span class="st">"stm"</span>, <span class="st">"sost"</span>, <span class="st">"dld"</span>, <span class="st">"atoh1a"</span>, <span class="st">"myo6b"</span>, <span class="st">"tekt3"</span>, <span class="st">"pvalb8"</span>, <span class="st">"emx2"</span>), <span class="at">group.by =</span> <span class="st">"seurat_clusters"</span>, <span class="at">slot =</span> <span class="st">"scale.data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in Seurat::DoHeatmap(integrated, features = c("negaly6", "stm", : The
+following features were omitted as they were not found in the scale.data slot
+for the integrated assay: sost</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/heatmapmarkers-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="con-marcadores" class="level2">
+<h2 class="anchored" data-anchor-id="con-marcadores">con marcadores</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb264"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb264-1"><a href="#cb264-1" aria-hidden="true" tabindex="-1"></a>zf_gene_synonyms <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data/identifiersForIntermine.txt"</span>, </span>
+<span id="cb264-2"><a href="#cb264-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb264-3"><a href="#cb264-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">col_names =</span> <span class="cn">FALSE</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 269788 Columns: 2
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): X1, X2
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb266"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb266-1"><a href="#cb266-1" aria-hidden="true" tabindex="-1"></a>wildtype_expression_zf <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data/wildtype-expression_fish.txt"</span>, </span>
+<span id="cb266-2"><a href="#cb266-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb266-3"><a href="#cb266-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">col_names =</span> <span class="cn">FALSE</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 238843 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (15): X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, X11, X12, X13, X14, X15
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb268"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb268-1"><a href="#cb268-1" aria-hidden="true" tabindex="-1"></a>integrated.markers <span class="ot">&lt;-</span> integrated.markers <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">gene =</span> <span class="fu">str_remove</span>(gene, <span class="st">"[.-][0-9]$"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-xu2015" class="csl-entry" role="listitem">
+Xu, Chen, and Zhengchang Su. 2015. <span>“Identification of Cell Types from Single-Cell Transcriptomes Using a Novel Clustering Method.”</span> <em>Bioinformatics</em> 31 (12): 1974–80. <a href="https://doi.org/10.1093/bioinformatics/btv088">https://doi.org/10.1093/bioinformatics/btv088</a>.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Los archivos fastq fueron alineados a una referencia splice+i. Es decir, una referencia del transcriptoma mas intrones. Utilizando el pipeline de simpleaf con el transcriptoma del pez cebra al que se le anadio la secuencia de EGFP utilizada en transgenicos. Este pipeline tambien se encarga de resolver los UMIS y los barcodes. <a href="https://simpleaf.readthedocs.io/en/latest/" class="uri">https://simpleaf.readthedocs.io/en/latest/</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
