@@ -350,16 +350,16 @@ To use Python UMAP via reticulate, set umap.method to 'umap-learn' and metric to
 This message will be shown once per session</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:42:54 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
+<pre><code>22:30:05 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:42:54 Read 2819 rows and found 30 numeric columns</code></pre>
+<pre><code>22:30:05 Read 2819 rows and found 30 numeric columns</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:42:54 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
+<pre><code>22:30:05 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:42:54 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
+<pre><code>22:30:05 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>0%   10   20   30   40   50   60   70   80   90   100%</code></pre>
@@ -369,13 +369,13 @@ This message will be shown once per session</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>**************************************************|
-06:42:54 Writing NN index file to temp file C:\Users\mwaso\AppData\Local\Temp\Rtmp2h6Z5h\file57e81c7415a1
-06:42:54 Searching Annoy index using 1 thread, search_k = 3000
-06:42:55 Annoy recall = 100%
-06:42:55 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
-06:42:56 Initializing from normalized Laplacian + noise (using RSpectra)
-06:42:56 Commencing optimization for 500 epochs, with 114940 positive edges
-06:43:04 Optimization finished</code></pre>
+22:30:05 Writing NN index file to temp file C:\Users\mwaso\AppData\Local\Temp\RtmpoLRe31\file5be023b610fa
+22:30:05 Searching Annoy index using 1 thread, search_k = 3000
+22:30:06 Annoy recall = 100%
+22:30:06 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+22:30:07 Initializing from normalized Laplacian + noise (using RSpectra)
+22:30:07 Commencing optimization for 500 epochs, with 114940 positive edges
+22:30:14 Optimization finished</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DimPlot</span>(hc10x, <span class="at">group.by =</span> <span class="fu">c</span>(<span class="st">"seurat_clusters"</span>), <span class="at">reduction =</span> <span class="st">"umap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -461,16 +461,16 @@ Negative:  sparc, col11a1a, ptgdsb.1, si:dkey-194e6.1, col9a2, cnmd, col1a1a, co
 <pre><code>UMAP will return its model</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:43:35 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
+<pre><code>22:30:42 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:43:35 Read 24987 rows and found 30 numeric columns</code></pre>
+<pre><code>22:30:42 Read 24987 rows and found 30 numeric columns</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:43:35 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
+<pre><code>22:30:42 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:43:35 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
+<pre><code>22:30:42 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>0%   10   20   30   40   50   60   70   80   90   100%</code></pre>
@@ -480,13 +480,13 @@ Negative:  sparc, col11a1a, ptgdsb.1, si:dkey-194e6.1, col9a2, cnmd, col1a1a, co
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>**************************************************|
-06:43:38 Writing NN index file to temp file C:\Users\mwaso\AppData\Local\Temp\Rtmp2h6Z5h\file57e854c652c7
-06:43:38 Searching Annoy index using 1 thread, search_k = 3000
-06:43:47 Annoy recall = 100%
-06:43:48 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
-06:43:49 Initializing from normalized Laplacian + noise (using RSpectra)
-06:43:51 Commencing optimization for 200 epochs, with 1120824 positive edges
-06:44:26 Optimization finished</code></pre>
+22:30:46 Writing NN index file to temp file C:\Users\mwaso\AppData\Local\Temp\RtmpoLRe31\file5be046f43eeb
+22:30:46 Searching Annoy index using 1 thread, search_k = 3000
+22:30:54 Annoy recall = 100%
+22:30:55 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+22:30:56 Initializing from normalized Laplacian + noise (using RSpectra)
+22:30:58 Commencing optimization for 200 epochs, with 1120824 positive edges
+22:31:24 Optimization finished</code></pre>
 </div>
 </div>
 <p>Podemos usar esto como un filtro de cuales celulas son del tejido de interes y cuales no. En este caso, podemos ver que hay un sobrelape entre las celulas que expresan el transgenico y las celulas del neuromasto.</p>
@@ -561,16 +561,16 @@ Integrating dataset 2 with reference dataset</code></pre>
 <pre><code>Running UMAP projection</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:44:57 Read 2819 rows</code></pre>
+<pre><code>22:31:51 Read 2819 rows</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:44:57 Processing block 1 of 1</code></pre>
+<pre><code>22:31:51 Processing block 1 of 1</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:44:57 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
-06:44:57 Initializing by weighted average of neighbor coordinates using 1 thread
-06:44:57 Commencing optimization for 67 epochs, with 84570 positive edges
-06:44:58 Finished</code></pre>
+<pre><code>22:31:51 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+22:31:51 Initializing by weighted average of neighbor coordinates using 1 thread
+22:31:51 Commencing optimization for 67 epochs, with 84570 positive edges
+22:31:52 Finished</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(zf_atlas5dpf, <span class="at">reduction =</span> <span class="st">"umap"</span>, <span class="at">group.by =</span> <span class="st">"zebrafish_anatomy_ontology_class"</span>, <span class="at">label =</span> T, <span class="at">repel =</span> T) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(hc10x, <span class="at">reduction =</span> <span class="st">"ref.umap"</span>, <span class="at">group.by =</span> <span class="st">"predicted.id"</span>, <span class="at">label =</span> T, <span class="at">repel =</span> T) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span>
@@ -721,16 +721,16 @@ Elapsed time: 0 seconds</code></pre>
 <pre><code>UMAP will return its model</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:45:05 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
+<pre><code>22:31:58 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:45:05 Read 184 rows and found 30 numeric columns</code></pre>
+<pre><code>22:31:58 Read 184 rows and found 30 numeric columns</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:45:05 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
+<pre><code>22:31:58 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:45:05 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
+<pre><code>22:31:58 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>0%   10   20   30   40   50   60   70   80   90   100%</code></pre>
@@ -740,13 +740,13 @@ Elapsed time: 0 seconds</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>**************************************************|
-06:45:05 Writing NN index file to temp file C:\Users\mwaso\AppData\Local\Temp\Rtmp2h6Z5h\file57e83b3f38b2
-06:45:05 Searching Annoy index using 1 thread, search_k = 3000
-06:45:05 Annoy recall = 100%
-06:45:05 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
-06:45:05 Initializing from normalized Laplacian + noise (using RSpectra)
-06:45:05 Commencing optimization for 500 epochs, with 6864 positive edges
-06:45:06 Optimization finished</code></pre>
+22:31:58 Writing NN index file to temp file C:\Users\mwaso\AppData\Local\Temp\RtmpoLRe31\file5be04242e60
+22:31:58 Searching Annoy index using 1 thread, search_k = 3000
+22:31:59 Annoy recall = 100%
+22:31:59 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+22:31:59 Initializing from normalized Laplacian + noise (using RSpectra)
+22:31:59 Commencing optimization for 500 epochs, with 6864 positive edges
+22:32:00 Optimization finished</code></pre>
 </div>
 </div>
 <p>La tecnica de pozos gana en terminos de especificidad. El 100% de las celulas son del neuromasto y la deteccion de conteos del transgenico es casi igual de alta.</p>
@@ -870,16 +870,16 @@ Elapsed time: 1 seconds</code></pre>
 <pre><code>UMAP will return its model</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:45:36 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
+<pre><code>22:32:30 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:45:36 Read 8735 rows and found 30 numeric columns</code></pre>
+<pre><code>22:32:30 Read 8735 rows and found 30 numeric columns</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:45:36 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
+<pre><code>22:32:30 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:45:36 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
+<pre><code>22:32:30 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>0%   10   20   30   40   50   60   70   80   90   100%</code></pre>
@@ -889,13 +889,13 @@ Elapsed time: 1 seconds</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>**************************************************|
-06:45:37 Writing NN index file to temp file C:\Users\mwaso\AppData\Local\Temp\Rtmp2h6Z5h\file57e87c26de0
-06:45:37 Searching Annoy index using 1 thread, search_k = 3000
-06:45:39 Annoy recall = 100%
-06:45:40 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
-06:45:40 Initializing from normalized Laplacian + noise (using RSpectra)
-06:45:41 Commencing optimization for 500 epochs, with 359674 positive edges
-06:46:03 Optimization finished</code></pre>
+22:32:31 Writing NN index file to temp file C:\Users\mwaso\AppData\Local\Temp\RtmpoLRe31\file5be020511480
+22:32:31 Searching Annoy index using 1 thread, search_k = 3000
+22:32:33 Annoy recall = 100%
+22:32:34 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+22:32:34 Initializing from normalized Laplacian + noise (using RSpectra)
+22:32:35 Commencing optimization for 500 epochs, with 359674 positive edges
+22:32:59 Optimization finished</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -1305,16 +1305,16 @@ Negative:  dld, rnf41l, espnlb, zgc:171699, jam2a, atoh1a, shisa2a, kdm6bb, mtmr
 </div>
 <div class="sourceCode cell-code" id="cb233"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb233-1"><a href="#cb233-1" aria-hidden="true" tabindex="-1"></a>integrated <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(integrated, <span class="at">reduction =</span> <span class="st">"pca"</span>, , <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:47:29 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
+<pre><code>22:34:27 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:47:29 Read 1773 rows and found 30 numeric columns</code></pre>
+<pre><code>22:34:27 Read 1773 rows and found 30 numeric columns</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:47:29 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
+<pre><code>22:34:27 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>06:47:29 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
+<pre><code>22:34:27 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>0%   10   20   30   40   50   60   70   80   90   100%</code></pre>
@@ -1324,13 +1324,13 @@ Negative:  dld, rnf41l, espnlb, zgc:171699, jam2a, atoh1a, shisa2a, kdm6bb, mtmr
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>**************************************************|
-06:47:29 Writing NN index file to temp file C:\Users\mwaso\AppData\Local\Temp\Rtmp2h6Z5h\file57e8221d4480
-06:47:29 Searching Annoy index using 1 thread, search_k = 3000
-06:47:30 Annoy recall = 100%
-06:47:30 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
-06:47:31 Initializing from normalized Laplacian + noise (using RSpectra)
-06:47:31 Commencing optimization for 500 epochs, with 75598 positive edges
-06:47:36 Optimization finished</code></pre>
+22:34:27 Writing NN index file to temp file C:\Users\mwaso\AppData\Local\Temp\RtmpoLRe31\file5be066017bd1
+22:34:27 Searching Annoy index using 1 thread, search_k = 3000
+22:34:28 Annoy recall = 100%
+22:34:28 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+22:34:29 Initializing from normalized Laplacian + noise (using RSpectra)
+22:34:29 Commencing optimization for 500 epochs, with 75598 positive edges
+22:34:34 Optimization finished</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb241"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb241-1"><a href="#cb241-1" aria-hidden="true" tabindex="-1"></a>integrated <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(integrated, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1466,6 +1466,111 @@ results</code></pre>
 <div>
 <figure class="figure">
 <p><img src="Taller_Transcriptomica_files/figure-html/newclustid-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="expresion-diferencial" class="level2">
+<h2 class="anchored" data-anchor-id="expresion-diferencial">Expresion diferencial</h2>
+<p>Entre los genes que mas diferencian a los dos grupos de progenitores estan efectores y componentes de la via de Notch.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb263"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb263-1"><a href="#cb263-1" aria-hidden="true" tabindex="-1"></a>progenitor.markers <span class="ot">&lt;-</span> <span class="fu">FindMarkers</span>(integrated, <span class="at">ident.1 =</span> <span class="st">"Progenitors1"</span>, <span class="at">ident.2 =</span> <span class="st">"Progenitors2"</span>, <span class="at">logfc.threshold =</span> <span class="dv">1</span>, <span class="at">test.use =</span> <span class="st">"roc"</span>, <span class="at">only.pos =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb263-2"><a href="#cb263-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gene =</span> <span class="fu">rownames</span>(.))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mean.fxn(object[features, cells.1, drop = FALSE]): NaNs wurden
+erzeugt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mean.fxn(object[features, cells.2, drop = FALSE]): NaNs wurden
+erzeugt</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb266"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb266-1"><a href="#cb266-1" aria-hidden="true" tabindex="-1"></a>progenitor.markers <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(gene, <span class="st">"^her"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       myAUC  avg_diff power avg_log2FC pct.1 pct.2   gene
+her4.4 0.740 0.1103323 0.480   3.969028 0.652 0.036 her4.4
+her4.3 0.685 0.1519917 0.370   4.078984 0.602 0.014 her4.3
+her6   0.634 0.4018984 0.268   2.787783 0.602 0.094   her6
+her9   0.431 0.2674395 0.138   2.736018 0.371 0.065   her9
+her4.2 0.465 0.4042297 0.070   6.437596 0.379 0.022 her4.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb268"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb268-1"><a href="#cb268-1" aria-hidden="true" tabindex="-1"></a>progenitor.markers <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(gene, <span class="st">"^dl"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    myAUC  avg_diff power avg_log2FC pct.1 pct.2 gene
+dld 0.812 0.1917520 0.624   2.295952 0.780 0.072  dld
+dla 0.564 0.4014947 0.128   4.022695 0.515 0.072  dla</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb270"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb270-1"><a href="#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="fu">FeaturePlot</span>(integrated, <span class="fu">c</span>(<span class="st">"dla"</span>, <span class="st">"dld"</span>), <span class="at">label =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/genesnotch-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb271"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb271-1"><a href="#cb271-1" aria-hidden="true" tabindex="-1"></a>progenitors <span class="ot">&lt;-</span> <span class="fu">WhichCells</span>(integrated, <span class="at">idents =</span> <span class="fu">c</span>(<span class="st">"Progenitors1"</span>, <span class="st">"Progenitors2"</span>))</span>
+<span id="cb271-2"><a href="#cb271-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-3"><a href="#cb271-3" aria-hidden="true" tabindex="-1"></a>Seurat<span class="sc">::</span><span class="fu">DoHeatmap</span>(integrated, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"dla"</span>, <span class="st">"dld"</span>, <span class="st">"her4.4"</span>, <span class="st">"her4.3"</span>, <span class="st">"her6"</span>, <span class="st">"her9"</span>, <span class="st">"her4.2"</span>, <span class="st">"emx2"</span>), <span class="at">group.by =</span> <span class="st">"seurat_clusters"</span>, <span class="at">cells =</span> progenitors )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/heatmaprog-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bipolaridad-transcripcional-mediada-por-emx2" class="level2">
+<h2 class="anchored" data-anchor-id="bipolaridad-transcripcional-mediada-por-emx2">Bipolaridad transcripcional mediada por emx2</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb272"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb272-1"><a href="#cb272-1" aria-hidden="true" tabindex="-1"></a>progenitor_obj <span class="ot">&lt;-</span> <span class="fu">subset</span>(integrated, <span class="at">cells =</span> progenitors)</span>
+<span id="cb272-2"><a href="#cb272-2" aria-hidden="true" tabindex="-1"></a>emx2_threshold <span class="ot">&lt;-</span> progenitor_obj[[<span class="st">"integrated"</span>]]<span class="sc">$</span>scale.data[<span class="st">"emx2"</span>,] <span class="sc">%&gt;%</span> median</span>
+<span id="cb272-3"><a href="#cb272-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-4"><a href="#cb272-4" aria-hidden="true" tabindex="-1"></a>progenitor_obj<span class="sc">@</span>meta.data <span class="ot">&lt;-</span> progenitor_obj<span class="sc">@</span>meta.data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">emx2expression =</span>  progenitor_obj[[<span class="st">"integrated"</span>]]<span class="sc">$</span>scale.data[<span class="st">"emx2"</span>,], <span class="at">emx2status =</span> <span class="fu">if_else</span>(emx2expression <span class="sc">&gt;</span> emx2_threshold, <span class="st">"positive"</span>, <span class="st">"negative"</span>))</span>
+<span id="cb272-5"><a href="#cb272-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-6"><a href="#cb272-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-7"><a href="#cb272-7" aria-hidden="true" tabindex="-1"></a>emx2.de <span class="ot">&lt;-</span> <span class="fu">FindMarkers</span>(progenitor_obj, <span class="at">ident.1 =</span> <span class="st">"positive"</span>, <span class="at">ident.2 =</span> <span class="st">"negative"</span>, <span class="at">group.by =</span> <span class="st">"emx2status"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mean.fxn(object[features, cells.1, drop = FALSE]): NaNs wurden
+erzeugt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mean.fxn(object[features, cells.2, drop = FALSE]): NaNs wurden
+erzeugt</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb275"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb275-1"><a href="#cb275-1" aria-hidden="true" tabindex="-1"></a>emx2.de <span class="sc">%&gt;%</span> <span class="fu">filter</span>(p_val_adj <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="fu">abs</span>(avg_log2FC) <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(avg_log2FC)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  p_val avg_log2FC pct.1 pct.2    p_val_adj
+emx2       4.283667e-69   4.408045 1.000 0.401 8.567335e-66
+afp4       5.030377e-07   2.805772 0.164 0.139 1.006075e-03
+ecrg4a     1.136350e-05   2.728262 0.632 0.347 2.272701e-02
+rrm2       2.499310e-07  -2.642575 0.652 0.351 4.998619e-04
+zgc:158412 7.473424e-06   2.625056 0.483 0.183 1.494685e-02
+grn2       1.738167e-07  -2.287208 0.721 0.421 3.476335e-04
+zbtb37     2.123727e-05   2.191792 0.622 0.337 4.247454e-02
+hand2      4.252646e-06   2.033501 0.532 0.228 8.505291e-03
+cavin4b    1.505066e-05  -1.824217 0.109 0.079 3.010132e-02
+and2       2.700602e-10   1.677826 0.692 0.376 5.401203e-07
+lhfpl5a    3.891787e-08   1.637227 0.736 0.421 7.783573e-05
+jac1       4.209122e-08   1.536012 0.323 0.069 8.418244e-05
+cd83       8.127926e-06  -1.419650 0.592 0.337 1.625585e-02
+etnppl     7.570843e-12   1.121100 0.736 0.366 1.514169e-08
+armc7      2.525138e-08   1.116324 0.124 0.144 5.050275e-05</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb277"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb277-1"><a href="#cb277-1" aria-hidden="true" tabindex="-1"></a>emx2.de.genes <span class="ot">&lt;-</span> emx2.de <span class="sc">%&gt;%</span> <span class="fu">filter</span>(p_val_adj <span class="sc">&lt;</span> <span class="fl">0.05</span>) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(avg_log2FC))) <span class="sc">%&gt;%</span> <span class="fu">rownames</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb278"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb278-1"><a href="#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="fu">VlnPlot</span>(progenitor_obj, <span class="fu">c</span>(<span class="st">"emx2"</span>, <span class="st">"tra2b"</span>, <span class="st">"hoxc3a"</span>, <span class="st">"tra2b"</span>, <span class="st">"hoxc8a"</span>, <span class="st">"slc40a1"</span>, <span class="st">"tmem141"</span>), <span class="at">group.by =</span> <span class="st">"emx2status"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller_Transcriptomica_files/figure-html/emx2violin-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
