@@ -1,0 +1,657 @@
+---
+title: "Métodos de Resolución Espacial"
+subtitle: "Clase 12 — Transcriptómica Espacial"
+author: ""
+date: ""
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    transition: slide
+    background-transition: fade
+    highlight-style: github
+    code-fold: true
+    width: 1280
+    height: 720
+    margin: 0.1
+    logo: ""
+    footer: "Métodos de Resolución Espacial — Clase 12"
+    title-slide-attributes:
+      data-background-image: images/slide01_img03.png
+      data-background-size: 45%
+      data-background-position: right
+      data-background-color: "#1a7a8a"
+---
+
+## La transcriptómica espacial
+
+::: {.columns}
+
+::: {.column width="50%"}
+La transcriptómica espacial es la **evolución** de:
+
+- Técnicas **histológicas** clásicas
+- Técnicas **transcriptómicas** modernas
+
+Combina información de expresión génica con la localización dentro del tejido.
+:::
+
+::: {.column width="50%"}
+![](images/slide02_img00.jpg){fig-align="center" height="450"}
+:::
+
+:::
+
+---
+
+## Motivaciones de la transcriptómica espacial {.smaller}
+
+::: {.columns}
+
+::: {.column width="45%"}
+*Form follows function… follows localization*
+
+- Identificación de genes con **patrones restringidos** que indiquen una función en el desarrollo
+- **Marcadores celulares** novedosos y tipos celulares que no son evidentes de la morfología
+
+::: {.ref}
+Martin & Ephrussi, 2009
+:::
+:::
+
+::: {.column width="55%"}
+![](images/slide03_img03.jpg){fig-align="center" height="420"}
+:::
+
+:::
+
+---
+
+## {background-color="#1a7a8a"}
+
+::: {style="text-align: center; color: white; margin-top: 15%;"}
+
+### Basados en ROI
+### (Regiones de Interés) {.fragment}
+
+:::
+
+---
+
+## LCM: Laser Capture Microdissection + RNA-seq
+
+::: {.columns}
+
+::: {.column width="55%"}
+![](images/slide05_img01.png){fig-align="center" height="450"}
+:::
+
+::: {.column width="45%"}
+- Se selecciona una **región de interés** en el tejido mediante láser
+- El material se captura sobre un **plasma** adhesivo
+- Se extrae RNA y se realiza **RNA-seq** estándar
+:::
+
+:::
+
+---
+
+## TOMO-seq: RNA-seq en secciones al crióstato {.smaller}
+
+::: {.columns}
+
+::: {.column width="55%"}
+![](images/slide07_img00.png){fig-align="center" height="400"}
+:::
+
+::: {.column width="45%"}
+Es la misma idea que las técnicas de scRNAseq basadas en pozos.
+
+**Transcriptómica espacial 1D** (aunque pueden hacerse en las tres orientaciones).
+
+Se secciona el tejido en rebanadas finas y se procesa cada una por separado.
+:::
+
+:::
+
+---
+
+## Niche-seq: fotoactivación y FACS
+
+::: {.columns}
+
+::: {.column width="60%"}
+![](images/slide07_img00.png){fig-align="center" height="350"}
+:::
+
+::: {.column width="40%"}
+- Se **fotoactivan** células en una región definida
+- Se disocian y **clasifican por FACS**
+- Células fotoactivadas se procesan para RNA-seq
+:::
+
+:::
+
+---
+
+## GeomX DSP: Barcodes en Región de Interés {.smaller}
+
+::: {.columns}
+
+::: {.column width="50%"}
+![](images/slide08_img03.png){fig-align="center" height="400"}
+:::
+
+::: {.column width="50%"}
+Compañía: **NanoString**
+
+- Libera **barcodes indicadores** por exposición UV en la región de interés
+- Los barcodes son recolectados y **secuenciados**
+- Permite seleccionar regiones complejas guiadas por inmunofluorescencia
+:::
+
+:::
+
+---
+
+## Ventajas y desventajas — Métodos ROI {.smaller}
+
+::: {.columns}
+
+::: {.column width="50%"}
+::: {.ventaja}
+✅ No requieren equipo especializado o utilizan equipo preexistente
+:::
+
+::: {.ventaja}
+✅ Buena **eficiencia de captura**
+:::
+:::
+
+::: {.column width="50%"}
+::: {.desventaja}
+⚠️ Pueden ser **laboriosas**
+:::
+
+::: {.desventaja}
+⚠️ **Poca resolución espacial**, aunque pueden combinarse con scRNA-seq
+:::
+:::
+
+:::
+
+::: {.ref}
+Museum of spatial transcriptomics. Moses & Pachter, 2022
+:::
+
+---
+
+## {background-color="#1a7a8a"}
+
+::: {.columns}
+
+::: {.column width="50%" style="color: white; padding-top: 10%;"}
+### Métodos basados en sm-FISH
+
+La hibridización *in situ* con sondas radioactivas comenzó a usarse en los **años 70s**
+:::
+
+::: {.column width="50%"}
+![](images/slide10_img04.png){fig-align="center" height="550"}
+:::
+
+:::
+
+---
+
+## sm-FISH: Características clave {.smaller}
+
+- La resolución espacial sólo limitada por la **difracción de la luz** (~200 nm)
+
+- La sensibilidad y precisión son altísimas: pueden contarse **moléculas individuales** de RNA por célula
+
+- **Limitante**: ¿Cómo detectar >20,000 genes con sólo <5 colores de fluoróforo?
+
+. . .
+
+::: {.callout-box}
+**Respuesta**: Múltiples rondas de hibridación  
+F = Número de fluoróforos · N = número de rondas  
+Genes detectables = **F × N**
+:::
+
+---
+
+## seqFISH+: Pseudo-colores {.smaller}
+
+::: {.columns}
+
+::: {.column width="55%"}
+![](images/slide12_img02.png){fig-align="center" height="350"}
+:::
+
+::: {.column width="45%"}
+- Utiliza **"pseudo-colores"**: el número de rondas se multiplica con el número de pseudocolores
+
+- No todos los genes se detectan en cada ronda (cada gen solo se detecta **una vez** en 20 rondas)
+
+- Posibles genes en 20 rondas con pseudocolores de 4:  
+  **20⁴ = 160,000**
+:::
+
+:::
+
+---
+
+## MERFISH: RNAs codificados con palabras binarias {.smaller}
+
+::: {.columns}
+
+::: {.column width="55%"}
+![](images/slide13_img02.jpg){fig-align="center" height="400"}
+:::
+
+::: {.column width="45%"}
+- La **ausencia de señal** también se toma como información
+- RNAs son codificados con **palabras binarias** a lo largo de múltiples rondas
+- Sistema comercial: **Vizgen Merscope**
+:::
+
+:::
+
+---
+
+## MERFISH: Corrección de errores
+
+![](images/slide14_img02.png){fig-align="center" height="500"}
+
+Las palabras binarias están diseñadas con **distancia de Hamming** suficiente para detectar y corregir errores.
+
+---
+
+## Técnicas de amplificación {.smaller}
+
+::: {.columns}
+
+::: {.column width="33%"}
+**Branched DNA**
+
+![](images/slide15_img02.jpg){fig-align="center" height="250"}
+:::
+
+::: {.column width="33%"}
+**Rolling Circle Amplification**
+
+![](images/slide15_img03.png){fig-align="center" height="250"}
+:::
+
+::: {.column width="33%"}
+**HCR** (Hybridization Chain Reaction)
+
+![](images/slide15_img04.png){fig-align="center" height="250"}
+:::
+
+:::
+
+Permiten amplificar la señal fluorescente para mejorar la detección.
+
+---
+
+## Ventajas de métodos smFISH {.smaller}
+
+::: {.ventaja}
+✅ Altísima **sensibilidad**: pueden detectar hasta el 100% de transcritos, incluso si son N=1
+:::
+
+::: {.ventaja}
+✅ Resolución de localización **sub-celular** y en **3D**
+:::
+
+::: {.ventaja}
+✅ Se usan como **benchmark** para comparar la eficiencia de otras técnicas
+:::
+
+::: {.ventaja}
+✅ Disponible información sobre **morfología nuclear o celular**
+:::
+
+---
+
+## Desventajas de métodos smFISH {.smaller}
+
+::: {.desventaja}
+⚠️ **Campo visual pequeño**
+:::
+
+::: {.desventaja}
+⚠️ **Laborioso y tardado** — múltiples rondas de hibridación pueden desprender o dañar el tejido
+:::
+
+::: {.desventaja}
+⚠️ Datos crudos: **Terabytes** de imágenes en diferentes canales, planos z… Requiere segmentación celular
+:::
+
+::: {.desventaja}
+⚠️ Requieren bombas fluídicas customizadas (ya hay sistemas comerciales)
+:::
+
+::: {.desventaja}
+⚠️ Muchos oligos costosos; lista **pre-definida** de genes, típicamente < 300
+:::
+
+---
+
+## {background-color="#1a7a8a"}
+
+::: {style="text-align: center; color: white; margin-top: 15%;"}
+
+### Secuenciación *in situ*
+
+:::
+
+---
+
+## Secuenciación por ligación {.smaller}
+
+::: {.columns}
+
+::: {.column width="55%"}
+![](images/slide18_img00.png){fig-align="center" height="400"}
+:::
+
+::: {.column width="45%"}
+Casi todas necesitan **RT** pues ligación con RNA es ineficiente.
+
+- **SOLiD**: el color del fluoróforo codifica las dos bases 3' con 6 bases degeneradas. Los errores se propagan.
+- **SEDAL**: las regiones que flanquean son conocidas → detección de errores
+- **cPAL**: base de *Cartana* (comprado por 10X → **Xenium**). Padlock probe con barcode específico de gen.
+:::
+
+:::
+
+---
+
+## SEDAL & SNAIL probes
+
+![](images/slide20_img02.png){fig-align="center" height="450"}
+
+::: {.medium}
+**"SNAIL" probes**: bypass de cDNA synthesis y la ineficiente ligación basada en RNA.  
+Las regiones flanqueantes conocidas permiten detección de errores.
+:::
+
+---
+
+## {background-color="#1a7a8a"}
+
+::: {style="text-align: center; color: white; margin-top: 10%;"}
+
+### Técnicas basadas en NGS
+
+Abarcan todo el transcriptoma pero no tienen (hasta ahora) resolución celular
+
+:::
+
+---
+
+## DBIT-seq: Deterministic Barcoding in Tissue {.smaller}
+
+::: {.columns}
+
+::: {.column width="50%"}
+![](images/slide22_img00.png){fig-align="center" height="420"}
+:::
+
+::: {.column width="50%"}
+i = 1,2,3…n en coordenada **X**  
+j = 1,2,3…n en coordenada **Y**
+
+- El barcode **Aᵢ** unido a poly-T se coloca en la fila i
+- El barcode **Bⱼ** unido a UMI, PCR handle, biotina se coloca perpendicularmente
+- Barcode Aᵢ y Bⱼ se **ligan entre sí** y al cDNA
+:::
+
+:::
+
+---
+
+## Barcodes en perlas o spots de microarreglos {.smaller}
+
+::: {.columns}
+
+::: {.column width="55%"}
+![](images/slide23_img04.png){fig-align="center" height="400"}
+:::
+
+::: {.column width="45%"}
+- Las perlas se colocan primero y los barcodes se generan por **síntesis**
+- Los barcodes se secuencian con SOLiD o SEDAL
+- **Slide-seq** y **HDST** utilizan perlas marcadas
+
+::: {.desventaja}
+HDST sólo encuentra **1%** de los transcritos por área de perla (comparado con smFISH)
+:::
+:::
+
+:::
+
+---
+
+## Técnicas basadas en arreglos: Resolución en aumento
+
+::: {.callout-box}
+Los spots de **Visium** capturan varias células, pero recientemente lanzaron **v2.0** con resolución de **2 µm**.
+:::
+
+::: {.columns}
+
+::: {.column width="50%"}
+![Visium spots — evocando los puntos de Damien Hirst](images/slide01_img03.png){fig-align="center" height="350"}
+:::
+
+::: {.column width="50%"}
+La evolución de resolución:
+
+- **ST original**: ~100 µm
+- **Visium v1**: ~55 µm (varios células por spot)
+- **Visium HD (v2)**: ~2 µm (resolución sub-celular)
+:::
+
+:::
+
+---
+
+## Ventajas de técnicas NGS {.smaller}
+
+::: {.ventaja}
+✅ Raw data son **FASTQs** y procesamiento es similar a otras técnicas RNA-seq y single-cell
+:::
+
+::: {.ventaja}
+✅ Pueden cubrir un **área grande** y el **transcriptoma entero**
+:::
+
+::: {.ventaja}
+✅ Similitud con single-cell facilita reusar software: **Seurat, Squidpy, SpatialExperiment**
+:::
+
+::: {.ventaja}
+✅ Background con **H&E** (imagen histológica)
+:::
+
+---
+
+## Desventajas de técnicas NGS {.smaller}
+
+::: {.desventaja}
+⚠️ Difícil encontrar **células raras** con resolución supra-celular
+:::
+
+::: {.desventaja}
+⚠️ Resolución en **Z** depende del corte histológico
+:::
+
+::: {.desventaja}
+⚠️ **Eficiencia de detección baja** comparada con smFISH y con single-cell
+:::
+
+. . .
+
+### Eficiencias relativas (smFISH = 100%)
+
+| Técnica | Eficiencia relativa |
+|---------|:---:|
+| smFISH | 100% |
+| scRNA-seq | ~10–25% |
+| Visium / ST | ~3–5% |
+| Slide-seq | ~1–3% |
+
+---
+
+## {background-color="#1a7a8a"}
+
+::: {style="text-align: center; color: white; margin-top: 15%;"}
+
+### DNA Microscopy & Otros Enfoques
+
+:::
+
+---
+
+## DNA Microscopy: una especie de HiC con transcritos {.smaller}
+
+::: {.columns}
+
+::: {.column width="50%"}
+![](images/slide28_img04.jpg){fig-align="center" height="400"}
+:::
+
+::: {.column width="50%"}
+1. **Transcripción reversa y PCR** *in situ*
+2. Los productos de PCR (con UMI) se **difunden**, creando una "nube" alrededor de la molécula original
+3. **Overlap extension PCR** concatena cDNAs adyacentes con un UEI (*unique event identifier*)
+4. Secuenciación identifica los dos cDNAs, UMIs y evento de sobrelape UEI
+5. Se reconstruye la **distancia relativa** entre transcritos: topología vs localización
+:::
+
+:::
+
+---
+
+## {background-color="#1a7a8a"}
+
+::: {style="text-align: center; color: white; margin-top: 15%;"}
+
+### Análisis Bioinformático
+
+:::
+
+---
+
+## Análisis bioinformático {.smaller}
+
+::: {.columns}
+
+::: {.column width="55%"}
+![](images/slide29_img02.png){fig-align="center" height="400"}
+:::
+
+::: {.column width="45%"}
+- Técnicas smFISH requieren **alineación de imágenes** de diferentes rondas y **segmentación de células** a partir de núcleos
+
+- Las técnicas estándar de **clustering, genes marcadores y expresión diferencial** se pueden adaptar a los datos de transcriptómica espacial
+
+- La **integración de datasets** con Seurat se puede usar para hacer deconvolución de scRNA-seq con ST
+:::
+
+:::
+
+---
+
+## Paquetes de análisis exploratorio para datos espaciales {.smaller}
+
+::: {.columns}
+
+::: {.column width="50%"}
+**Paquetes en R:**
+
+- **Giotto**
+- **SPATA2**
+- **SEMLA** (extiende a partir de objeto Seurat)
+
+**Análisis espaciales no disponibles en Seurat:**
+
+- Patrones de **co-expresión**
+- Genes **espacialmente variables**
+- **Vecindades celulares** e interacciones
+- Interacciones **ligando-receptor**
+:::
+
+::: {.column width="50%"}
+![](images/slide30_img06.png){fig-align="center" height="180"}
+
+![](images/slide30_img04.png){fig-align="center" height="200"}
+:::
+
+:::
+
+---
+
+## Métodos de reconstrucción espacial de scRNA-seq {.smaller}
+
+::: {.columns}
+
+::: {.column width="55%"}
+- **GLISS**: Reducción dimensional a 2 o 3D utilizando información espacial (in situs)
+- **CSOmap**: usa información ligando-receptor para reducción de dimensionalidad
+- **Seurat (2015)**: integraba scRNAseq con datos de in situ
+- **LIGER, SpaGE**: integración en un espacio latente y proyección de la expresión de scRNAseq a datos espaciales
+- En algunos tejidos, el **pseudotiempo de diferenciación** corresponde al espacio
+- **Deep learning** entrenado con regiones espaciales
+:::
+
+::: {.column width="45%"}
+![](images/slide31_img04.jpg){fig-align="center" height="450"}
+:::
+
+:::
+
+---
+
+## Genes variables y patrones espaciales {.smaller}
+
+::: {.columns}
+
+::: {.column width="50%"}
+Encontrar **patrones arquetípicos**. Clusterización de los patrones génicos.
+
+Re-utilización de una rica tradición de **estadística espacial** utilizada en estudios geográficos:
+
+- **Puntos en el espacio**: los puntos están pre-determinados y cada uno tiene un valor
+- **Datos aéreos**: valores agregados para cada ciudad, distrito, etc.
+- **Raster**: rejilla regular sin espacios entre células
+- **Point-processes**: la localización misma de los puntos es la variable a modelar
+
+ST y Visium: combinación de los dos primeros.  
+Ideas de computer vision, machine learning, estadística multivariada.
+:::
+
+::: {.column width="50%"}
+![](images/slide32_img04.jpg){fig-align="center" height="480"}
+:::
+
+:::
+
+---
+
+## {background-color="#1a7a8a"}
+
+::: {style="text-align: center; color: white; margin-top: 20%;"}
+
+### ¡Gracias!
+
+**Métodos de Resolución Espacial — Clase 12**
+
+:::
