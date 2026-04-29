@@ -28,6 +28,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #24292e;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #24292e; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #d73a49; } /* Attribute */
+    code span.bn { color: #005cc5; } /* BaseN */
+    code span.bu { color: #d73a49; } /* BuiltIn */
+    code span.cf { color: #d73a49; } /* ControlFlow */
+    code span.ch { color: #032f62; } /* Char */
+    code span.cn { color: #005cc5; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #d73a49; } /* DataType */
+    code span.dv { color: #005cc5; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
+    code span.fl { color: #005cc5; } /* Float */
+    code span.fu { color: #6f42c1; } /* Function */
+    code span.im { color: #032f62; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #d73a49; } /* Keyword */
+    code span.op { color: #24292e; } /* Operator */
+    code span.ot { color: #6f42c1; } /* Other */
+    code span.pp { color: #d73a49; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #005cc5; } /* SpecialChar */
+    code span.ss { color: #032f62; } /* SpecialString */
+    code span.st { color: #032f62; } /* String */
+    code span.va { color: #e36209; } /* Variable */
+    code span.vs { color: #032f62; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
   </style>
   <link rel="stylesheet" href="ST_clase12_files/libs/revealjs/dist/theme/quarto-7330eedeba0e0d7581fbf638dde52f0e.css">
   <link href="ST_clase12_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -144,13 +210,21 @@ Jerónimo Roberto Miranda Rodríguez
 </section>
 <section class="slide level2">
 
-<div style="position: absolute; top: 0;">
 <div class="column" style="width:50%;">
-<p><img data-src="images/slide01_img02.png" style="border-radius: 10px; box-shadow: 0 6px 20px rgba(0,0,0,0.35);" height="600"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/slide01_img02.png" height="600"></p>
+<figcaption>Damien Hirst: Cow cut in half</figcaption>
+</figure>
+</div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="images/slide01_img03.png" style="border-radius: 10px; box-shadow: 0 6px 20px rgba(0,0,0,0.35);" height="600"></p>
-</div></div>
-</section>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/slide01_img03.png" height="600"></p>
+<figcaption>Damien Hirst: Controlled Substances</figcaption>
+</figure>
+</div>
+</div></section>
 <section id="la-transcriptómica-espacial-es-la-evolución-de-técnicas-histológicas-y-transcriptómicas" class="slide level2">
 <h2>La transcriptómica espacial es la evolución de técnicas histológicas y transcriptómicas</h2>
 <div class="columns">
@@ -184,11 +258,11 @@ Jerónimo Roberto Miranda Rodríguez
 <div class="column" style="width:50%;">
 <div class="callout-box">
 <p><strong>Single molecule FISH</strong></p>
-<p>seqFISH+, MERFISH, smFISH</p>
+<p>seqFISH+, MERFISH</p>
 </div>
 <div class="callout-box">
 <p><strong>In situ sequencing</strong></p>
-<p>SOLiD, SEDAL, cPAL / Xenium</p>
+<p>SOLiD, SEDAL, cPAL, Xenium</p>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="callout-box">
@@ -197,7 +271,7 @@ Jerónimo Roberto Miranda Rodríguez
 </div>
 <div class="callout-box">
 <p><strong>NGS spatial barcoding</strong></p>
-<p>Visium, Slide-seq, DBIT-seq, HDST</p>
+<p>Visium, Slide-seq, DBIT-seq, HDST, Stereo-Seq</p>
 </div>
 </div></div>
 </section>
@@ -354,6 +428,9 @@ Jerónimo Roberto Miranda Rodríguez
 <p>✅ No requieren equipo especializado o utilizan equipo preexistente</p>
 </div>
 <div class="ventaja">
+<p>✅ Análisis bioinformático similar a RNA-seq bulk</p>
+</div>
+<div class="ventaja">
 <p>✅ Buena <strong>eficiencia de captura</strong></p>
 </div>
 </div><div class="column" style="width:50%;">
@@ -374,10 +451,11 @@ Jerónimo Roberto Miranda Rodríguez
 <div class="column" style="background-color: #1a7a8a; border-radius: 8px;">
 <p><span style="font-size: 1.4em; color: white;"><strong>Métodos basados en sm-FISH</strong></span></p>
 <p><span style="color: white;">La hibridización <em>in situ</em> con sondas radioactivas comenzó a usarse en los <strong>años 70s</strong></span></p>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="width:60%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/slide10_img04.png" class="quarto-figure quarto-figure-center" height="550"></p>
+<p><img data-src="images/slide10_img04.png" height="550"></p>
+<figcaption>Damien Hirst: Cherry Blossoms series</figcaption>
 </figure>
 </div>
 </div></div>
@@ -419,7 +497,7 @@ Genes detectables = <strong>F × N</strong></p>
 <li><p>Por ejemplo, 20 pseudocolores se leen en 20 rondas. Cada gen solo se detecta <strong>una vez</strong> en 20 rondas. La ronda en la que aparece es su número de barcode</p></li>
 <li><p>En la segunda “ronda” (21 a 40), se lee el segundo “pseudocolor”.</p></li>
 <li><p>Posibles genes en 20 rondas con pseudocolores de 3:<br>
-<strong><span class="math inline">\(20^3 = 8000\)</span></strong> o, si se usan 3 diferentes canales/fluoróforos: 24,000</p></li>
+<span class="math inline">\(20^3 = 8000\)</span> o, si se usan 3 diferentes canales/fluoróforos: 24,000</p></li>
 <li><p>Aunque en realidad son 60 rondas! Mejor que sólo 60 o 180 genes, though</p></li>
 </ul>
 </div></div>
@@ -528,6 +606,9 @@ Genes detectables = <strong>F × N</strong></p>
 <div class="desventaja">
 <p>⚠️ Muchos oligos (oligos con fluoróforos son más costosos); lista <strong>pre-definida</strong> de genes, típicamente &lt; 300</p>
 </div>
+<div class="desventaja">
+<p>⚠️ Requieren segmentación celular para asignar transcritos a células y eso es un problema no completamente resuelto…</p>
+</div>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -542,7 +623,8 @@ Genes detectables = <strong>F × N</strong></p>
 <h3>Secuenciación <em>in situ</em></h3>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/slide17_img04.jpg" class="quarto-figure quarto-figure-center" height="400"></p>
+<p><img data-src="images/slide17_img04.jpg" height="400"></p>
+<figcaption>Damien Hirst: Spot painting series</figcaption>
 </figure>
 </div>
 </section>
@@ -558,27 +640,65 @@ Genes detectables = <strong>F × N</strong></p>
 <ul>
 <li><strong>SOLiD</strong>: el color del fluoróforo codifica las dos bases 3’ con 6 bases degeneradas. Los errores se propagan.</li>
 <li><strong>SEDAL</strong>: las regiones que flanquean son conocidas → detección de errores</li>
-<li><strong>cPAL</strong>: base de <em>Cartana</em> (comprado por 10X → <strong>Xenium</strong>). Padlock probe con barcode específico de gen.</li>
+<li><strong>cPAL</strong>: en la imagen (combinatorial probe anchor ligation)</li>
 </ul>
 </section>
 <section id="solid-secuenciación-por-dinucleótidos" class="slide level2">
 <h2>SOLiD: secuenciación por dinucleótidos</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/solid.png" class="quarto-figure quarto-figure-center" height="640"></p>
+<p><img data-src="images/solid.png" class="quarto-figure quarto-figure-center" height="600"></p>
 </figure>
 </div>
+</div><div class="column" style="width:30%;">
+<ul>
+<li>Moiety que bloquea, sólo una ligación a la vez.</li>
+<li>Cleavage corta 3 nucleótidos junto con el fluoróforo para ligar la nueva sonda</li>
+<li>Para la nueva ronda, se deshibridiza toda la hebra y se comienza con un bridge con un nuevo offset (N-1, N-2, N-3, etc.)</li>
+<li>La <strong>A</strong> en rojo es parte de una región constante y es conocida.</li>
+</ul>
+</div></div>
 </section>
-<section id="sedal-snail-probes" class="slide level2">
-<h2>SEDAL &amp; SNAIL probes</h2>
+<section id="solid-como-se-usa-en-fisseq" class="slide level2">
+<h2>SOLiD como se usa en FISSEQ</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/solid.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/fisseq.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="sedal-snail-probes-sequencing-with-error-reduction-by-dynamic-annealing-and-ligation" class="slide level2">
+<h2>SEDAL &amp; SNAIL probes (Sequencing with error-reduction by dynamic annealing and ligation)</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="images/slide20_img02.png" class="quarto-figure quarto-figure-center" height="420"></p>
 </figure>
 </div>
 <div class="medium">
-<p><strong>“SNAIL” probes</strong>: bypass de cDNA synthesis y la ineficiente ligación basada en RNA.<br>
-Las regiones flanqueantes conocidas permiten detección de errores.</p>
+<ul>
+<li>Specific Amplification of Nucleic Acids via Intramolecular Ligation <strong>SNAIL probes</strong>: bypass de cDNA synthesis y la ligación ineficiente basada en RNA.</li>
+<li>Sondas con barcode (región azul) especìfico de cada gen.</li>
+<li>Se secuencia el barcode para decodificar el gen blanco.</li>
+<li>Las regiones flanqueantes conocidas permiten detección de errores.</li>
+</ul>
+</div>
+</section>
+<section id="cpal-combinatorial-probe-anchor-ligation" class="slide level2">
+<h2>cPAL: combinatorial probe anchor ligation</h2>
+
+<img data-src="images/cpal.png" class="quarto-figure quarto-figure-center r-stretch"><div class="medium">
+<p>Acá todas las bases son degeneradas excepto la posición que se está interrogando en cada ronda</p>
 </div>
 </section>
 <section id="section-3" class="slide level2" data-background-color="#1a7a8a">
@@ -645,11 +765,22 @@ j = 1,2,3…m en coordenada <strong>Y</strong></p>
 <p>La evolución de resolución:</p>
 <ul>
 <li><strong>ST original</strong>: ~100 µm</li>
-<li><strong>Visium v1 (Ahora descontinuado)</strong>: ~55 µm (varios células por spot)</li>
+<li><strong>Visium v1 (A descontinuar en 2026)</strong>: ~55 µm (varios células por spot)</li>
 <li><strong>Visium HD</strong>: ~2 µm (resolución sub-celular)</li>
 </ul>
 </div></div>
 </section>
+<section id="nuevas-tecnologías-a-tomar-en-cuenta" class="slide level2">
+<h2>Nuevas tecnologías a tomar en cuenta:</h2>
+<p>Illumina está por lanzar su propia tecnología espacial basada en <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11014489/">Seq-Scope</a> ? Repurposing Illumina sequencing flow cells for high-resolution spatial transcriptomics</p>
+
+<img data-src="images/seq_scope.jpg" style="width:60.0%" class="r-stretch"></section>
+<section id="una-idea-similar-de-bgi-genomics" class="slide level2">
+<h2>Una idea similar de BGI genomics</h2>
+<p><a href="https://en.stomics.tech/why-stereo-seq/index.html">Stereo-seq</a> de STOmics</p>
+<p>Basado en DNA nanoballs (DNB) dice tener una resolución de 500 nm.</p>
+
+<img data-src="images/true-single-cell-resolution-complete-genomics.png" class="r-stretch"></section>
 <section id="ventajas-de-técnicas-ngs" class="slide level2 smaller">
 <h2>Ventajas de técnicas NGS</h2>
 <div class="ventaja">
@@ -835,15 +966,82 @@ Ideas de computer vision, machine learning, estadística multivariada.</p>
 </section>
 <section id="section-7" class="slide level2" data-background-color="#1a7a8a">
 <h2></h2>
-<section id="gracias" style="text-align: center; color: white;">
-<h3>¡Gracias!</h3>
-<p><strong>Métodos de Resolución Espacial — Clase 12</strong></p>
+<section id="referencias-para-datos-y-otros" style="text-align: center; color: white;">
+<h3>Referencias para datos y otros</h3>
+<p><a href="https://data.humancellatlas.org/">Human Cell Atlas</a></p>
+<p><a href="https://www.ebi.ac.uk/spatial-transcriptomics/access" class="uri">Spatial Transcriptomics Repository EBI</a></p>
+<p><a href="https://www.ebi.ac.uk/training/events/decoding-spatial-transcriptomics-through-sequences-pixels-and-bioinformatics" title="Decoding spatial transcriptomics through sequences, pixels, and bioinformatics">Webinar EMBL</a></p>
+<p><a href="https://pachterlab.github.io/LP_2021/current-techs.html">Museum of Spatial Transcriptomics</a></p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="images/slide30_img07.jpg" class="quarto-figure quarto-figure-center" height="550"></p>
 </figure>
 </div>
 </section>
+</section>
+<section id="para-la-próxima-clase" class="slide level2 smaller">
+<h2>Para la próxima clase</h2>
+<p>Vamos a analizar datos de <strong>Visium HD</strong> de cáncer colorrectal.</p>
+<p>Necesitan descargar estos <strong>4 tipos de archivos</strong> del siguiente enlace de GEO:</p>
+<p>🔗 <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE280315" class="uri">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE280315</a></p>
+<p>Para cada paciente, (ejemplo <strong>P1CRC</strong> (GSM8594567), descargar:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Archivo</th>
+<th>Qué es</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>GSM8594567_P1CRC_filtered_feature_bc_matrix.h5</code></td>
+<td>Matriz de conteo</td>
+</tr>
+<tr class="even">
+<td><code>GSM8594567_P1CRC_scalefactors_json.json.gz</code></td>
+<td>Factores de escala</td>
+</tr>
+<tr class="odd">
+<td><code>GSM8594567_P1CRC_tissue_positions.parquet.gz</code></td>
+<td>Coordenadas espaciales</td>
+</tr>
+<tr class="even">
+<td><code>GSM8594567_P1CRC_image.tif.gz</code></td>
+<td>Imagen H&amp;E del tejido</td>
+</tr>
+</tbody>
+</table>
+<p>Descomprimir los <code>.gz</code> después de descargar.</p>
+</section>
+<section id="paquetes-de-r-a-instalar" class="slide level2 smaller">
+<h2>Paquetes de R a instalar</h2>
+<p>Ejecutar esto en R <strong>antes</strong> de la clase:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># Paquetes de CRAN</span></span>
+<span id="cb1-2"><a href=""></a><span class="fu">install.packages</span>(<span class="fu">c</span>(</span>
+<span id="cb1-3"><a href=""></a>  <span class="st">"Seurat"</span>,</span>
+<span id="cb1-4"><a href=""></a>  <span class="st">"hdf5r"</span>,</span>
+<span id="cb1-5"><a href=""></a>  <span class="st">"arrow"</span>,</span>
+<span id="cb1-6"><a href=""></a>  <span class="st">"ggplot2"</span>,</span>
+<span id="cb1-7"><a href=""></a>  <span class="st">"patchwork"</span>,</span>
+<span id="cb1-8"><a href=""></a>  <span class="st">"dplyr"</span>,</span>
+<span id="cb1-9"><a href=""></a>  <span class="st">"tiff"</span></span>
+<span id="cb1-10"><a href=""></a>))</span>
+<span id="cb1-11"><a href=""></a></span>
+<span id="cb1-12"><a href=""></a><span class="co"># Paquete de Bioconductor (opcional, para SCTransform)</span></span>
+<span id="cb1-13"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span>
+<span id="cb1-14"><a href=""></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"glmGamPoi"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Verificar version seurat:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb2-2"><a href=""></a><span class="fu">packageVersion</span>(<span class="st">"Seurat"</span>)</span>
+<span id="cb2-3"><a href=""></a><span class="co"># Debe ser &gt;= 5.0.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Intenten instalar <a href="https://themilolab.github.io/SPATA2/articles/installation.html">SPATA2</a> pero si vemos demasiada fricción, hacemos una actividad alternativa.</p>
+</section>
+<section id="section-8" class="slide level2" data-background-color="black">
+<h2></h2>
 
 </section>
     </div>
@@ -1029,9 +1227,9 @@ Ideas de computer vision, machine learning, estadística multivariada.</p>
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1280,
+        width: 1900,
 
-        height: 720,
+        height: 820,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
