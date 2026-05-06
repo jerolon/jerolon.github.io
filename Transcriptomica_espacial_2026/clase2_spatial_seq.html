@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="ST_clase12_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ST_clase12_files/libs/quarto-html/tabby.min.js"></script>
+<script src="ST_clase12_files/libs/quarto-html/popper.min.js"></script>
+<script src="ST_clase12_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="ST_clase12_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ST_clase12_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="ST_clase12_files/libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
+
+  <meta name="author" content="Taller de Transcriptómica Espacial">
+  <meta name="dcterms.date" content="2026-05-06">
+  <title>Transcriptómica Espacial Basada en Secuenciación</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="ST_clase12_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="ST_clase12_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #24292e;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #24292e; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #d73a49; } /* Attribute */
+    code span.bn { color: #005cc5; } /* BaseN */
+    code span.bu { color: #d73a49; } /* BuiltIn */
+    code span.cf { color: #d73a49; } /* ControlFlow */
+    code span.ch { color: #032f62; } /* Char */
+    code span.cn { color: #005cc5; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #d73a49; } /* DataType */
+    code span.dv { color: #005cc5; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
+    code span.fl { color: #005cc5; } /* Float */
+    code span.fu { color: #6f42c1; } /* Function */
+    code span.im { color: #032f62; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #d73a49; } /* Keyword */
+    code span.op { color: #24292e; } /* Operator */
+    code span.ot { color: #6f42c1; } /* Other */
+    code span.pp { color: #d73a49; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #005cc5; } /* SpecialChar */
+    code span.ss { color: #032f62; } /* SpecialString */
+    code span.st { color: #032f62; } /* String */
+    code span.va { color: #e36209; } /* Variable */
+    code span.vs { color: #032f62; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="ST_clase12_files/libs/revealjs/dist/theme/quarto-ae052470d1f79bba72afdadfd67bce60.css">
+  <link href="ST_clase12_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="ST_clase12_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="ST_clase12_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="ST_clase12_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="ST_clase12_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="ST_clase12_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="ST_clase12_files/libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="ST_clase12_files/libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="ST_clase12_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+  <meta name="color-scheme" content="light">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Transcriptómica Espacial Basada en Secuenciación</h1>
+  <p class="subtitle">Clase 2: Del FASTQ a la Matriz de Conteo en Visium HD</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Taller de Transcriptómica Espacial 
+</div>
+</div>
+</div>
+
+  <p class="date">2026-05-06</p>
+</section>
+<section id="resumen-de-la-clase-1" class="slide level2 smaller">
+<h2>Resumen de la Clase 1</h2>
+<p>En la clase anterior cubrimos los <strong>fundamentos teóricos</strong> de las tecnologías espaciales basadas en secuenciación:</p>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><strong>Conceptos clave:</strong></p>
+<ul>
+<li><p>Captura de transcritos en superficies con códigos de barras espaciales</p></li>
+<li><p>Diferencias entre tecnologías basadas en secuenciación vs.&nbsp;imagen</p></li>
+<li><p>El compromiso entre resolución, cobertura del transcriptoma y <em>throughput</em></p>
+<p><strong>Directo a la práctica</strong>: del FASTQ a la matriz de conteo.</p></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/slide23_img04.png" class="quarto-figure quarto-figure-center" width="530" height="600"></p>
+</figure>
+</div>
+</div><div class="column" style="width:30%;">
+<p><strong>Tecnologías mencionadas:</strong></p>
+<ul>
+<li><strong>Visium</strong> (10x Genomics) — spots de 55 µm</li>
+<li><strong>Slide-seq</strong> — beads de ~10 µm</li>
+<li><strong>Stereo-seq</strong> — 0.22 µm (BGI)</li>
+<li><strong>DBiT-seq</strong> — microfluídica</li>
+</ul>
+</div></div>
+</section>
+<section id="visium-v1v2-lo-que-ya-conocemos" class="slide level2 smaller">
+<h2>Visium v1/v2: Lo que ya conocemos</h2>
+
+<img data-src="images/visiumv1.webp" class="quarto-figure quarto-figure-center r-stretch" width="326"><div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>~5,000 spots por área de captura</li>
+<li>Cada spot: <strong>55 µm</strong> de diámetro</li>
+<li>Separación centro a centro: <strong>100 µm</strong></li>
+<li>Gaps entre spots → pérdida de información</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Cada spot captura <strong>múltiples células</strong> (~1-10)</li>
+<li>Resolución insuficiente para análisis unicelular</li>
+<li>Requiere deconvolución computacional</li>
+<li><strong>Visium v1 y v2 serán descontinuados</strong> en favor de HD (al parecer ya)</li>
+</ul>
+</div></div>
+</section>
+<section id="visium-hd-la-nueva-generación" class="slide level2 smaller">
+<h2>Visium HD: La nueva generación</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><strong>Arquitectura del slide:</strong></p>
+<ul>
+<li>Misma área de captura: 6.5 × 6.5 mm</li>
+<li>~<strong>11 millones</strong> de cuadrados con código de barras</li>
+<li>Cada cuadrado: <strong>2 × 2 µm</strong> — resolución sub-celular</li>
+<li><strong>Sin gaps</strong> — cobertura continua del tejido</li>
+</ul>
+<p><strong>Binning digital:</strong></p>
+<ul>
+<li>Los datos crudos son a 2 µm</li>
+<li>Space Ranger genera bins a 2, 8 y 16 µm</li>
+<li><strong>8 µm</strong> es el punto de partida recomendado</li>
+<li>Se puede hacer binning personalizado (ej. bin2cell)</li>
+</ul>
+</div><div class="column" style="width:60%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Característica</th>
+<th>Visium v2</th>
+<th>Visium HD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Unidad</td>
+<td>Spot 55 µm</td>
+<td>Cuadrado 2 µm</td>
+</tr>
+<tr class="even">
+<td>Cobertura</td>
+<td>Con gaps</td>
+<td>Continua</td>
+</tr>
+<tr class="odd">
+<td># Unidades</td>
+<td>~5,000</td>
+<td>~11 millones</td>
+</tr>
+<tr class="even">
+<td>Resolución efectiva</td>
+<td>Multi-celular</td>
+<td>Sub-celular</td>
+</tr>
+<tr class="odd">
+<td>Tejidos</td>
+<td>FF, FFPE</td>
+<td>FF, FFPE, Fixed Frozen</td>
+</tr>
+</tbody>
+</table>
+<p><img data-src="images/visiumhd.png" width="461"></p>
+</div></div>
+</section>
+<section id="cómo-funciona-visium-hd" class="slide level2 smaller">
+<h2>¿Cómo funciona Visium HD?</h2>
+<p>El workflow es similar a Visium v2 con CytAssist:</p>
+<ol type="1">
+<li><strong>Preparación del tejido</strong> en portaobjetos de vidrio estándar</li>
+<li><strong>Tinción H&amp;E o IF</strong> e imagen con microscopio</li>
+<li><strong>Hibridación de sondas:</strong> panel de transcriptoma completo (whole transcriptome probes FFPE) ó</li>
+<li><strong>Captura de sondas</strong>: Fresh frozen con oligo polyDT</li>
+<li><strong>Ligación de sondas</strong> en el tejido (si FFPE)</li>
+<li><strong>Transferencia con CytAssist:</strong> las sondas ligadas se transfieren al slide Visium HD</li>
+<li><strong>Extensión y construcción de librería</strong>: los códigos de barras espaciales se incorporan</li>
+<li><strong>Secuenciación</strong> — configuración: 43 bp R1, 50 bp (75 bp FF) R2, 10 bp i7, 10 bp i5 (FFPE)</li>
+</ol>
+<div class="fragment">
+<p><strong>Diferencia clave</strong> Visium HD usa hibridación de sondas (probe-based FFPE), o captura poly-dT directa (fresh frozen). R1 es mayor por la mayor cantidad de cuadritos</p>
+</div>
+</section>
+<section id="visium-v2-vs-hd-lo-que-se-mantiene" class="slide level2 smaller">
+<h2>Visium v2 vs HD: Lo que se mantiene</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Igual que antes:</strong></p>
+<ul>
+<li>Instrumento CytAssist para la transferencia</li>
+<li>Misma área de captura (6.5 × 6.5 mm)</li>
+<li>Procesamiento con Space Ranger</li>
+<li>Análisis downstream con Seurat/Scanpy</li>
+<li>Referencias genómicas de 10x (GRCh38, mm10)</li>
+<li>Formato de salida (matrices sparse, archivos H5)</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Lo que cambia:</strong></p>
+<ul>
+<li>Resolución: 55 µm → 2 µm</li>
+<li>De spots con gaps → cobertura continua</li>
+<li>Sondas (probe-based) en lugar de poly-dT (v1)</li>
+<li>Archivos de salida mucho más grandes</li>
+<li>Se necesita el archivo <code>.vlf</code> del slide</li>
+<li>Requiere más recursos computacionales</li>
+<li>Concepto de <strong>binning</strong> digital post-hoc</li>
+</ul>
+</div></div>
+</section>
+<section id="nuestro-dataset-cáncer-colorrectal-visium-hd" class="slide level2 smaller">
+<h2>Nuestro dataset: Cáncer Colorrectal (Visium HD)</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>Estudio:</strong> Oliveira <em>et al.</em> (2025) <em>“High-definition spatial transcriptomic profiling of immune cell populations in colorectal cancer”</em></p>
+<p>📄 <a href="https://doi.org/10.1038/s41588-025-02193-3">Nature Genetics 57: 1512–1523</a></p>
+<p><strong>Hallazgos principales:</strong></p>
+<ul>
+<li>Mapa de alta resolución del microambiente tumoral (TME) en CRC</li>
+<li>Identificación de subpoblaciones de macrófagos pro- y anti-tumorales</li>
+<li>Localización de células T clonalmente expandidas cerca de macrófagos anti-tumorales</li>
+<li>Validación cruzada con datos Xenium y scRNA-seq (Flex)</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><strong>Datos del paciente:</strong></p>
+<ul>
+<li>Tejido: Colon sigmoide</li>
+<li>Preservación: FFPE</li>
+<li>Sexo: Masculino</li>
+<li>Edad: 60 años</li>
+<li>Slide: H1-VM2JXXK, Área A1</li>
+</ul>
+<p><strong>Accesiones:</strong></p>
+<ul>
+<li>GEO: <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE280318">GSE280318</a> (Super serie)</li>
+<li>GEO: <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE280315">GSE280315</a> (Sólo Visium HD)</li>
+<li><a href="https://www.10xgenomics.com/datasets/visium-hd-cytassist-gene-expression-libraries-of-human-crc">Dataset en 10x</a></li>
+<li><a href="https://github.com/10XGenomics/HumanColonCancer_VisiumHD">Código en GitHub</a></li>
+</ul>
+</div></div>
+</section>
+<section id="descarga-de-los-fastqs-desde-sra-no-lo-hagan" class="slide level2 smaller">
+<h2>Descarga de los FASTQs desde SRA (No lo hagan!)</h2>
+<p>Ya están en las carpetas en <code>/mnt/data/transcriptomica/sra_visium_hd_clase_ST2</code></p>
+<p>Los datos crudos de secuenciación están depositados en el Sequence Read Archive (SRA). Para descargarlos usamos <code>prefetch</code> + <code>fasterq-dump</code> del SRA Toolkit:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href=""></a></span>
+<span id="cb1-2"><a href=""></a><span class="ex">module</span> load sra-tools </span>
+<span id="cb1-3"><a href=""></a></span>
+<span id="cb1-4"><a href=""></a><span class="co"># Buscar los SRR accessions asociados a GSE280318</span></span>
+<span id="cb1-5"><a href=""></a><span class="co"># (se pueden encontrar en la página de GEO o con esearch)</span></span>
+<span id="cb1-6"><a href=""></a></span>
+<span id="cb1-7"><a href=""></a><span class="co"># Descargar con prefetch (más robusto que fasterq-dump directo)</span></span>
+<span id="cb1-8"><a href=""></a><span class="ex">prefetch</span> SRR12345678   <span class="co"># reemplazar con el accession real</span></span>
+<span id="cb1-9"><a href=""></a></span>
+<span id="cb1-10"><a href=""></a><span class="co"># Convertir a FASTQ</span></span>
+<span id="cb1-11"><a href=""></a><span class="ex">fasterq-dump</span> <span class="at">--split-files</span> <span class="at">--threads</span> 8 SRR12345678</span>
+<span id="cb1-12"><a href=""></a></span>
+<span id="cb1-13"><a href=""></a><span class="co"># Comprimir (Space Ranger necesita .fastq.gz)</span></span>
+<span id="cb1-14"><a href=""></a><span class="ex">pigz</span> <span class="at">-p</span> 8 <span class="pp">*</span>.fastq</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip: sesiones persistentes</strong></p>
+</div>
+<div class="callout-content">
+<p>Slurm array job con una lista o:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href=""></a><span class="co">#4 archivos de un total de 20 cada vez</span></span>
+<span id="cb2-2"><a href=""></a><span class="co">#SBATCH --output=logs/sra_%a.out</span></span>
+<span id="cb2-3"><a href=""></a><span class="co">#SBATCH --error=logs/sra_%a.err</span></span>
+<span id="cb2-4"><a href=""></a><span class="co">#SBATCH --array=1-20%4</span></span>
+<span id="cb2-5"><a href=""></a><span class="ex">module</span> load sra-tools </span>
+<span id="cb2-6"><a href=""></a><span class="co">#La fila SLURM_ARRAY_TASK_ID del sra_list.txt</span></span>
+<span id="cb2-7"><a href=""></a><span class="va">SRA_ID</span><span class="op">=</span><span class="va">$(</span><span class="fu">sed</span> <span class="at">-n</span> <span class="st">"</span><span class="va">${SLURM_ARRAY_TASK_ID}</span><span class="st">p"</span> sra_list.txt<span class="va">)</span></span>
+<span id="cb2-8"><a href=""></a></span>
+<span id="cb2-9"><a href=""></a><span class="ex">prefetch</span> <span class="va">$SRA_ID</span>   <span class="co"># reemplazar con el accession real</span></span>
+<span id="cb2-10"><a href=""></a></span>
+<span id="cb2-11"><a href=""></a><span class="ex">fasterq-dump</span> <span class="st">"</span><span class="va">$TMP_DIR</span><span class="st">/</span><span class="va">$SRA_ID</span><span class="st">/</span><span class="va">$SRA_ID</span><span class="st">.sra"</span> <span class="at">--split-files</span> <span class="at">--threads</span> <span class="va">$SLURM_CPUS_PER_TASK</span> <span class="at">--temp</span> <span class="va">$TMP_DIR</span> <span class="at">--outdir</span> ./</span>
+<span id="cb2-12"><a href=""></a></span>
+<span id="cb2-13"><a href=""></a><span class="ex">pigz</span> <span class="at">-p</span> <span class="va">$SLURM_CPUS_PER_TASK</span> <span class="va">${SRA_ID}</span><span class="pp">*</span>.fastq</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Usa <code>tmux</code> o <code>screen</code> para que la descarga no se interrumpa si se cae la conexión SSH:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href=""></a><span class="ex">tmux</span> new <span class="at">-s</span> descarga</span>
+<span id="cb3-2"><a href=""></a><span class="co"># ... ejecutar descarga ...</span></span>
+<span id="cb3-3"><a href=""></a><span class="co"># Ctrl+b, d para desconectar</span></span>
+<span id="cb3-4"><a href=""></a><span class="co"># tmux attach -t descarga para reconectar</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="descarga-de-imágenes-y-matrices-desde-geo" class="slide level2 smaller">
+<h2>Descarga de imágenes y matrices desde GEO</h2>
+<p>Además de los FASTQs, necesitamos las imágenes (CytAssist + microscopio) y opcionalmente las matrices pre-procesadas. Estas están en los archivos suplementarios de GEO:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href=""></a><span class="ex">tmux</span> new <span class="at">-s</span> geo_images</span>
+<span id="cb4-2"><a href=""></a></span>
+<span id="cb4-3"><a href=""></a><span class="co"># Explorar el contenido del FTP de GEO</span></span>
+<span id="cb4-4"><a href=""></a><span class="ex">curl</span> <span class="at">-s</span> <span class="st">"ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE280nnn/GSE280315/suppl/"</span></span>
+<span id="cb4-5"><a href=""></a></span>
+<span id="cb4-6"><a href=""></a><span class="co"># Descargar el archivo RAW completo (~32 GB, contiene imágenes + matrices)</span></span>
+<span id="cb4-7"><a href=""></a><span class="fu">wget</span> <span class="at">-c</span> <span class="at">--timeout</span><span class="op">=</span>60 <span class="at">--tries</span><span class="op">=</span>10 <span class="at">--waitretry</span><span class="op">=</span>30 <span class="dt">\</span></span>
+<span id="cb4-8"><a href=""></a>  <span class="st">"ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE280nnn/GSE280315/suppl/GSE280315_RAW.tar"</span> <span class="dt">\</span></span>
+<span id="cb4-9"><a href=""></a>  <span class="at">-O</span> GSE280315_RAW.tar</span>
+<span id="cb4-10"><a href=""></a></span>
+<span id="cb4-11"><a href=""></a><span class="co"># Desempaquetar</span></span>
+<span id="cb4-12"><a href=""></a><span class="fu">tar</span> <span class="at">-xvf</span> GSE280315_RAW.tar</span>
+<span id="cb4-13"><a href=""></a></span>
+<span id="cb4-14"><a href=""></a><span class="co"># Ctrl+b, d para desconectar tmux</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Importante sobre las URLs de GEO</strong></p>
+</div>
+<div class="callout-content">
+<p>los urls de ftp siguen un formato predecible GSE280nnn/GSEID/matrix|suppl| checa la documentación para tus fines <a href="https://ftp.ncbi.nlm.nih.gov/geo/README.txt">README geo ftp</a></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="archivos-que-necesitamos-para-space-ranger" class="slide level2 smaller">
+<h2>Archivos que necesitamos para Space Ranger</h2>
+<p>Para ejecutar <code>spaceranger count</code> con datos Visium HD FFPE necesitamos:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Archivo</th>
+<th>Descripción</th>
+<th>Fuente</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>FASTQs (R1, R2, I1, I2)</td>
+<td>Lecturas de secuenciación</td>
+<td>SRA / 10x</td>
+</tr>
+<tr class="even">
+<td>Imagen CytAssist (<code>.tif</code>)</td>
+<td>Para alineación de fiduciales</td>
+<td>GEO (tar)/ 10x</td>
+</tr>
+<tr class="odd">
+<td>Imagen microscopio (<code>.btf</code>)</td>
+<td>H&amp;E alta resolución (opcional)</td>
+<td>GEO (tar) / 10x</td>
+</tr>
+<tr class="even">
+<td>Referencia genómica</td>
+<td>GRCh38-2020-A</td>
+<td>10x downloads</td>
+</tr>
+<tr class="odd">
+<td>Probe set (<code>.csv</code>)</td>
+<td>Panel de sondas v2.0</td>
+<td>10x downloads o carpeta SRanger</td>
+</tr>
+<tr class="even">
+<td>Slide layout (<code>.vlf</code>)</td>
+<td>Geometría del slide H1-VM2JXXK</td>
+<td>tar de GEO</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href=""></a><span class="co"># Referencia genómica (~15 GB descomprimida)</span></span>
+<span id="cb5-2"><a href=""></a><span class="fu">wget</span> <span class="at">-c</span> <span class="st">"https://cf.10xgenomics.com/supp/spatial-exp/refdata-gex-GRCh38-2020-A.tar.gz"</span></span>
+<span id="cb5-3"><a href=""></a><span class="fu">tar</span> <span class="at">-xzvf</span> refdata-gex-GRCh38-2020-A.tar.gz</span>
+<span id="cb5-4"><a href=""></a></span>
+<span id="cb5-5"><a href=""></a><span class="co"># Probe set</span></span>
+<span id="cb5-6"><a href=""></a><span class="fu">wget</span> <span class="at">-c</span> <span class="st">"https://cf.10xgenomics.com/supp/spatial-exp/probeset/</span><span class="dt">\</span></span>
+<span id="cb5-7"><a href=""></a><span class="st">Visium_Human_Transcriptome_Probe_Set_v2.0_GRCh38-2020-A.csv"</span></span>
+<span id="cb5-8"><a href=""></a><span class="co">#Spacerangeer ya está en la carpeta spaceranger-4.1.0/probe_sets/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>SpaceRanger ya está instalado en <code>/mnt/data/transcriptomica/sra_visium_hd_clase_ST2/software/spaceranger-4.1.0</code></p>
+<p>Y la referencia está en</p>
+<p><code>/mnt/data/transcriptomica/sra_visium_hd_clase_ST2/software/refdata-gex-GRCh38-2020-A</code></p>
+</div>
+</section>
+<section id="instalación-de-space-ranger-sin-permisos-de-admin" class="slide level2 smaller">
+<h2>Instalación de Space Ranger (sin permisos de admin)</h2>
+<p>Space Ranger es un tarball autocontenido — no requiere <code>sudo</code> ni gestor de paquetes:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href=""></a><span class="co"># 1. Crear directorio para software</span></span>
+<span id="cb6-2"><a href=""></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/software <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ~/software</span>
+<span id="cb6-3"><a href=""></a></span>
+<span id="cb6-4"><a href=""></a><span class="co"># 2. Descargar (obtener URL de https://www.10xgenomics.com/support/</span></span>
+<span id="cb6-5"><a href=""></a><span class="co">#    software/space-ranger/downloads)</span></span>
+<span id="cb6-6"><a href=""></a><span class="fu">wget</span> <span class="at">-O</span> spaceranger-3.0.0.tar.gz <span class="dt">\</span></span>
+<span id="cb6-7"><a href=""></a>  <span class="st">"https://cf.10xgenomics.com/releases/space-ranger/spaceranger-4.1.0.tar.gz"</span></span>
+<span id="cb6-8"><a href=""></a></span>
+<span id="cb6-9"><a href=""></a><span class="co"># 3. Desempaquetar</span></span>
+<span id="cb6-10"><a href=""></a><span class="fu">tar</span> <span class="at">-xzvf</span> spaceranger-4.1.0.tar.gz</span>
+<span id="cb6-11"><a href=""></a></span>
+<span id="cb6-12"><a href=""></a><span class="co"># 4. Agregar al PATH</span></span>
+<span id="cb6-13"><a href=""></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span>..../software/spaceranger-4.1.0:<span class="va">$PATH</span></span>
+<span id="cb6-14"><a href=""></a><span class="bu">echo</span> <span class="st">'export PATH=.../software/spaceranger-4.1.0:$PATH'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb6-15"><a href=""></a></span>
+<span id="cb6-16"><a href=""></a><span class="co"># 5. Verificar</span></span>
+<span id="cb6-17"><a href=""></a><span class="ex">spaceranger</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>¿Qué incluye el tarball?</strong></p>
+</div>
+<div class="callout-content">
+<p>Space Ranger empaqueta <strong>todo</strong>: su propio Python, su propio STAR, todas las dependencias. No necesita nada del sistema excepto un kernel Linux razonablemente moderno (glibc ≥ 2.17).</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejecutando-space-ranger-en-el-cluster" class="slide level2 smaller">
+<h2>Ejecutando Space Ranger en el cluster</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href=""></a><span class="co">#!/bin/bash</span></span>
+<span id="cb7-2"><a href=""></a><span class="co">#SBATCH --job-name=spaceranger_crc</span></span>
+<span id="cb7-3"><a href=""></a><span class="co">#SBATCH --cpus-per-task=16</span></span>
+<span id="cb7-4"><a href=""></a><span class="co">#SBATCH --mem=64G</span></span>
+<span id="cb7-5"><a href=""></a><span class="co">#SBATCH --output=spaceranger_%j.log</span></span>
+<span id="cb7-6"><a href=""></a></span>
+<span id="cb7-7"><a href=""></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span>/mnt/data/transcriptomica/sra_visium_hd_clase_ST2/software/spaceranger-4.1.0:<span class="va">$PATH</span></span>
+<span id="cb7-8"><a href=""></a><span class="va">fastqdir</span><span class="op">=</span><span class="st">"/mnt/data/transcriptomica/sra_visium_hd_clase_ST2/P5NAT_GSM8594571"</span></span>
+<span id="cb7-9"><a href=""></a></span>
+<span id="cb7-10"><a href=""></a><span class="ex">spaceranger</span> count <span class="dt">\</span></span>
+<span id="cb7-11"><a href=""></a>  <span class="at">--id</span><span class="op">=</span>CRC_VisiumHD_P5NAT <span class="dt">\</span></span>
+<span id="cb7-12"><a href=""></a>  <span class="at">--transcriptome</span><span class="op">=</span>/mnt/data/transcriptomica/../software/refdata-gex-GRCh38-2020-A <span class="dt">\</span></span>
+<span id="cb7-13"><a href=""></a>  <span class="at">--fastqs</span><span class="op">=</span><span class="va">$fastqdir</span> <span class="dt">\</span></span>
+<span id="cb7-14"><a href=""></a>  <span class="at">--sample</span><span class="op">=</span>SRR31118571,SRR31118572,SRR31118573,SRR31118574 <span class="dt">\</span></span>
+<span id="cb7-15"><a href=""></a>  <span class="at">--probe-set</span><span class="op">=</span>/mnt/data/transcriptomica/../software/spaceranger-4.1.0/probe_sets/Visium_Human_Transcriptome_Probe_Set_v2.0_GRCh38-2020-A.csv <span class="dt">\</span></span>
+<span id="cb7-16"><a href=""></a>  <span class="at">--cytaimage</span><span class="op">=</span><span class="va">$fastqdir</span>/<span class="pp">*</span>_P1CRC_image.tif <span class="dt">\</span></span>
+<span id="cb7-17"><a href=""></a>  <span class="at">--slide</span><span class="op">=</span>H1-YD7CDZK <span class="dt">\</span></span>
+<span id="cb7-18"><a href=""></a>  <span class="at">--area</span><span class="op">=</span>A1 <span class="dt">\</span></span>
+<span id="cb7-19"><a href=""></a>  <span class="at">--output-dir</span><span class="op">=</span><span class="va">$fastqdir</span>/results <span class="dt">\</span></span>
+<span id="cb7-20"><a href=""></a>  <span class="at">--slidefile</span><span class="op">=</span><span class="va">$fastqdir</span>/GSM8594567_P1CRC_slide_file.vlf <span class="dt">\</span></span>
+<span id="cb7-21"><a href=""></a>  <span class="at">--create-bam</span><span class="op">=</span>false <span class="dt">\</span></span>
+<span id="cb7-22"><a href=""></a>  <span class="at">--localcores</span><span class="op">=</span><span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
+<span id="cb7-23"><a href=""></a>  <span class="at">--localmem</span><span class="op">=</span>60 <span class="dt">\</span></span>
+<span id="cb7-24"><a href=""></a>  <span class="at">--disable-ui</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment">
+<p>⚠️ <strong>Siempre</strong> usar <code>--localcores</code> y <code>--localmem</code> en un cluster para no abusar de los recursos compartidos.</p>
+<p>Necesita los archivos descomprimidos</p>
+<p>Necesita que los fastqs se llamen {SampleID}_S1_R{1,2}_001.fastq.gz</p>
+</div>
+</section>
+<section id="qué-produce-space-ranger" class="slide level2 small">
+<h2>¿Qué produce Space Ranger?</h2>
+<p>Para entender mejor los <a href="https://www.10xgenomics.com/support/software/space-ranger/latest/analysis/outputs/output-overview">outputs</a></p>
+<pre><code>CRC_VisiumHD/outs/
+├── web_summary.html              # Reporte QC interactivo (todos los bins)
+├── spatial/                     # Información espacial
+|
+├── binned_outputs/               # ← NUEVO en HD
+│   ├── square_002um/             # Bins a 2 µm
+│   ├── square_008um/             # Bins a 8 µm (recomendado)
+│   └── square_016um/             # Bins a 16 µm (para laptops)
+|         ├── filtered_feature_bc_matrix.h5
+|         ├── filtered_feature_bc_matrix/   # Matriz de conteo (bins bajo tejido)
+│         |   ├── barcodes.tsv.gz
+│         |   ├── features.tsv.gz
+│         |   └── matrix.mtx.gz
+|         ├── raw_feature_bc_matrix/        # Matriz completa
+|         └── analysis/ #Clusters, DEGs, umaps etc.
+└── cloupe.cloupe                  # Archivo para Loupe Browser</code></pre>
+<div class="fragment">
+<p>Para el análisis downstream en laptops, usaremos los bins de <strong>16 µm</strong> por su menor tamaño computacional.</p>
+</div>
+</section>
+<section id="alternativa-open-source-starsolo" class="slide level2 smaller">
+<h2>Alternativa open source: STARsolo</h2>
+<p><strong>¿Por qué una alternativa?</strong></p>
+<ul>
+<li>Space Ranger es software propietario (aunque gratuito)</li>
+<li>STARsolo es GPL, parte de STAR ya instalado en clúster</li>
+<li>Sólo jugar para ver <strong>qué hace Space Ranger por dentro</strong></li>
+<li>Rápido para el paso de alineamiento</li>
+</ul>
+<div class="fragment">
+<p><strong>¿Qué hace STARsolo?</strong></p>
+<p>Lo mismo que el <em>core</em> de Space Ranger/Cell Ranger:</p>
+<ol type="1">
+<li>Demultiplexar códigos de barras espaciales</li>
+<li>Alinear lecturas al genoma de referencia (STAR)</li>
+<li>Colapsar UMIs (deduplicación)</li>
+<li>Generar matriz de conteo (genes × barcodes)</li>
+</ol>
+</div>
+<div class="fragment">
+<p><strong>¿Qué NO hace?</strong></p>
+<ul>
+<li>Detección de tejido en la imagen H&amp;E</li>
+<li>Alineación de fiduciales</li>
+<li>Binning (2 µm → 8 µm → 16 µm)</li>
+<li>Generación del directorio <code>spatial/</code></li>
+<li>Pero…</li>
+</ul>
+</div>
+</section>
+<section id="starsolo" class="slide level2 smaller">
+<h2>STARsolo</h2>
+<p>Para Visium estándar, STARsolo es un reemplazo directo. Para Visium HD, la arquitectura de barcode multi-segmento (43bp, ~11M posiciones) y la química basada en sondas hacen que Space Ranger sea, en la práctica, la única opción actualmente. Este es un ejemplo real de cómo las herramientas open source a veces necesitan tiempo para alcanzar a las plataformas comerciales.</p>
+
+<img data-src="images/Probe_Ligation.jpg" class="r-stretch"></section>
+<section id="pregunta-qué-binneado-corresponde-a-las-matrices-descargadas-de-geo" class="slide level2 smaller">
+<h2>Pregunta Qué binneado corresponde a las matrices descargadas de GEO?</h2>
+<p>Checar el web summary</p>
+</section>
+<section id="resumen-del-flujo-de-trabajo" class="slide level2 smaller">
+<h2>Resumen del flujo de trabajo</h2>
+<div class="cell" data-reveal="true" data-fig-width="10" data-layout-align="default">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href=""></a>flowchart LR</span>
+<span id="cb9-2"><a href=""></a>    A[FASTQs&lt;br/&gt;SRA] --&gt; D[Space Ranger]</span>
+<span id="cb9-3"><a href=""></a>    D --&gt; C[Matriz +&lt;br/&gt;spatial/]</span>
+<span id="cb9-4"><a href=""></a>    E[Imágenes&lt;br/&gt;GEO/10x] --&gt; D</span>
+<span id="cb9-5"><a href=""></a>    F[Referencia&lt;br/&gt;GRCh38] --&gt; D</span>
+<span id="cb9-6"><a href=""></a>    G[Probe set&lt;br/&gt;+ slide file] --&gt; D</span>
+<span id="cb9-7"><a href=""></a>    C --&gt; H[Análisis&lt;br/&gt;downstream&lt;br/&gt;Seurat/Scanpy]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[FASTQs&lt;br/&gt;SRA] --&gt; D[Space Ranger]
+    D --&gt; C[Matriz +&lt;br/&gt;spatial/]
+    E[Imágenes&lt;br/&gt;GEO/10x] --&gt; D
+    F[Referencia&lt;br/&gt;GRCh38] --&gt; D
+    G[Probe set&lt;br/&gt;+ slide file] --&gt; D
+    C --&gt; H[Análisis&lt;br/&gt;downstream&lt;br/&gt;Seurat/Scanpy]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="volvamos-a-los-datos-de-cáncer-descargados-de-geo" class="slide level2">
+<h2>Volvamos a los datos de cáncer descargados de GEO</h2>
+<p>Como en los programas de cocina, vamos a trabajar como si ya hubiera terminado el pipeline con los datos descargados de GEO. Visium HD de un paciente con cáncer colorrectal (P2CRC) del estudio de <a href="#/0">Oliveira</a><a href="https://doi.org/10.1038/s41588-025-02193-3"><em>et al.</em></a><a href="#/0">(2025)</a>.</p>
+<p>Trabajaremos con archivos descargados directamente de GEO, <strong>sin</strong> la estructura completa de directorios de Space Ranger. Esto es un escenario realista muchas veces los datos públicos vienen así.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="archivos-que-necesitamos">Archivos que necesitamos:</h3>
+<pre><code>outs/ 
+├── filtered_feature_bc_matrix.h5 
+└── binned_outputs/     
+  └── square_008um/         
+          ├── filtered_feature_bc_matrix.h5  
+          └── spatial/            
+                ├── tissue_positions.parquet             
+                ├── tissue_lowres_image.png             
+                └── scalefactors_json.json </code></pre>
+</div><div class="column" style="width:50%;">
+<h3 id="pero-podemos-librarla-con">Pero podemos librarla con:</h3>
+<pre><code>pacienteID/outs
+    ├── (SOMEID)_filtered_feature_bc_matrix.h5 
+    └── spatial/            
+            ├── tissue_positions.parquet    #Cambiar el nombre     
+            ├── (SOMEID)_tissue_lowres_image.png         
+            └── scalefactors_json.json       #Cambiar el nombre
+            </code></pre>
+</div></div>
+</section>
+<section id="con-seurat" class="slide level2">
+<h2>Con Seurat</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="do">## Instalar si es necesario (solo la primera vez) # install.packages(c("Seurat", "hdf5r", "ggplot2", "patchwork", "dplyr")) # install.packages("BiocManager") # BiocManager::install("glmGamPoi") # para SCTransform #o bien pak::pkg_install como recomendó Valeria</span></span>
+<span id="cb12-2"><a href=""></a></span>
+<span id="cb12-3"><a href=""></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb12-4"><a href=""></a><span class="fu">library</span>(hdf5r)</span>
+<span id="cb12-5"><a href=""></a><span class="fu">library</span>(ggplot2) </span>
+<span id="cb12-6"><a href=""></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb12-7"><a href=""></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb12-8"><a href=""></a><span class="fu">library</span>(arrow)</span>
+<span id="cb12-9"><a href=""></a><span class="fu">library</span>(ape)</span>
+<span id="cb12-10"><a href=""></a><span class="fu">library</span>(SpatialExperiment)</span>
+<span id="cb12-11"><a href=""></a><span class="co">#Much faster implementation of find markers:</span></span>
+<span id="cb12-12"><a href=""></a><span class="co">#pak::pak('immunogenomics/presto')</span></span>
+<span id="cb12-13"><a href=""></a><span class="fu">packageVersion</span>(<span class="st">"Seurat"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] '5.5.0'</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="do">## Debe ser &gt;= 5.0.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="fragment">
+<p>Verificar la versión de Seurat — necesitamos <strong>v5+</strong> para soporte de Visium HD</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="descomprimir-la-imagen">Descomprimir la imagen</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href=""></a><span class="co">## Si la imagen está comprimida, mover archivos y cambiar nombres</span></span>
+<span id="cb15-2"><a href=""></a><span class="fu">gunzip</span> GSM8594568_P2CRC_image.tif.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="co">#object &lt;- Load10X_Spatial(data.dir = "P5CRC_GSM8594569_results_16mum/", filename = "GSM8594567_P1CRC_filtered_feature_bc_matrix.h5", image.name = "GSM8594567_P1CRC_tissue_lowres_image.png")</span></span>
+<span id="cb16-2"><a href=""></a>object <span class="ot">&lt;-</span> <span class="fu">Load10X_Spatial</span>(<span class="at">data.dir =</span> <span class="st">"P5CRC_GSM8594569_results_16mum/"</span>, <span class="at">filename =</span> <span class="st">"filtered_feature_bc_matrix.h5"</span>, <span class="at">image.name =</span> <span class="st">"tissue_lowres_image.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="assays-y-plots">Assays y plots</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">Assays</span>(object) <span class="co">#En datos director de space ranger pueden ser diferentes resoluciones DefaultAssay(object)  </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>An object of class "SimpleAssays"
+Slot "data":
+List of length 1</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>vln.plot <span class="ot">&lt;-</span> <span class="fu">VlnPlot</span>(object, <span class="at">features =</span> <span class="st">"nCount_Spatial"</span>, <span class="at">pt.size =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">4</span>)) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span>
+<span id="cb19-2"><a href=""></a></span>
+<span id="cb19-3"><a href=""></a>count.plot <span class="ot">&lt;-</span> <span class="fu">SpatialFeaturePlot</span>(object, <span class="at">features =</span> <span class="st">"nCount_Spatial"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span>
+<span id="cb19-4"><a href=""></a></span>
+<span id="cb19-5"><a href=""></a>vln.plot <span class="sc">|</span> count.plot </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="clase2_spatial_seq_files/figure-revealjs/violin-1.png" width="960" class="r-stretch"></section>
+<section class="slide level2">
+
+<h4 id="subsetting-opcional-para-que-no-tarde-tanto">Subsetting opcional para que no tarde tanto</h4>
+
+<img data-src="clase2_spatial_seq_files/figure-revealjs/getsubsetcoord-1.png" width="960" class="r-stretch"></section>
+<section class="slide level2">
+
+<h4 id="elijan-un-bloque-o-no-pero-tardará-más">Elijan un bloque (o no, pero tardará más)</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>plot_data<span class="sc">$</span>cell <span class="ot">&lt;-</span> <span class="fu">colnames</span>(object)</span>
+<span id="cb20-2"><a href=""></a></span>
+<span id="cb20-3"><a href=""></a><span class="co"># Function to pick a block</span></span>
+<span id="cb20-4"><a href=""></a>pick_block <span class="ot">&lt;-</span> <span class="cf">function</span>(row_letter, col_number, plot_data, x_cuts, y_cuts) {</span>
+<span id="cb20-5"><a href=""></a>  r <span class="ot">&lt;-</span> <span class="fu">match</span>(<span class="fu">toupper</span>(row_letter), LETTERS)</span>
+<span id="cb20-6"><a href=""></a>  c <span class="ot">&lt;-</span> col_number</span>
+<span id="cb20-7"><a href=""></a>  cells <span class="ot">&lt;-</span> plot_data<span class="sc">$</span>cell[</span>
+<span id="cb20-8"><a href=""></a>    plot_data<span class="sc">$</span>x <span class="sc">&gt;=</span> x_cuts[c] <span class="sc">&amp;</span> plot_data<span class="sc">$</span>x <span class="sc">&lt;</span> x_cuts[c <span class="sc">+</span> <span class="dv">1</span>] <span class="sc">&amp;</span></span>
+<span id="cb20-9"><a href=""></a>    plot_data<span class="sc">$</span>y <span class="sc">&gt;=</span> y_cuts[r] <span class="sc">&amp;</span> plot_data<span class="sc">$</span>y <span class="sc">&lt;</span> y_cuts[r <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb20-10"><a href=""></a>  ]</span>
+<span id="cb20-11"><a href=""></a>  <span class="fu">return</span>(cells)</span>
+<span id="cb20-12"><a href=""></a>}</span>
+<span id="cb20-13"><a href=""></a></span>
+<span id="cb20-14"><a href=""></a><span class="co"># </span></span>
+<span id="cb20-15"><a href=""></a>cells_block <span class="ot">&lt;-</span> <span class="fu">pick_block</span>(<span class="st">"G"</span>, <span class="dv">4</span>, plot_data, x_cuts, y_cuts)</span>
+<span id="cb20-16"><a href=""></a>object <span class="ot">&lt;-</span> <span class="fu">subset</span>(object, <span class="at">cells =</span> cells_block)</span>
+<span id="cb20-17"><a href=""></a><span class="co">#cat("Bins in block D3:", ncol(object_block), "\n")</span></span>
+<span id="cb20-18"><a href=""></a></span>
+<span id="cb20-19"><a href=""></a><span class="co">#SpatialFeaturePlot(object, features = "nCount_Spatial")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="normalización">Normalización</h3>
+<p>En el tutoral utilizan la normalización básica logarítmica. La mejor normalización aún no está definida</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>object <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(object)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<h3 id="feature-plots-marcador-en-el-tejido-en-lugar-del-umap">Feature plots: marcador en el tejido en lugar del UMAP</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>object <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(object)</span>
+<span id="cb22-2"><a href=""></a><span class="co">#2 genes variables random</span></span>
+<span id="cb22-3"><a href=""></a>genrandom <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">VariableFeatures</span>(object), <span class="dv">2</span>) </span>
+<span id="cb22-4"><a href=""></a></span>
+<span id="cb22-5"><a href=""></a><span class="fu">SpatialFeaturePlot</span>(object, <span class="at">features =</span> genrandom) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">"expresion de"</span>, <span class="fu">paste</span>(genrandom, <span class="at">collapse =</span> <span class="st">" y "</span>) )))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="clase2_spatial_seq_files/figure-revealjs/plots-1.png" width="960" class="r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="clustering">Clustering</h3>
+<p>Utiliza <a href="https://satijalab.org/seurat/articles/seurat5_sketch_analysis">sketching</a> que mantiene una subpoblación en memoria y todo el dataset en disco. Más eficiente para grandes datasets.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="co">#Más tardado</span></span>
+<span id="cb23-2"><a href=""></a>object <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(object)</span>
+<span id="cb23-3"><a href=""></a><span class="co"># Seleccionamos 20,000 células de como 500,000.</span></span>
+<span id="cb23-4"><a href=""></a>object <span class="ot">&lt;-</span> <span class="fu">SketchData</span>(</span>
+<span id="cb23-5"><a href=""></a>  <span class="at">object =</span> object,</span>
+<span id="cb23-6"><a href=""></a>  <span class="co">#Más o menos dependiendo del tiempo y memoria</span></span>
+<span id="cb23-7"><a href=""></a>  <span class="at">ncells =</span> <span class="dv">10000</span>,</span>
+<span id="cb23-8"><a href=""></a>  <span class="at">method =</span> <span class="st">"LeverageScore"</span>,</span>
+<span id="cb23-9"><a href=""></a>  <span class="at">sketched.assay =</span> <span class="st">"sketch"</span></span>
+<span id="cb23-10"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Los resultados del sketch se guardan en otro assay. Trabajamos sobre este para hacer el clustering y la proyección</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="co"># switch analysis to sketched cells</span></span>
+<span id="cb24-2"><a href=""></a><span class="fu">DefaultAssay</span>(object) <span class="ot">&lt;-</span> <span class="st">"sketch"</span></span>
+<span id="cb24-3"><a href=""></a></span>
+<span id="cb24-4"><a href=""></a><span class="co"># perform clustering workflow</span></span>
+<span id="cb24-5"><a href=""></a>object <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(object)</span>
+<span id="cb24-6"><a href=""></a>object <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(object)</span>
+<span id="cb24-7"><a href=""></a>object <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(object, <span class="at">assay =</span> <span class="st">"sketch"</span>, <span class="at">reduction.name =</span> <span class="st">"pca.sketch"</span>)</span>
+<span id="cb24-8"><a href=""></a>object <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(object, <span class="at">assay =</span> <span class="st">"sketch"</span>, <span class="at">reduction =</span> <span class="st">"pca.sketch"</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>)</span>
+<span id="cb24-9"><a href=""></a>object <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(object, <span class="at">cluster.name =</span> <span class="st">"seurat_cluster.sketched"</span>, <span class="at">resolution =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 10000
+Number of edges: 409915
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.8597
+Number of communities: 24
+Elapsed time: 1 seconds</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>object <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(object, <span class="at">reduction =</span> <span class="st">"pca.sketch"</span>, <span class="at">reduction.name =</span> <span class="st">"umap.sketch"</span>, <span class="at">return.model =</span> T, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="hacemos-la-proyección-de-vuelta-al-dataset-entero-cluster-primeros-5-pcs-de-pca-y-coordenadas-de-umap">Hacemos la proyección de vuelta al dataset entero: cluster, primeros 5 PCs de PCA y coordenadas de umap</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="co">#Aún más tardado y puede faltar memoria</span></span>
+<span id="cb27-2"><a href=""></a>object <span class="ot">&lt;-</span> <span class="fu">ProjectData</span>(</span>
+<span id="cb27-3"><a href=""></a>  <span class="at">object =</span> object,</span>
+<span id="cb27-4"><a href=""></a>  <span class="at">assay =</span> <span class="st">"Spatial"</span>,</span>
+<span id="cb27-5"><a href=""></a>  <span class="at">full.reduction =</span> <span class="st">"full.pca.sketch"</span>,</span>
+<span id="cb27-6"><a href=""></a>  <span class="at">sketched.assay =</span> <span class="st">"sketch"</span>,</span>
+<span id="cb27-7"><a href=""></a>  <span class="at">sketched.reduction =</span> <span class="st">"pca.sketch"</span>,</span>
+<span id="cb27-8"><a href=""></a>  <span class="at">umap.model =</span> <span class="st">"umap.sketch"</span>,</span>
+<span id="cb27-9"><a href=""></a>  <span class="co">#ajustar si se queja de falta de memoria</span></span>
+<span id="cb27-10"><a href=""></a>  <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb27-11"><a href=""></a>  <span class="at">refdata =</span> <span class="fu">list</span>(<span class="at">seurat_cluster.projected =</span> <span class="st">"seurat_cluster.sketched"</span>)</span>
+<span id="cb27-12"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="visualización-umap">Visualización UMAP</h4>
+<p>Too many spots though</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="fu">DefaultAssay</span>(object) <span class="ot">&lt;-</span> <span class="st">"sketch"</span></span>
+<span id="cb28-2"><a href=""></a><span class="fu">Idents</span>(object) <span class="ot">&lt;-</span> <span class="st">"seurat_cluster.sketched"</span></span>
+<span id="cb28-3"><a href=""></a>p1 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(object, <span class="at">reduction =</span> <span class="st">"umap.sketch"</span>, <span class="at">label =</span> F) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Sketched clustering (5,000 cells)"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb28-4"><a href=""></a></span>
+<span id="cb28-5"><a href=""></a><span class="co">#No parece quitar muchas células pero ayuda a la visualización</span></span>
+<span id="cb28-6"><a href=""></a>object <span class="ot">&lt;-</span> <span class="fu">subset</span>(object, <span class="at">cells =</span> <span class="fu">colnames</span>(object)[<span class="sc">!</span><span class="fu">is.na</span>(object<span class="sc">$</span>seurat_cluster.projected)])</span>
+<span id="cb28-7"><a href=""></a><span class="co"># switch to full dataset</span></span>
+<span id="cb28-8"><a href=""></a></span>
+<span id="cb28-9"><a href=""></a><span class="fu">DefaultAssay</span>(object) <span class="ot">&lt;-</span> <span class="st">"Spatial"</span></span>
+<span id="cb28-10"><a href=""></a><span class="fu">Idents</span>(object) <span class="ot">&lt;-</span> <span class="st">"seurat_cluster.projected"</span></span>
+<span id="cb28-11"><a href=""></a>p2 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(object, <span class="at">reduction =</span> <span class="st">"full.umap.sketch"</span>, <span class="at">label =</span> F) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Projected clustering (full dataset)"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb28-12"><a href=""></a></span>
+<span id="cb28-13"><a href=""></a>p1 <span class="sc">|</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="clase2_spatial_seq_files/figure-revealjs/umapsketch-1.png" width="960" class="r-stretch"></section>
+<section class="slide level2">
+
+<h4 id="localización-de-los-diferentes-clústers">Localización de los diferentes clústers</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>cells <span class="ot">&lt;-</span> <span class="fu">CellsByIdentities</span>(object, <span class="at">idents =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span>))</span>
+<span id="cb29-2"><a href=""></a></span>
+<span id="cb29-3"><a href=""></a>p <span class="ot">&lt;-</span> <span class="fu">SpatialDimPlot</span>(object,</span>
+<span id="cb29-4"><a href=""></a>  <span class="at">cells.highlight =</span> cells[<span class="fu">setdiff</span>(<span class="fu">names</span>(cells), <span class="st">"NA"</span>)],</span>
+<span id="cb29-5"><a href=""></a>  <span class="at">cols.highlight =</span> <span class="fu">c</span>(<span class="st">"#FFFF00"</span>, <span class="st">"grey50"</span>), <span class="at">facet.highlight =</span> T, <span class="at">combine =</span> T</span>
+<span id="cb29-6"><a href=""></a>) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span>
+<span id="cb29-7"><a href=""></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="clase2_spatial_seq_files/figure-revealjs/clusterloc-1.png" width="960" class="r-stretch"></section>
+<section class="slide level2">
+
+<h4 id="heatmap-de-marcadores-de-cada-clúster">Heatmap de marcadores de cada clúster</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="fu">DefaultAssay</span>(object) <span class="ot">&lt;-</span> <span class="st">"Spatial"</span></span>
+<span id="cb30-2"><a href=""></a><span class="fu">Idents</span>(object) <span class="ot">&lt;-</span> <span class="st">"seurat_cluster.projected"</span></span>
+<span id="cb30-3"><a href=""></a><span class="co">#Downsampled object to make visualization easier</span></span>
+<span id="cb30-4"><a href=""></a>object_subset <span class="ot">&lt;-</span> <span class="fu">subset</span>(object, <span class="at">cells =</span> <span class="fu">Cells</span>(object[[<span class="st">"Spatial"</span>]]), <span class="at">downsample =</span> <span class="dv">1000</span>)</span>
+<span id="cb30-5"><a href=""></a></span>
+<span id="cb30-6"><a href=""></a><span class="co"># Order clusters by similarity</span></span>
+<span id="cb30-7"><a href=""></a><span class="fu">DefaultAssay</span>(object_subset) <span class="ot">&lt;-</span> <span class="st">"Spatial"</span></span>
+<span id="cb30-8"><a href=""></a><span class="fu">Idents</span>(object_subset) <span class="ot">&lt;-</span> <span class="st">"seurat_cluster.projected"</span></span>
+<span id="cb30-9"><a href=""></a>object_subset <span class="ot">&lt;-</span> <span class="fu">BuildClusterTree</span>(object_subset, <span class="at">assay =</span> <span class="st">"Spatial"</span>, <span class="at">reduction =</span> <span class="st">"full.pca.sketch"</span>, <span class="at">reorder =</span> T)</span>
+<span id="cb30-10"><a href=""></a></span>
+<span id="cb30-11"><a href=""></a>markers <span class="ot">&lt;-</span> <span class="fu">FindAllMarkers</span>(object_subset, <span class="at">assay =</span> <span class="st">"Spatial"</span>, <span class="at">only.pos =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb30-12"><a href=""></a>markers <span class="sc">%&gt;%</span></span>
+<span id="cb30-13"><a href=""></a>  <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span></span>
+<span id="cb30-14"><a href=""></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(avg_log2FC <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-15"><a href=""></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-16"><a href=""></a>  <span class="fu">ungroup</span>() <span class="ot">-&gt;</span> top5</span>
+<span id="cb30-17"><a href=""></a></span>
+<span id="cb30-18"><a href=""></a>object_subset <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(object_subset, <span class="at">assay =</span> <span class="st">"Spatial"</span>, <span class="at">features =</span> top5<span class="sc">$</span>gene)</span>
+<span id="cb30-19"><a href=""></a>p <span class="ot">&lt;-</span> <span class="fu">DoHeatmap</span>(object_subset, <span class="at">assay =</span> <span class="st">"Spatial"</span>, <span class="at">features =</span> top5<span class="sc">$</span>gene, <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">5.5</span>)) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span>
+<span id="cb30-20"><a href=""></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="clase2_spatial_seq_files/figure-revealjs/heatmap-1.png" width="960" class="r-stretch"></section>
+<section id="con-bioconductor" class="slide level2">
+<h2>Con bioconductor</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="fu">library</span>(Banksy)</span>
+<span id="cb31-2"><a href=""></a><span class="fu">library</span>(ggspavis)</span>
+<span id="cb31-3"><a href=""></a><span class="fu">library</span>(igraph)</span>
+<span id="cb31-4"><a href=""></a><span class="fu">library</span>(pheatmap)</span>
+<span id="cb31-5"><a href=""></a><span class="fu">library</span>(scran)</span>
+<span id="cb31-6"><a href=""></a><span class="fu">library</span>(scuttle)</span>
+<span id="cb31-7"><a href=""></a><span class="fu">library</span>(SpotSweeper)</span>
+<span id="cb31-8"><a href=""></a><span class="co">#library(tidyr)</span></span>
+<span id="cb31-9"><a href=""></a><span class="co">#Para importar 10X pero acá sólo convertimos el Seurat</span></span>
+<span id="cb31-10"><a href=""></a><span class="co">#library(VisiumIO)</span></span>
+<span id="cb31-11"><a href=""></a><span class="co">#Maybe</span></span>
+<span id="cb31-12"><a href=""></a><span class="co">#library(magick)</span></span>
+<span id="cb31-13"><a href=""></a><span class="co">#library(BiocParallel)</span></span>
+<span id="cb31-14"><a href=""></a><span class="co">#library(DropletUtils)</span></span>
+<span id="cb31-15"><a href=""></a><span class="co">#library(scater)</span></span>
+<span id="cb31-16"><a href=""></a><span class="co">#library(sf)</span></span>
+<span id="cb31-17"><a href=""></a><span class="co">#library(spacexr)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="sólo-transformamos-el-objeto-seurat-en-lugar-de-importarlo-de-novo">Sólo transformamos el objeto Seurat en lugar de importarlo <em>de novo</em></h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a>coords <span class="ot">&lt;-</span> <span class="fu">GetTissueCoordinates</span>(object)</span>
+<span id="cb32-2"><a href=""></a>object_export <span class="ot">&lt;-</span> object</span>
+<span id="cb32-3"><a href=""></a>object_export[[<span class="st">"sketch"</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb32-4"><a href=""></a>object_export[[<span class="st">"pca.sketch"</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb32-5"><a href=""></a>object_export[[<span class="st">"umap.sketch"</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb32-6"><a href=""></a></span>
+<span id="cb32-7"><a href=""></a>sce <span class="ot">&lt;-</span> <span class="fu">as.SingleCellExperiment</span>(object_export)</span>
+<span id="cb32-8"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">SpatialExperiment</span>(</span>
+<span id="cb32-9"><a href=""></a>  <span class="at">assays =</span> <span class="fu">assays</span>(sce),</span>
+<span id="cb32-10"><a href=""></a>  <span class="at">colData =</span> <span class="fu">colData</span>(sce),</span>
+<span id="cb32-11"><a href=""></a>  <span class="at">reducedDims =</span> <span class="fu">reducedDims</span>(sce),</span>
+<span id="cb32-12"><a href=""></a>  <span class="at">spatialCoords =</span> <span class="fu">as.matrix</span>(coords[<span class="fu">colnames</span>(sce), <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb32-13"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="quality-control-con-counts-mitocondriales">Quality control con counts mitocondriales</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="co"># calculate per-cell QC metrics</span></span>
+<span id="cb33-2"><a href=""></a>mt <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">"^MT-"</span>, <span class="fu">rownames</span>(spe))</span>
+<span id="cb33-3"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQCMetrics</span>(spe, <span class="at">subsets=</span><span class="fu">list</span>(<span class="at">mt=</span>mt))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="co"># determine outliers based on </span></span>
+<span id="cb34-2"><a href=""></a><span class="co"># - low log-library size</span></span>
+<span id="cb34-3"><a href=""></a><span class="co"># - few uniquely detected features</span></span>
+<span id="cb34-4"><a href=""></a><span class="co"># - high mitochondrial count fraction</span></span>
+<span id="cb34-5"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">localOutliers</span>(spe, <span class="at">metric=</span><span class="st">"sum"</span>, <span class="at">direction=</span><span class="st">"lower"</span>, <span class="at">log=</span><span class="cn">TRUE</span>)</span>
+<span id="cb34-6"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">localOutliers</span>(spe, <span class="at">metric=</span><span class="st">"detected"</span>, <span class="at">direction=</span><span class="st">"lower"</span>, <span class="at">log=</span><span class="cn">TRUE</span>)</span>
+<span id="cb34-7"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">localOutliers</span>(spe, <span class="at">metric=</span><span class="st">"subsets_mt_percent"</span>, <span class="at">direction=</span><span class="st">"higher"</span>, <span class="at">log=</span><span class="cn">TRUE</span>)</span>
+<span id="cb34-8"><a href=""></a>spe<span class="sc">$</span>discard <span class="ot">&lt;-</span> </span>
+<span id="cb34-9"><a href=""></a>    spe<span class="sc">$</span>sum_outliers <span class="sc">|</span> </span>
+<span id="cb34-10"><a href=""></a>    spe<span class="sc">$</span>detected_outliers <span class="sc">|</span> </span>
+<span id="cb34-11"><a href=""></a>    spe<span class="sc">$</span>subsets_mt_percent_outliers</span>
+<span id="cb34-12"><a href=""></a><span class="co"># tabulate number of bins retained </span></span>
+<span id="cb34-13"><a href=""></a><span class="co"># vs. removed by any criterion </span></span>
+<span id="cb34-14"><a href=""></a><span class="fu">table</span>(spe<span class="sc">$</span>discard)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ FALSE   TRUE 
+131916   1329 </code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a>spe<span class="sc">$</span>in_tissue <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb36-2"><a href=""></a><span class="fu">plotCoords</span>(spe, <span class="at">annotate=</span><span class="st">"sum_log"</span>, <span class="at">point_size=</span><span class="fl">0.2</span>, <span class="at">point_shape=</span><span class="dv">15</span>) <span class="sc">+</span>   <span class="fu">ggtitle</span>(<span class="st">"log-library size"</span>) <span class="sc">+</span></span>
+<span id="cb36-3"><a href=""></a>  <span class="fu">plotCoords</span>(spe, <span class="at">annotate=</span><span class="st">"subsets_mt_percent"</span>, <span class="at">point_size=</span><span class="fl">0.2</span>, <span class="at">point_shape=</span><span class="dv">15</span>) <span class="sc">+</span> </span>
+<span id="cb36-4"><a href=""></a>  <span class="fu">ggtitle</span>(<span class="st">"% mitochondrial"</span>) <span class="sc">+</span></span>
+<span id="cb36-5"><a href=""></a>  <span class="fu">plot_layout</span>(<span class="at">nrow=</span><span class="dv">1</span>) <span class="sc">&amp;</span> <span class="fu">theme</span>(</span>
+<span id="cb36-6"><a href=""></a>    <span class="at">legend.key.width=</span><span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"lines"</span>),</span>
+<span id="cb36-7"><a href=""></a>    <span class="at">legend.key.height=</span><span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"lines"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="clase2_spatial_seq_files/figure-revealjs/qcplots-1.png" width="960" class="r-stretch"></section>
+<section class="slide level2">
+
+<h4 id="where-are-the-local-outliers">Where are the local outliers</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="fu">plotCoords</span>(spe, <span class="at">point_shape=</span><span class="dv">15</span>, <span class="at">annotate=</span><span class="st">"discard"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"discard"</span>) <span class="sc">+</span></span>
+<span id="cb37-2"><a href=""></a><span class="fu">plotCoords</span>(spe, <span class="at">point_shape=</span><span class="dv">15</span>, <span class="at">annotate=</span><span class="st">"sum_outliers"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"low_lib_size"</span>) <span class="sc">+</span></span>
+<span id="cb37-3"><a href=""></a><span class="fu">plotCoords</span>(spe, <span class="at">point_shape=</span><span class="dv">15</span>, <span class="at">annotate=</span><span class="st">"detected_outliers"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"low_n_features"</span>) <span class="sc">+</span></span>
+<span id="cb37-4"><a href=""></a><span class="fu">plot_layout</span>(<span class="at">nrow=</span><span class="dv">1</span>, <span class="at">guides=</span><span class="st">"collect"</span>) <span class="sc">&amp;</span> </span>
+<span id="cb37-5"><a href=""></a>    <span class="fu">theme</span>(</span>
+<span id="cb37-6"><a href=""></a>        <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">hjust=</span><span class="fl">0.5</span>),</span>
+<span id="cb37-7"><a href=""></a>        <span class="at">legend.key.size=</span><span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"lines"</span>)) <span class="sc">&amp;</span></span>
+<span id="cb37-8"><a href=""></a>    <span class="fu">guides</span>(<span class="at">col=</span><span class="fu">guide_legend</span>(<span class="at">override.aes=</span><span class="fu">list</span>(<span class="at">size=</span><span class="dv">3</span>))) <span class="sc">&amp;</span> </span>
+<span id="cb37-9"><a href=""></a>    <span class="fu">scale_color_manual</span>(<span class="st">"discard"</span>, <span class="at">values=</span><span class="fu">c</span>(<span class="st">"lavender"</span>, <span class="st">"purple"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="clase2_spatial_seq_files/figure-revealjs/outlierloc-1.png" width="960" class="r-stretch"><div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span>spe<span class="sc">$</span>discard]</span>
+<span id="cb38-2"><a href=""></a><span class="fu">dim</span>(spe)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  18085 131916</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="get-variable-features-now-with-scran">Get variable features, now with scran</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a><span class="fu">sum</span>(<span class="fu">colSums</span>(<span class="fu">counts</span>(spe)) <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">colSums</span>(<span class="fu">counts</span>(spe)) <span class="sc">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb42-2"><a href=""></a></span>
+<span id="cb42-3"><a href=""></a><span class="co"># Now normalize</span></span>
+<span id="cb42-4"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
+<span id="cb42-5"><a href=""></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
+<span id="cb42-6"><a href=""></a>hvg <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">n=</span><span class="fl">2e3</span>)</span>
+<span id="cb42-7"><a href=""></a></span>
+<span id="cb42-8"><a href=""></a>n_common <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">intersect</span>(hvg, <span class="fu">VariableFeatures</span>(object)))</span>
+<span id="cb42-9"><a href=""></a><span class="fu">message</span>(n_common, <span class="st">" de "</span>, <span class="fu">length</span>(hvg), <span class="st">" HVGs en común entre SPE y Seurat"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="usamos-banksy-para-computar-pca-y-clustering">Usamos banksy para computar PCA y clustering</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a><span class="co"># set seed for random number generation</span></span>
+<span id="cb43-2"><a href=""></a><span class="co"># in order to make results reproducible</span></span>
+<span id="cb43-3"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">112358</span>)</span>
+<span id="cb43-4"><a href=""></a><span class="co"># 'Banksy' parameter settings</span></span>
+<span id="cb43-5"><a href=""></a>k <span class="ot">&lt;-</span> <span class="dv">8</span>   <span class="co"># consider first order neighbors</span></span>
+<span id="cb43-6"><a href=""></a>l <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="co"># use little spatial information</span></span>
+<span id="cb43-7"><a href=""></a>a <span class="ot">&lt;-</span> <span class="st">"logcounts"</span></span>
+<span id="cb43-8"><a href=""></a>xy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"array_row"</span>, <span class="st">"array_col"</span>)</span>
+<span id="cb43-9"><a href=""></a><span class="co"># restrict to selected features</span></span>
+<span id="cb43-10"><a href=""></a>tmp <span class="ot">&lt;-</span> spe[hvg, ]</span>
+<span id="cb43-11"><a href=""></a><span class="co"># compute spatially aware 'Banksy' PCs</span></span>
+<span id="cb43-12"><a href=""></a>tmp <span class="ot">&lt;-</span> <span class="fu">computeBanksy</span>(tmp, <span class="at">assay_name=</span>a, <span class="at">coord_names=</span>xy, <span class="at">k_geom=</span>k)</span>
+<span id="cb43-13"><a href=""></a>tmp <span class="ot">&lt;-</span> <span class="fu">runBanksyPCA</span>(tmp, <span class="at">lambda=</span>l, <span class="at">npcs=</span><span class="dv">20</span>)</span>
+<span id="cb43-14"><a href=""></a><span class="fu">reducedDim</span>(spe, <span class="st">"PCA"</span>) <span class="ot">&lt;-</span> <span class="fu">reducedDim</span>(tmp)</span>
+<span id="cb43-15"><a href=""></a><span class="do">## run UMAP (for visualization purposes only)</span></span>
+<span id="cb43-16"><a href=""></a><span class="co"># spe &lt;- runUMAP(spe, dimred="PCA")</span></span>
+<span id="cb43-17"><a href=""></a><span class="co"># build cellular shared nearest-neighbor (SNN) graph</span></span>
+<span id="cb43-18"><a href=""></a>g <span class="ot">&lt;-</span> <span class="fu">buildSNNGraph</span>(spe, <span class="at">use.dimred=</span><span class="st">"PCA"</span>, <span class="at">type=</span><span class="st">"jaccard"</span>, <span class="at">k=</span><span class="dv">20</span>)</span>
+<span id="cb43-19"><a href=""></a></span>
+<span id="cb43-20"><a href=""></a><span class="co"># cluster using Leiden community detection algorithm</span></span>
+<span id="cb43-21"><a href=""></a>k <span class="ot">&lt;-</span> <span class="fu">cluster_leiden</span>(g, <span class="at">objective_function=</span><span class="st">"modularity"</span>, <span class="at">resolution=</span><span class="fl">1.2</span>)</span>
+<span id="cb43-22"><a href=""></a><span class="fu">table</span>(spe<span class="sc">$</span>Banksy <span class="ot">&lt;-</span> <span class="fu">factor</span>(k<span class="sc">$</span>membership))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    1     2     3     4     5     6     7     8     9    10    11    12    13 
+ 7909  2098  3929  6165  4889  4524  4101  3382  5966  8074  8139  5602  6216 
+   14    15    16    17    18    19    20    21    22    23    24    25    26 
+ 8245  2977 10280  5391  5873  1839  4728  5053  3239  3208  4697  4142   124 
+   27 
+ 1125 </code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="differential-gene-expression-analysis">Differential gene expression analysis</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a><span class="co"># differential gene expression analysis</span></span>
+<span id="cb45-2"><a href=""></a>mgs <span class="ot">&lt;-</span> <span class="fu">findMarkers</span>(spe, <span class="at">groups=</span>spe<span class="sc">$</span>Banksy, <span class="at">direction=</span><span class="st">"up"</span>)</span>
+<span id="cb45-3"><a href=""></a></span>
+<span id="cb45-4"><a href=""></a><span class="co"># select for a few markers per cluster</span></span>
+<span id="cb45-5"><a href=""></a>top <span class="ot">&lt;-</span> <span class="fu">lapply</span>(mgs, \(df) <span class="fu">rownames</span>(df)[df<span class="sc">$</span>Top <span class="sc">&lt;=</span> <span class="dv">2</span>])</span>
+<span id="cb45-6"><a href=""></a>top <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">unlist</span>(top))</span>
+<span id="cb45-7"><a href=""></a><span class="co"># average expression by clusters</span></span>
+<span id="cb45-8"><a href=""></a>pbs <span class="ot">&lt;-</span> <span class="fu">aggregateAcrossCells</span>(spe, </span>
+<span id="cb45-9"><a href=""></a>    <span class="at">ids=</span>spe<span class="sc">$</span>Banksy, <span class="at">subset.row=</span>top, </span>
+<span id="cb45-10"><a href=""></a>    <span class="at">use.assay.type=</span><span class="st">"logcounts"</span>, <span class="at">statistics=</span><span class="st">"mean"</span>)</span>
+<span id="cb45-11"><a href=""></a></span>
+<span id="cb45-12"><a href=""></a><span class="co"># visualize averages z-scaled across clusters</span></span>
+<span id="cb45-13"><a href=""></a><span class="fu">pheatmap</span>(</span>
+<span id="cb45-14"><a href=""></a>    <span class="at">mat=</span><span class="fu">t</span>(<span class="fu">assay</span>(pbs)), <span class="at">scale=</span><span class="st">"column"</span>, <span class="at">breaks=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="at">length=</span><span class="dv">101</span>), </span>
+<span id="cb45-15"><a href=""></a>    <span class="at">cellwidth=</span><span class="dv">10</span>, <span class="at">cellheight=</span><span class="dv">10</span>, <span class="at">treeheight_row=</span><span class="dv">5</span>, <span class="at">treeheight_col=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="clase2_spatial_seq_files/figure-revealjs/dge-1.png" width="960" class="r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="marker-vis">Marker vis</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>gs <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rownames</span>(pbs), <span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb46-2"><a href=""></a>ps <span class="ot">&lt;-</span> <span class="fu">lapply</span>(gs, \(.) <span class="fu">plotCoords</span>(spe, <span class="at">annotate=</span>., <span class="at">point_shape=</span><span class="dv">15</span>, </span>
+<span id="cb46-3"><a href=""></a>                                 <span class="at">point_size=</span><span class="fl">0.8</span>, <span class="at">assay_name=</span><span class="st">"logcounts"</span>))</span>
+<span id="cb46-4"><a href=""></a><span class="fu">wrap_plots</span>(ps, <span class="at">nrow=</span><span class="dv">1</span>) <span class="sc">&amp;</span> <span class="fu">theme</span>(</span>
+<span id="cb46-5"><a href=""></a>  <span class="at">legend.key.width=</span><span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"lines"</span>),</span>
+<span id="cb46-6"><a href=""></a>  <span class="at">legend.key.height=</span><span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"lines"</span>)) <span class="sc">&amp;</span></span>
+<span id="cb46-7"><a href=""></a>  <span class="fu">scale_color_gradientn</span>(<span class="at">colors=</span><span class="fu">rev</span>(<span class="fu">hcl.colors</span>(<span class="dv">9</span>, <span class="st">"Rocket"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="clase2_spatial_seq_files/figure-revealjs/markervis-1.png" width="960" class="r-stretch"></section>
+<section id="referencias" class="slide level2 smaller">
+<h2>Referencias</h2>
+<ul>
+<li><p>Oliveira MF <em>et al.</em> (2025). High-definition spatial transcriptomic profiling of immune cell populations in colorectal cancer. <em>Nature Genetics</em> 57: 1512–1523. <a href="https://doi.org/10.1038/s41588-025-02193-3">doi:10.1038/s41588-025-02193-3</a></p></li>
+<li><p>Dobin A <em>et al.</em> (2013). STAR: ultrafast universal RNA-seq aligner. <em>Bioinformatics</em> 29(1): 15–21. <a href="https://doi.org/10.1093/bioinformatics/bts635">doi:10.1093/bioinformatics/bts635</a></p></li>
+<li><p>Polański K <em>et al.</em> (2024). Bin2cell reconstructs cells from high resolution Visium HD data. <em>Bioinformatics</em> 40(9): btae546. <a href="https://doi.org/10.1093/bioinformatics/btae546">doi:10.1093/bioinformatics/btae546</a></p></li>
+<li><p>10x Genomics. Space Ranger documentation. <a href="https://www.10xgenomics.com/support/software/space-ranger/latest">10xgenomics.com/support/software/space-ranger</a></p></li>
+<li><p>Dataset: Visium HD Human Colorectal Cancer (FFPE). <a href="https://www.10xgenomics.com/datasets/visium-hd-cytassist-gene-expression-libraries-of-human-crc">10xgenomics.com/datasets</a></p></li>
+<li><p>STARsolo documentation. <a href="https://github.com/alexdobin/STAR/blob/master/docs/STARsolo.md">github.com/alexdobin/STAR/blob/master/docs/STARsolo.md</a></p></li>
+<li><p>Viñeta Seurat Visium HD. <a href="https://satijalab.org/seurat/articles/visiumhd_analysis_vignette" class="uri">https://satijalab.org/seurat/articles/visiumhd_analysis_vignette</a></p></li>
+<li><p>Orchestrating spatial analysis with bioconductor. <a href="https://bioconductor.org/books/release/OSTA/pages/seq-workflow-visium-hd-bin.html" class="uri">https://bioconductor.org/books/release/OSTA/pages/seq-workflow-visium-hd-bin.html</a></p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Transcriptómica Espacial — Clase 2</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="ST_clase12_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="ST_clase12_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="ST_clase12_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1900,
+
+        height: 820,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
