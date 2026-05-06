@@ -798,7 +798,7 @@ List of length 1</code></pre>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>vln.plot <span class="ot">&lt;-</span> <span class="fu">VlnPlot</span>(object, <span class="at">features =</span> <span class="st">"nCount_Spatial"</span>, <span class="at">pt.size =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">4</span>)) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span>
 <span id="cb19-2"><a href=""></a></span>
-<span id="cb19-3"><a href=""></a>count.plot <span class="ot">&lt;-</span> <span class="fu">SpatialFeaturePlot</span>(object, <span class="at">features =</span> <span class="st">"nCount_Spatial"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span>
+<span id="cb19-3"><a href=""></a>count.plot <span class="ot">&lt;-</span> <span class="fu">SpatialFeaturePlot</span>(object, <span class="at">pt.size.factor =</span> <span class="dv">10</span>, <span class="at">features =</span> <span class="st">"nCount_Spatial"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span>
 <span id="cb19-4"><a href=""></a></span>
 <span id="cb19-5"><a href=""></a>vln.plot <span class="sc">|</span> count.plot </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -856,7 +856,7 @@ List of length 1</code></pre>
 <span id="cb22-2"><a href=""></a><span class="co">#2 genes variables random</span></span>
 <span id="cb22-3"><a href=""></a>genrandom <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">VariableFeatures</span>(object), <span class="dv">2</span>) </span>
 <span id="cb22-4"><a href=""></a></span>
-<span id="cb22-5"><a href=""></a><span class="fu">SpatialFeaturePlot</span>(object, <span class="at">features =</span> genrandom) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">"expresion de"</span>, <span class="fu">paste</span>(genrandom, <span class="at">collapse =</span> <span class="st">" y "</span>) )))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb22-5"><a href=""></a><span class="fu">SpatialFeaturePlot</span>(object, <span class="at">pt.size.factor =</span> <span class="dv">10</span>, <span class="at">features =</span> genrandom) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">"expresion de"</span>, <span class="fu">paste</span>(genrandom, <span class="at">collapse =</span> <span class="st">" y "</span>) )))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -964,7 +964,7 @@ Elapsed time: 1 seconds</code></pre>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>cells <span class="ot">&lt;-</span> <span class="fu">CellsByIdentities</span>(object, <span class="at">idents =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span>))</span>
 <span id="cb29-2"><a href=""></a></span>
-<span id="cb29-3"><a href=""></a>p <span class="ot">&lt;-</span> <span class="fu">SpatialDimPlot</span>(object,</span>
+<span id="cb29-3"><a href=""></a>p <span class="ot">&lt;-</span> <span class="fu">SpatialDimPlot</span>(object, <span class="at">pt.size.factor =</span> <span class="dv">10</span>,</span>
 <span id="cb29-4"><a href=""></a>  <span class="at">cells.highlight =</span> cells[<span class="fu">setdiff</span>(<span class="fu">names</span>(cells), <span class="st">"NA"</span>)],</span>
 <span id="cb29-5"><a href=""></a>  <span class="at">cols.highlight =</span> <span class="fu">c</span>(<span class="st">"#FFFF00"</span>, <span class="st">"grey50"</span>), <span class="at">facet.highlight =</span> T, <span class="at">combine =</span> T</span>
 <span id="cb29-6"><a href=""></a>) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span>
@@ -975,30 +975,41 @@ Elapsed time: 1 seconds</code></pre>
 <img data-src="ST_clase12_files/figure-revealjs/clusterloc-1.png" width="960" class="r-stretch"></section>
 <section class="slide level2">
 
+<h4 id="clúster-con-algoritmo-de-single-cell-no-info-espacial">Clúster con algoritmo de single cell (No info espacial)</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="fu">SpatialDimPlot</span>(object, <span class="at">label =</span> T, <span class="at">repel =</span> T, <span class="at">label.size =</span> <span class="dv">4</span>, <span class="at">pt.size.factor =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="ST_clase12_files/figure-revealjs/spatialdimseurat-1.png" width="960" class="r-stretch"></section>
+<section class="slide level2">
+
 <h4 id="heatmap-de-marcadores-de-cada-clúster">Heatmap de marcadores de cada clúster</h4>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="fu">DefaultAssay</span>(object) <span class="ot">&lt;-</span> <span class="st">"Spatial"</span></span>
-<span id="cb30-2"><a href=""></a><span class="fu">Idents</span>(object) <span class="ot">&lt;-</span> <span class="st">"seurat_cluster.projected"</span></span>
-<span id="cb30-3"><a href=""></a><span class="co">#Downsampled object to make visualization easier</span></span>
-<span id="cb30-4"><a href=""></a>object_subset <span class="ot">&lt;-</span> <span class="fu">subset</span>(object, <span class="at">cells =</span> <span class="fu">Cells</span>(object[[<span class="st">"Spatial"</span>]]), <span class="at">downsample =</span> <span class="dv">1000</span>)</span>
-<span id="cb30-5"><a href=""></a></span>
-<span id="cb30-6"><a href=""></a><span class="co"># Order clusters by similarity</span></span>
-<span id="cb30-7"><a href=""></a><span class="fu">DefaultAssay</span>(object_subset) <span class="ot">&lt;-</span> <span class="st">"Spatial"</span></span>
-<span id="cb30-8"><a href=""></a><span class="fu">Idents</span>(object_subset) <span class="ot">&lt;-</span> <span class="st">"seurat_cluster.projected"</span></span>
-<span id="cb30-9"><a href=""></a>object_subset <span class="ot">&lt;-</span> <span class="fu">BuildClusterTree</span>(object_subset, <span class="at">assay =</span> <span class="st">"Spatial"</span>, <span class="at">reduction =</span> <span class="st">"full.pca.sketch"</span>, <span class="at">reorder =</span> T)</span>
-<span id="cb30-10"><a href=""></a></span>
-<span id="cb30-11"><a href=""></a>markers <span class="ot">&lt;-</span> <span class="fu">FindAllMarkers</span>(object_subset, <span class="at">assay =</span> <span class="st">"Spatial"</span>, <span class="at">only.pos =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb30-12"><a href=""></a>markers <span class="sc">%&gt;%</span></span>
-<span id="cb30-13"><a href=""></a>  <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span></span>
-<span id="cb30-14"><a href=""></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(avg_log2FC <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb30-15"><a href=""></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb30-16"><a href=""></a>  <span class="fu">ungroup</span>() <span class="ot">-&gt;</span> top5</span>
-<span id="cb30-17"><a href=""></a></span>
-<span id="cb30-18"><a href=""></a>object_subset <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(object_subset, <span class="at">assay =</span> <span class="st">"Spatial"</span>, <span class="at">features =</span> top5<span class="sc">$</span>gene)</span>
-<span id="cb30-19"><a href=""></a>p <span class="ot">&lt;-</span> <span class="fu">DoHeatmap</span>(object_subset, <span class="at">assay =</span> <span class="st">"Spatial"</span>, <span class="at">features =</span> top5<span class="sc">$</span>gene, <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">5.5</span>)) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span>
-<span id="cb30-20"><a href=""></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="fu">DefaultAssay</span>(object) <span class="ot">&lt;-</span> <span class="st">"Spatial"</span></span>
+<span id="cb31-2"><a href=""></a><span class="fu">Idents</span>(object) <span class="ot">&lt;-</span> <span class="st">"seurat_cluster.projected"</span></span>
+<span id="cb31-3"><a href=""></a><span class="co">#Downsampled object to make visualization easier</span></span>
+<span id="cb31-4"><a href=""></a>object_subset <span class="ot">&lt;-</span> <span class="fu">subset</span>(object, <span class="at">cells =</span> <span class="fu">Cells</span>(object[[<span class="st">"Spatial"</span>]]), <span class="at">downsample =</span> <span class="dv">1000</span>)</span>
+<span id="cb31-5"><a href=""></a></span>
+<span id="cb31-6"><a href=""></a><span class="co"># Order clusters by similarity</span></span>
+<span id="cb31-7"><a href=""></a><span class="fu">DefaultAssay</span>(object_subset) <span class="ot">&lt;-</span> <span class="st">"Spatial"</span></span>
+<span id="cb31-8"><a href=""></a><span class="fu">Idents</span>(object_subset) <span class="ot">&lt;-</span> <span class="st">"seurat_cluster.projected"</span></span>
+<span id="cb31-9"><a href=""></a>object_subset <span class="ot">&lt;-</span> <span class="fu">BuildClusterTree</span>(object_subset, <span class="at">assay =</span> <span class="st">"Spatial"</span>, <span class="at">reduction =</span> <span class="st">"full.pca.sketch"</span>, <span class="at">reorder =</span> T)</span>
+<span id="cb31-10"><a href=""></a></span>
+<span id="cb31-11"><a href=""></a>markers <span class="ot">&lt;-</span> <span class="fu">FindAllMarkers</span>(object_subset, <span class="at">assay =</span> <span class="st">"Spatial"</span>, <span class="at">only.pos =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb31-12"><a href=""></a>markers <span class="sc">%&gt;%</span></span>
+<span id="cb31-13"><a href=""></a>  <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span></span>
+<span id="cb31-14"><a href=""></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(avg_log2FC <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-15"><a href=""></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-16"><a href=""></a>  <span class="fu">ungroup</span>() <span class="ot">-&gt;</span> top5</span>
+<span id="cb31-17"><a href=""></a></span>
+<span id="cb31-18"><a href=""></a>object_subset <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(object_subset, <span class="at">assay =</span> <span class="st">"Spatial"</span>, <span class="at">features =</span> top5<span class="sc">$</span>gene)</span>
+<span id="cb31-19"><a href=""></a>p <span class="ot">&lt;-</span> <span class="fu">DoHeatmap</span>(object_subset, <span class="at">assay =</span> <span class="st">"Spatial"</span>, <span class="at">features =</span> top5<span class="sc">$</span>gene, <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">5.5</span>)) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span>
+<span id="cb31-20"><a href=""></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -1008,23 +1019,23 @@ Elapsed time: 1 seconds</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="fu">library</span>(Banksy)</span>
-<span id="cb31-2"><a href=""></a><span class="fu">library</span>(ggspavis)</span>
-<span id="cb31-3"><a href=""></a><span class="fu">library</span>(igraph)</span>
-<span id="cb31-4"><a href=""></a><span class="fu">library</span>(pheatmap)</span>
-<span id="cb31-5"><a href=""></a><span class="fu">library</span>(scran)</span>
-<span id="cb31-6"><a href=""></a><span class="fu">library</span>(scuttle)</span>
-<span id="cb31-7"><a href=""></a><span class="fu">library</span>(SpotSweeper)</span>
-<span id="cb31-8"><a href=""></a><span class="co">#library(tidyr)</span></span>
-<span id="cb31-9"><a href=""></a><span class="co">#Para importar 10X pero acá sólo convertimos el Seurat</span></span>
-<span id="cb31-10"><a href=""></a><span class="co">#library(VisiumIO)</span></span>
-<span id="cb31-11"><a href=""></a><span class="co">#Maybe</span></span>
-<span id="cb31-12"><a href=""></a><span class="co">#library(magick)</span></span>
-<span id="cb31-13"><a href=""></a><span class="co">#library(BiocParallel)</span></span>
-<span id="cb31-14"><a href=""></a><span class="co">#library(DropletUtils)</span></span>
-<span id="cb31-15"><a href=""></a><span class="co">#library(scater)</span></span>
-<span id="cb31-16"><a href=""></a><span class="co">#library(sf)</span></span>
-<span id="cb31-17"><a href=""></a><span class="co">#library(spacexr)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">library</span>(Banksy)</span>
+<span id="cb32-2"><a href=""></a><span class="fu">library</span>(ggspavis)</span>
+<span id="cb32-3"><a href=""></a><span class="fu">library</span>(igraph)</span>
+<span id="cb32-4"><a href=""></a><span class="fu">library</span>(pheatmap)</span>
+<span id="cb32-5"><a href=""></a><span class="fu">library</span>(scran)</span>
+<span id="cb32-6"><a href=""></a><span class="fu">library</span>(scuttle)</span>
+<span id="cb32-7"><a href=""></a><span class="fu">library</span>(SpotSweeper)</span>
+<span id="cb32-8"><a href=""></a><span class="co">#library(tidyr)</span></span>
+<span id="cb32-9"><a href=""></a><span class="co">#Para importar 10X pero acá sólo convertimos el Seurat</span></span>
+<span id="cb32-10"><a href=""></a><span class="co">#library(VisiumIO)</span></span>
+<span id="cb32-11"><a href=""></a><span class="co">#Maybe</span></span>
+<span id="cb32-12"><a href=""></a><span class="co">#library(magick)</span></span>
+<span id="cb32-13"><a href=""></a><span class="co">#library(BiocParallel)</span></span>
+<span id="cb32-14"><a href=""></a><span class="co">#library(DropletUtils)</span></span>
+<span id="cb32-15"><a href=""></a><span class="co">#library(scater)</span></span>
+<span id="cb32-16"><a href=""></a><span class="co">#library(sf)</span></span>
+<span id="cb32-17"><a href=""></a><span class="co">#library(spacexr)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -1034,19 +1045,19 @@ Elapsed time: 1 seconds</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a>coords <span class="ot">&lt;-</span> <span class="fu">GetTissueCoordinates</span>(object)</span>
-<span id="cb32-2"><a href=""></a>object_export <span class="ot">&lt;-</span> object</span>
-<span id="cb32-3"><a href=""></a>object_export[[<span class="st">"sketch"</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb32-4"><a href=""></a>object_export[[<span class="st">"pca.sketch"</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb32-5"><a href=""></a>object_export[[<span class="st">"umap.sketch"</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb32-6"><a href=""></a></span>
-<span id="cb32-7"><a href=""></a>sce <span class="ot">&lt;-</span> <span class="fu">as.SingleCellExperiment</span>(object_export)</span>
-<span id="cb32-8"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">SpatialExperiment</span>(</span>
-<span id="cb32-9"><a href=""></a>  <span class="at">assays =</span> <span class="fu">assays</span>(sce),</span>
-<span id="cb32-10"><a href=""></a>  <span class="at">colData =</span> <span class="fu">colData</span>(sce),</span>
-<span id="cb32-11"><a href=""></a>  <span class="at">reducedDims =</span> <span class="fu">reducedDims</span>(sce),</span>
-<span id="cb32-12"><a href=""></a>  <span class="at">spatialCoords =</span> <span class="fu">as.matrix</span>(coords[<span class="fu">colnames</span>(sce), <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
-<span id="cb32-13"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>coords <span class="ot">&lt;-</span> <span class="fu">GetTissueCoordinates</span>(object)</span>
+<span id="cb33-2"><a href=""></a>object_export <span class="ot">&lt;-</span> object</span>
+<span id="cb33-3"><a href=""></a>object_export[[<span class="st">"sketch"</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb33-4"><a href=""></a>object_export[[<span class="st">"pca.sketch"</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb33-5"><a href=""></a>object_export[[<span class="st">"umap.sketch"</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb33-6"><a href=""></a></span>
+<span id="cb33-7"><a href=""></a>sce <span class="ot">&lt;-</span> <span class="fu">as.SingleCellExperiment</span>(object_export)</span>
+<span id="cb33-8"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">SpatialExperiment</span>(</span>
+<span id="cb33-9"><a href=""></a>  <span class="at">assays =</span> <span class="fu">assays</span>(sce),</span>
+<span id="cb33-10"><a href=""></a>  <span class="at">colData =</span> <span class="fu">colData</span>(sce),</span>
+<span id="cb33-11"><a href=""></a>  <span class="at">reducedDims =</span> <span class="fu">reducedDims</span>(sce),</span>
+<span id="cb33-12"><a href=""></a>  <span class="at">spatialCoords =</span> <span class="fu">as.matrix</span>(coords[<span class="fu">colnames</span>(sce), <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb33-13"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -1056,28 +1067,28 @@ Elapsed time: 1 seconds</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="co"># calculate per-cell QC metrics</span></span>
-<span id="cb33-2"><a href=""></a>mt <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">"^MT-"</span>, <span class="fu">rownames</span>(spe))</span>
-<span id="cb33-3"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQCMetrics</span>(spe, <span class="at">subsets=</span><span class="fu">list</span>(<span class="at">mt=</span>mt))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="co"># calculate per-cell QC metrics</span></span>
+<span id="cb34-2"><a href=""></a>mt <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">"^MT-"</span>, <span class="fu">rownames</span>(spe))</span>
+<span id="cb34-3"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">addPerCellQCMetrics</span>(spe, <span class="at">subsets=</span><span class="fu">list</span>(<span class="at">mt=</span>mt))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="co"># determine outliers based on </span></span>
-<span id="cb34-2"><a href=""></a><span class="co"># - low log-library size</span></span>
-<span id="cb34-3"><a href=""></a><span class="co"># - few uniquely detected features</span></span>
-<span id="cb34-4"><a href=""></a><span class="co"># - high mitochondrial count fraction</span></span>
-<span id="cb34-5"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">localOutliers</span>(spe, <span class="at">metric=</span><span class="st">"sum"</span>, <span class="at">direction=</span><span class="st">"lower"</span>, <span class="at">log=</span><span class="cn">TRUE</span>)</span>
-<span id="cb34-6"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">localOutliers</span>(spe, <span class="at">metric=</span><span class="st">"detected"</span>, <span class="at">direction=</span><span class="st">"lower"</span>, <span class="at">log=</span><span class="cn">TRUE</span>)</span>
-<span id="cb34-7"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">localOutliers</span>(spe, <span class="at">metric=</span><span class="st">"subsets_mt_percent"</span>, <span class="at">direction=</span><span class="st">"higher"</span>, <span class="at">log=</span><span class="cn">TRUE</span>)</span>
-<span id="cb34-8"><a href=""></a>spe<span class="sc">$</span>discard <span class="ot">&lt;-</span> </span>
-<span id="cb34-9"><a href=""></a>    spe<span class="sc">$</span>sum_outliers <span class="sc">|</span> </span>
-<span id="cb34-10"><a href=""></a>    spe<span class="sc">$</span>detected_outliers <span class="sc">|</span> </span>
-<span id="cb34-11"><a href=""></a>    spe<span class="sc">$</span>subsets_mt_percent_outliers</span>
-<span id="cb34-12"><a href=""></a><span class="co"># tabulate number of bins retained </span></span>
-<span id="cb34-13"><a href=""></a><span class="co"># vs. removed by any criterion </span></span>
-<span id="cb34-14"><a href=""></a><span class="fu">table</span>(spe<span class="sc">$</span>discard)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="co"># determine outliers based on </span></span>
+<span id="cb35-2"><a href=""></a><span class="co"># - low log-library size</span></span>
+<span id="cb35-3"><a href=""></a><span class="co"># - few uniquely detected features</span></span>
+<span id="cb35-4"><a href=""></a><span class="co"># - high mitochondrial count fraction</span></span>
+<span id="cb35-5"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">localOutliers</span>(spe, <span class="at">metric=</span><span class="st">"sum"</span>, <span class="at">direction=</span><span class="st">"lower"</span>, <span class="at">log=</span><span class="cn">TRUE</span>)</span>
+<span id="cb35-6"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">localOutliers</span>(spe, <span class="at">metric=</span><span class="st">"detected"</span>, <span class="at">direction=</span><span class="st">"lower"</span>, <span class="at">log=</span><span class="cn">TRUE</span>)</span>
+<span id="cb35-7"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">localOutliers</span>(spe, <span class="at">metric=</span><span class="st">"subsets_mt_percent"</span>, <span class="at">direction=</span><span class="st">"higher"</span>, <span class="at">log=</span><span class="cn">TRUE</span>)</span>
+<span id="cb35-8"><a href=""></a>spe<span class="sc">$</span>discard <span class="ot">&lt;-</span> </span>
+<span id="cb35-9"><a href=""></a>    spe<span class="sc">$</span>sum_outliers <span class="sc">|</span> </span>
+<span id="cb35-10"><a href=""></a>    spe<span class="sc">$</span>detected_outliers <span class="sc">|</span> </span>
+<span id="cb35-11"><a href=""></a>    spe<span class="sc">$</span>subsets_mt_percent_outliers</span>
+<span id="cb35-12"><a href=""></a><span class="co"># tabulate number of bins retained </span></span>
+<span id="cb35-13"><a href=""></a><span class="co"># vs. removed by any criterion </span></span>
+<span id="cb35-14"><a href=""></a><span class="fu">table</span>(spe<span class="sc">$</span>discard)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1091,13 +1102,13 @@ Elapsed time: 1 seconds</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a>spe<span class="sc">$</span>in_tissue <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb36-2"><a href=""></a><span class="fu">plotCoords</span>(spe, <span class="at">annotate=</span><span class="st">"sum_log"</span>, <span class="at">point_size=</span><span class="fl">0.2</span>, <span class="at">point_shape=</span><span class="dv">15</span>) <span class="sc">+</span>   <span class="fu">ggtitle</span>(<span class="st">"log-library size"</span>) <span class="sc">+</span></span>
-<span id="cb36-3"><a href=""></a>  <span class="fu">plotCoords</span>(spe, <span class="at">annotate=</span><span class="st">"subsets_mt_percent"</span>, <span class="at">point_size=</span><span class="fl">0.2</span>, <span class="at">point_shape=</span><span class="dv">15</span>) <span class="sc">+</span> </span>
-<span id="cb36-4"><a href=""></a>  <span class="fu">ggtitle</span>(<span class="st">"% mitochondrial"</span>) <span class="sc">+</span></span>
-<span id="cb36-5"><a href=""></a>  <span class="fu">plot_layout</span>(<span class="at">nrow=</span><span class="dv">1</span>) <span class="sc">&amp;</span> <span class="fu">theme</span>(</span>
-<span id="cb36-6"><a href=""></a>    <span class="at">legend.key.width=</span><span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"lines"</span>),</span>
-<span id="cb36-7"><a href=""></a>    <span class="at">legend.key.height=</span><span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"lines"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a>spe<span class="sc">$</span>in_tissue <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb37-2"><a href=""></a><span class="fu">plotCoords</span>(spe, <span class="at">annotate=</span><span class="st">"sum_log"</span>, <span class="at">point_size=</span><span class="fl">0.2</span>, <span class="at">point_shape=</span><span class="dv">15</span>) <span class="sc">+</span>   <span class="fu">ggtitle</span>(<span class="st">"log-library size"</span>) <span class="sc">+</span></span>
+<span id="cb37-3"><a href=""></a>  <span class="fu">plotCoords</span>(spe, <span class="at">annotate=</span><span class="st">"subsets_mt_percent"</span>, <span class="at">point_size=</span><span class="fl">0.2</span>, <span class="at">point_shape=</span><span class="dv">15</span>) <span class="sc">+</span> </span>
+<span id="cb37-4"><a href=""></a>  <span class="fu">ggtitle</span>(<span class="st">"% mitochondrial"</span>) <span class="sc">+</span></span>
+<span id="cb37-5"><a href=""></a>  <span class="fu">plot_layout</span>(<span class="at">nrow=</span><span class="dv">1</span>) <span class="sc">&amp;</span> <span class="fu">theme</span>(</span>
+<span id="cb37-6"><a href=""></a>    <span class="at">legend.key.width=</span><span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"lines"</span>),</span>
+<span id="cb37-7"><a href=""></a>    <span class="at">legend.key.height=</span><span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"lines"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -1108,23 +1119,23 @@ Elapsed time: 1 seconds</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="fu">plotCoords</span>(spe, <span class="at">point_shape=</span><span class="dv">15</span>, <span class="at">annotate=</span><span class="st">"discard"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"discard"</span>) <span class="sc">+</span></span>
-<span id="cb37-2"><a href=""></a><span class="fu">plotCoords</span>(spe, <span class="at">point_shape=</span><span class="dv">15</span>, <span class="at">annotate=</span><span class="st">"sum_outliers"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"low_lib_size"</span>) <span class="sc">+</span></span>
-<span id="cb37-3"><a href=""></a><span class="fu">plotCoords</span>(spe, <span class="at">point_shape=</span><span class="dv">15</span>, <span class="at">annotate=</span><span class="st">"detected_outliers"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"low_n_features"</span>) <span class="sc">+</span></span>
-<span id="cb37-4"><a href=""></a><span class="fu">plot_layout</span>(<span class="at">nrow=</span><span class="dv">1</span>, <span class="at">guides=</span><span class="st">"collect"</span>) <span class="sc">&amp;</span> </span>
-<span id="cb37-5"><a href=""></a>    <span class="fu">theme</span>(</span>
-<span id="cb37-6"><a href=""></a>        <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">hjust=</span><span class="fl">0.5</span>),</span>
-<span id="cb37-7"><a href=""></a>        <span class="at">legend.key.size=</span><span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"lines"</span>)) <span class="sc">&amp;</span></span>
-<span id="cb37-8"><a href=""></a>    <span class="fu">guides</span>(<span class="at">col=</span><span class="fu">guide_legend</span>(<span class="at">override.aes=</span><span class="fu">list</span>(<span class="at">size=</span><span class="dv">3</span>))) <span class="sc">&amp;</span> </span>
-<span id="cb37-9"><a href=""></a>    <span class="fu">scale_color_manual</span>(<span class="st">"discard"</span>, <span class="at">values=</span><span class="fu">c</span>(<span class="st">"lavender"</span>, <span class="st">"purple"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a><span class="fu">plotCoords</span>(spe, <span class="at">point_shape=</span><span class="dv">15</span>, <span class="at">annotate=</span><span class="st">"discard"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"discard"</span>) <span class="sc">+</span></span>
+<span id="cb38-2"><a href=""></a><span class="fu">plotCoords</span>(spe, <span class="at">point_shape=</span><span class="dv">15</span>, <span class="at">annotate=</span><span class="st">"sum_outliers"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"low_lib_size"</span>) <span class="sc">+</span></span>
+<span id="cb38-3"><a href=""></a><span class="fu">plotCoords</span>(spe, <span class="at">point_shape=</span><span class="dv">15</span>, <span class="at">annotate=</span><span class="st">"detected_outliers"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"low_n_features"</span>) <span class="sc">+</span></span>
+<span id="cb38-4"><a href=""></a><span class="fu">plot_layout</span>(<span class="at">nrow=</span><span class="dv">1</span>, <span class="at">guides=</span><span class="st">"collect"</span>) <span class="sc">&amp;</span> </span>
+<span id="cb38-5"><a href=""></a>    <span class="fu">theme</span>(</span>
+<span id="cb38-6"><a href=""></a>        <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">hjust=</span><span class="fl">0.5</span>),</span>
+<span id="cb38-7"><a href=""></a>        <span class="at">legend.key.size=</span><span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"lines"</span>)) <span class="sc">&amp;</span></span>
+<span id="cb38-8"><a href=""></a>    <span class="fu">guides</span>(<span class="at">col=</span><span class="fu">guide_legend</span>(<span class="at">override.aes=</span><span class="fu">list</span>(<span class="at">size=</span><span class="dv">3</span>))) <span class="sc">&amp;</span> </span>
+<span id="cb38-9"><a href=""></a>    <span class="fu">scale_color_manual</span>(<span class="st">"discard"</span>, <span class="at">values=</span><span class="fu">c</span>(<span class="st">"lavender"</span>, <span class="st">"purple"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
 <img data-src="ST_clase12_files/figure-revealjs/outlierloc-1.png" width="960" class="r-stretch"><div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span>spe<span class="sc">$</span>discard]</span>
-<span id="cb38-2"><a href=""></a><span class="fu">dim</span>(spe)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a>spe <span class="ot">&lt;-</span> spe[, <span class="sc">!</span>spe<span class="sc">$</span>discard]</span>
+<span id="cb39-2"><a href=""></a><span class="fu">dim</span>(spe)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  18085 131916</code></pre>
@@ -1137,22 +1148,22 @@ Elapsed time: 1 seconds</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a><span class="fu">sum</span>(<span class="fu">colSums</span>(<span class="fu">counts</span>(spe)) <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a><span class="fu">sum</span>(<span class="fu">colSums</span>(<span class="fu">counts</span>(spe)) <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">colSums</span>(<span class="fu">counts</span>(spe)) <span class="sc">&gt;</span> <span class="dv">0</span>]</span>
-<span id="cb42-2"><a href=""></a></span>
-<span id="cb42-3"><a href=""></a><span class="co"># Now normalize</span></span>
-<span id="cb42-4"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
-<span id="cb42-5"><a href=""></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
-<span id="cb42-6"><a href=""></a>hvg <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">n=</span><span class="fl">2e3</span>)</span>
-<span id="cb42-7"><a href=""></a></span>
-<span id="cb42-8"><a href=""></a>n_common <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">intersect</span>(hvg, <span class="fu">VariableFeatures</span>(object)))</span>
-<span id="cb42-9"><a href=""></a><span class="fu">message</span>(n_common, <span class="st">" de "</span>, <span class="fu">length</span>(hvg), <span class="st">" HVGs en común entre SPE y Seurat"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">colSums</span>(<span class="fu">counts</span>(spe)) <span class="sc">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb43-2"><a href=""></a></span>
+<span id="cb43-3"><a href=""></a><span class="co"># Now normalize</span></span>
+<span id="cb43-4"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
+<span id="cb43-5"><a href=""></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
+<span id="cb43-6"><a href=""></a>hvg <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">n=</span><span class="fl">2e3</span>)</span>
+<span id="cb43-7"><a href=""></a></span>
+<span id="cb43-8"><a href=""></a>n_common <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">intersect</span>(hvg, <span class="fu">VariableFeatures</span>(object)))</span>
+<span id="cb43-9"><a href=""></a><span class="fu">message</span>(n_common, <span class="st">" de "</span>, <span class="fu">length</span>(hvg), <span class="st">" HVGs en común entre SPE y Seurat"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -1162,28 +1173,28 @@ Elapsed time: 1 seconds</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a><span class="co"># set seed for random number generation</span></span>
-<span id="cb43-2"><a href=""></a><span class="co"># in order to make results reproducible</span></span>
-<span id="cb43-3"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">112358</span>)</span>
-<span id="cb43-4"><a href=""></a><span class="co"># 'Banksy' parameter settings</span></span>
-<span id="cb43-5"><a href=""></a>k <span class="ot">&lt;-</span> <span class="dv">8</span>   <span class="co"># consider first order neighbors</span></span>
-<span id="cb43-6"><a href=""></a>l <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="co"># use little spatial information</span></span>
-<span id="cb43-7"><a href=""></a>a <span class="ot">&lt;-</span> <span class="st">"logcounts"</span></span>
-<span id="cb43-8"><a href=""></a>xy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"array_row"</span>, <span class="st">"array_col"</span>)</span>
-<span id="cb43-9"><a href=""></a><span class="co"># restrict to selected features</span></span>
-<span id="cb43-10"><a href=""></a>tmp <span class="ot">&lt;-</span> spe[hvg, ]</span>
-<span id="cb43-11"><a href=""></a><span class="co"># compute spatially aware 'Banksy' PCs</span></span>
-<span id="cb43-12"><a href=""></a>tmp <span class="ot">&lt;-</span> <span class="fu">computeBanksy</span>(tmp, <span class="at">assay_name=</span>a, <span class="at">coord_names=</span>xy, <span class="at">k_geom=</span>k)</span>
-<span id="cb43-13"><a href=""></a>tmp <span class="ot">&lt;-</span> <span class="fu">runBanksyPCA</span>(tmp, <span class="at">lambda=</span>l, <span class="at">npcs=</span><span class="dv">20</span>)</span>
-<span id="cb43-14"><a href=""></a><span class="fu">reducedDim</span>(spe, <span class="st">"PCA"</span>) <span class="ot">&lt;-</span> <span class="fu">reducedDim</span>(tmp)</span>
-<span id="cb43-15"><a href=""></a><span class="do">## run UMAP (for visualization purposes only)</span></span>
-<span id="cb43-16"><a href=""></a><span class="co"># spe &lt;- runUMAP(spe, dimred="PCA")</span></span>
-<span id="cb43-17"><a href=""></a><span class="co"># build cellular shared nearest-neighbor (SNN) graph</span></span>
-<span id="cb43-18"><a href=""></a>g <span class="ot">&lt;-</span> <span class="fu">buildSNNGraph</span>(spe, <span class="at">use.dimred=</span><span class="st">"PCA"</span>, <span class="at">type=</span><span class="st">"jaccard"</span>, <span class="at">k=</span><span class="dv">20</span>)</span>
-<span id="cb43-19"><a href=""></a></span>
-<span id="cb43-20"><a href=""></a><span class="co"># cluster using Leiden community detection algorithm</span></span>
-<span id="cb43-21"><a href=""></a>k <span class="ot">&lt;-</span> <span class="fu">cluster_leiden</span>(g, <span class="at">objective_function=</span><span class="st">"modularity"</span>, <span class="at">resolution=</span><span class="fl">1.2</span>)</span>
-<span id="cb43-22"><a href=""></a><span class="fu">table</span>(spe<span class="sc">$</span>Banksy <span class="ot">&lt;-</span> <span class="fu">factor</span>(k<span class="sc">$</span>membership))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a><span class="co"># set seed for random number generation</span></span>
+<span id="cb44-2"><a href=""></a><span class="co"># in order to make results reproducible</span></span>
+<span id="cb44-3"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">112358</span>)</span>
+<span id="cb44-4"><a href=""></a><span class="co"># 'Banksy' parameter settings</span></span>
+<span id="cb44-5"><a href=""></a>k <span class="ot">&lt;-</span> <span class="dv">8</span>   <span class="co"># consider first order neighbors</span></span>
+<span id="cb44-6"><a href=""></a>l <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="co"># use little spatial information</span></span>
+<span id="cb44-7"><a href=""></a>a <span class="ot">&lt;-</span> <span class="st">"logcounts"</span></span>
+<span id="cb44-8"><a href=""></a>xy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"array_row"</span>, <span class="st">"array_col"</span>)</span>
+<span id="cb44-9"><a href=""></a><span class="co"># restrict to selected features</span></span>
+<span id="cb44-10"><a href=""></a>tmp <span class="ot">&lt;-</span> spe[hvg, ]</span>
+<span id="cb44-11"><a href=""></a><span class="co"># compute spatially aware 'Banksy' PCs</span></span>
+<span id="cb44-12"><a href=""></a>tmp <span class="ot">&lt;-</span> <span class="fu">computeBanksy</span>(tmp, <span class="at">assay_name=</span>a, <span class="at">coord_names=</span>xy, <span class="at">k_geom=</span>k)</span>
+<span id="cb44-13"><a href=""></a>tmp <span class="ot">&lt;-</span> <span class="fu">runBanksyPCA</span>(tmp, <span class="at">lambda=</span>l, <span class="at">npcs=</span><span class="dv">20</span>)</span>
+<span id="cb44-14"><a href=""></a><span class="fu">reducedDim</span>(spe, <span class="st">"PCA"</span>) <span class="ot">&lt;-</span> <span class="fu">reducedDim</span>(tmp)</span>
+<span id="cb44-15"><a href=""></a><span class="do">## run UMAP (for visualization purposes only)</span></span>
+<span id="cb44-16"><a href=""></a><span class="co"># spe &lt;- runUMAP(spe, dimred="PCA")</span></span>
+<span id="cb44-17"><a href=""></a><span class="co"># build cellular shared nearest-neighbor (SNN) graph</span></span>
+<span id="cb44-18"><a href=""></a>g <span class="ot">&lt;-</span> <span class="fu">buildSNNGraph</span>(spe, <span class="at">use.dimred=</span><span class="st">"PCA"</span>, <span class="at">type=</span><span class="st">"jaccard"</span>, <span class="at">k=</span><span class="dv">20</span>)</span>
+<span id="cb44-19"><a href=""></a></span>
+<span id="cb44-20"><a href=""></a><span class="co"># cluster using Leiden community detection algorithm</span></span>
+<span id="cb44-21"><a href=""></a>k <span class="ot">&lt;-</span> <span class="fu">cluster_leiden</span>(g, <span class="at">objective_function=</span><span class="st">"modularity"</span>, <span class="at">resolution=</span><span class="fl">1.2</span>)</span>
+<span id="cb44-22"><a href=""></a><span class="fu">table</span>(spe<span class="sc">$</span>Banksy <span class="ot">&lt;-</span> <span class="fu">factor</span>(k<span class="sc">$</span>membership))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1198,42 +1209,53 @@ Elapsed time: 1 seconds</code></pre>
 </section>
 <section class="slide level2">
 
+<h3 id="localización-de-clusters-banksy-contrastar-con-seurat">Localización de clusters Banksy (contrastar con Seurat)</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a><span class="fu">plotCoords</span>(spe, <span class="at">annotate =</span> <span class="st">"Banksy"</span>, <span class="at">point_size =</span> <span class="dv">2</span>, <span class="at">point_shape =</span> <span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="ST_clase12_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
+<section class="slide level2">
+
 <h3 id="differential-gene-expression-analysis">Differential gene expression analysis</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a><span class="co"># differential gene expression analysis</span></span>
-<span id="cb45-2"><a href=""></a>mgs <span class="ot">&lt;-</span> <span class="fu">findMarkers</span>(spe, <span class="at">groups=</span>spe<span class="sc">$</span>Banksy, <span class="at">direction=</span><span class="st">"up"</span>)</span>
-<span id="cb45-3"><a href=""></a></span>
-<span id="cb45-4"><a href=""></a><span class="co"># select for a few markers per cluster</span></span>
-<span id="cb45-5"><a href=""></a>top <span class="ot">&lt;-</span> <span class="fu">lapply</span>(mgs, \(df) <span class="fu">rownames</span>(df)[df<span class="sc">$</span>Top <span class="sc">&lt;=</span> <span class="dv">2</span>])</span>
-<span id="cb45-6"><a href=""></a>top <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">unlist</span>(top))</span>
-<span id="cb45-7"><a href=""></a><span class="co"># average expression by clusters</span></span>
-<span id="cb45-8"><a href=""></a>pbs <span class="ot">&lt;-</span> <span class="fu">aggregateAcrossCells</span>(spe, </span>
-<span id="cb45-9"><a href=""></a>    <span class="at">ids=</span>spe<span class="sc">$</span>Banksy, <span class="at">subset.row=</span>top, </span>
-<span id="cb45-10"><a href=""></a>    <span class="at">use.assay.type=</span><span class="st">"logcounts"</span>, <span class="at">statistics=</span><span class="st">"mean"</span>)</span>
-<span id="cb45-11"><a href=""></a></span>
-<span id="cb45-12"><a href=""></a><span class="co"># visualize averages z-scaled across clusters</span></span>
-<span id="cb45-13"><a href=""></a><span class="fu">pheatmap</span>(</span>
-<span id="cb45-14"><a href=""></a>    <span class="at">mat=</span><span class="fu">t</span>(<span class="fu">assay</span>(pbs)), <span class="at">scale=</span><span class="st">"column"</span>, <span class="at">breaks=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="at">length=</span><span class="dv">101</span>), </span>
-<span id="cb45-15"><a href=""></a>    <span class="at">cellwidth=</span><span class="dv">10</span>, <span class="at">cellheight=</span><span class="dv">10</span>, <span class="at">treeheight_row=</span><span class="dv">5</span>, <span class="at">treeheight_col=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a><span class="co"># differential gene expression analysis</span></span>
+<span id="cb47-2"><a href=""></a>mgs <span class="ot">&lt;-</span> <span class="fu">findMarkers</span>(spe, <span class="at">groups=</span>spe<span class="sc">$</span>Banksy, <span class="at">direction=</span><span class="st">"up"</span>)</span>
+<span id="cb47-3"><a href=""></a></span>
+<span id="cb47-4"><a href=""></a><span class="co"># select for a few markers per cluster</span></span>
+<span id="cb47-5"><a href=""></a>top <span class="ot">&lt;-</span> <span class="fu">lapply</span>(mgs, \(df) <span class="fu">rownames</span>(df)[df<span class="sc">$</span>Top <span class="sc">&lt;=</span> <span class="dv">2</span>])</span>
+<span id="cb47-6"><a href=""></a>top <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">unlist</span>(top))</span>
+<span id="cb47-7"><a href=""></a><span class="co"># average expression by clusters</span></span>
+<span id="cb47-8"><a href=""></a>pbs <span class="ot">&lt;-</span> <span class="fu">aggregateAcrossCells</span>(spe, </span>
+<span id="cb47-9"><a href=""></a>    <span class="at">ids=</span>spe<span class="sc">$</span>Banksy, <span class="at">subset.row=</span>top, </span>
+<span id="cb47-10"><a href=""></a>    <span class="at">use.assay.type=</span><span class="st">"logcounts"</span>, <span class="at">statistics=</span><span class="st">"mean"</span>)</span>
+<span id="cb47-11"><a href=""></a></span>
+<span id="cb47-12"><a href=""></a><span class="co"># visualize averages z-scaled across clusters</span></span>
+<span id="cb47-13"><a href=""></a><span class="fu">pheatmap</span>(</span>
+<span id="cb47-14"><a href=""></a>    <span class="at">mat=</span><span class="fu">t</span>(<span class="fu">assay</span>(pbs)), <span class="at">scale=</span><span class="st">"column"</span>, <span class="at">breaks=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="at">length=</span><span class="dv">101</span>), </span>
+<span id="cb47-15"><a href=""></a>    <span class="at">cellwidth=</span><span class="dv">10</span>, <span class="at">cellheight=</span><span class="dv">10</span>, <span class="at">treeheight_row=</span><span class="dv">5</span>, <span class="at">treeheight_col=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
 <img data-src="ST_clase12_files/figure-revealjs/dge-1.png" width="960" class="r-stretch"></section>
 <section class="slide level2">
 
-<h3 id="marker-vis">Marker vis</h3>
+<h3 id="marker-visualization-heatmap">Marker visualization (heatmap)</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>gs <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rownames</span>(pbs), <span class="at">size =</span> <span class="dv">3</span>)</span>
-<span id="cb46-2"><a href=""></a>ps <span class="ot">&lt;-</span> <span class="fu">lapply</span>(gs, \(.) <span class="fu">plotCoords</span>(spe, <span class="at">annotate=</span>., <span class="at">point_shape=</span><span class="dv">15</span>, </span>
-<span id="cb46-3"><a href=""></a>                                 <span class="at">point_size=</span><span class="fl">0.8</span>, <span class="at">assay_name=</span><span class="st">"logcounts"</span>))</span>
-<span id="cb46-4"><a href=""></a><span class="fu">wrap_plots</span>(ps, <span class="at">nrow=</span><span class="dv">1</span>) <span class="sc">&amp;</span> <span class="fu">theme</span>(</span>
-<span id="cb46-5"><a href=""></a>  <span class="at">legend.key.width=</span><span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"lines"</span>),</span>
-<span id="cb46-6"><a href=""></a>  <span class="at">legend.key.height=</span><span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"lines"</span>)) <span class="sc">&amp;</span></span>
-<span id="cb46-7"><a href=""></a>  <span class="fu">scale_color_gradientn</span>(<span class="at">colors=</span><span class="fu">rev</span>(<span class="fu">hcl.colors</span>(<span class="dv">9</span>, <span class="st">"Rocket"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a>gs <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rownames</span>(pbs), <span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb48-2"><a href=""></a>ps <span class="ot">&lt;-</span> <span class="fu">lapply</span>(gs, \(.) <span class="fu">plotCoords</span>(spe, <span class="at">annotate=</span>., <span class="at">point_shape=</span><span class="dv">15</span>, </span>
+<span id="cb48-3"><a href=""></a>                                 <span class="at">point_size=</span><span class="fl">0.8</span>, <span class="at">assay_name=</span><span class="st">"logcounts"</span>))</span>
+<span id="cb48-4"><a href=""></a><span class="fu">wrap_plots</span>(ps, <span class="at">nrow=</span><span class="dv">1</span>) <span class="sc">&amp;</span> <span class="fu">theme</span>(</span>
+<span id="cb48-5"><a href=""></a>  <span class="at">legend.key.width=</span><span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"lines"</span>),</span>
+<span id="cb48-6"><a href=""></a>  <span class="at">legend.key.height=</span><span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"lines"</span>)) <span class="sc">&amp;</span></span>
+<span id="cb48-7"><a href=""></a>  <span class="fu">scale_color_gradientn</span>(<span class="at">colors=</span><span class="fu">rev</span>(<span class="fu">hcl.colors</span>(<span class="dv">9</span>, <span class="st">"Rocket"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
