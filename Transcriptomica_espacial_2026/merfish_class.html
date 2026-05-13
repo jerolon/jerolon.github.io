@@ -1,0 +1,2229 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="ST_clase12_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ST_clase12_files/libs/quarto-html/tabby.min.js"></script>
+<script src="ST_clase12_files/libs/quarto-html/popper.min.js"></script>
+<script src="ST_clase12_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="ST_clase12_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ST_clase12_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="ST_clase12_files/libs/quarto-html/quarto-syntax-highlighting-ff73747157bea4a22cb1ab1a769f836e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
+
+  <meta name="author" content="">
+  <title>Clase 14. 13 mayo 2026</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="ST_clase12_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="ST_clase12_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2; background-color: #2e3440; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #75715e; } /* Annotation */
+    code span.at { color: #f92672; } /* Attribute */
+    code span.bn { color: #ae81ff; } /* BaseN */
+    code span.bu { color: #66d9ef; } /* BuiltIn */
+    code span.cf { color: #f92672; } /* ControlFlow */
+    code span.ch { color: #e6db74; } /* Char */
+    code span.cn { color: #ae81ff; } /* Constant */
+    code span.co { color: #75715e; } /* Comment */
+    code span.cv { color: #75715e; } /* CommentVar */
+    code span.do { color: #75715e; } /* Documentation */
+    code span.dt { color: #66d9ef; font-style: italic; } /* DataType */
+    code span.dv { color: #ae81ff; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #a6e22e; font-weight: bold; } /* Extension */
+    code span.fl { color: #ae81ff; } /* Float */
+    code span.fu { color: #a6e22e; } /* Function */
+    code span.im { color: #f92672; } /* Import */
+    code span.in { color: #f1fa8c; } /* Information */
+    code span.kw { color: #f92672; } /* Keyword */
+    code span.op { color: #f8f8f2; } /* Operator */
+    code span.ot { color: #a6e22e; } /* Other */
+    code span.pp { color: #f92672; } /* Preprocessor */
+    code span.re { color: #75715e; } /* RegionMarker */
+    code span.sc { color: #ae81ff; } /* SpecialChar */
+    code span.ss { color: #e6db74; } /* SpecialString */
+    code span.st { color: #e6db74; } /* String */
+    code span.va { color: #f8f8f2; } /* Variable */
+    code span.vs { color: #e6db74; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="ST_clase12_files/libs/revealjs/dist/theme/quarto-e96c27c57223ecf4455cc0947e92dc1a.css">
+  <link href="ST_clase12_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="ST_clase12_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="ST_clase12_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="ST_clase12_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="ST_clase12_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="ST_clase12_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <meta name="color-scheme" content="light">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Clase 14. 13 mayo 2026</h1>
+  <p class="subtitle">Técnicas basadas en smFISH</p>
+
+<div class="quarto-title-authors">
+</div>
+
+</section>
+<section id="cómo-llegar-a-una-matriz-de-expresión-a-partir-de-imágenes" class="slide level2">
+<h2>Cómo llegar a una matriz de expresión a partir de imágenes?</h2>
+<p>Adaptamos el <a href="https://github.com/spacetx/starfish/blob/master/notebooks/MERFISH.ipynb">tutorial de starfish</a> (Python) que reproduce el <em>pipeline</em> de <a href="https://www.science.org/doi/10.1126/science.aaa6090">Chen et al., 2015</a>, el <em>paper</em> original de MERFISH.</p>
+<p>Utilizando un subset de los datos publicados en <a href="https://doi.org/10.1073/pnas.1612826113">Moffitt et al., 2016</a>: 8 rondas, 2 canales y un sólo plano Z: 16 x 2048 x 2048.</p>
+<p>El test data es el fov 0. Si instalas starfish, y utilizas el notebook.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a>experiment <span class="op">=</span> data.MERFISH(use_test_data<span class="op">=</span>use_test_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Pero mejor descargarlos del drive. Descarga uno o varios FoVs al azar</p>
+<p><a href="https://drive.google.com/drive/folders/1WjiKyYCwBqaxfkRgYg3hdZ-Pa-x1HcBY?usp=sharing" class="uri">https://drive.google.com/drive/folders/1WjiKyYCwBqaxfkRgYg3hdZ-Pa-x1HcBY?usp=sharing</a></p>
+</section>
+<section id="el-problema-medición-de-la-expresión-génica-in-situ" class="slide level2">
+<h2>El problema: medición de la expresión génica <em>in situ</em></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Abordajes previos</p>
+<ul>
+<li><strong>scRNA-seq</strong> → high throughput, resolución pero <strong>no información espacial</strong></li>
+<li><strong>(F)ISH</strong> (Fluorescent <em>in situ</em> hybridization) → espacial, pero típicamente <strong>1–2 genes</strong> a la vez
+<ul>
+<li>Aunque <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10941662/">HCR</a> está llevando el límite hasta 10!</li>
+</ul></li>
+</ul>
+<p>Queremos escala transcriptómica: <strong>al menos cientos e idealmente miles de genes</strong>, <strong>resolución single-cell y contexto de tejido.</strong></p>
+</div><div class="column" style="width:50%;">
+<p>MERFISH (Multiplexed Error-Robust FISH) lo resuelve codificando cada mRNA de un gen distinto con un <strong>Código de barras binario</strong> que se detecta a lo largo de rondas secuenciales de microscopía.</p>
+<p>Sistema comercial: <strong>Vizgen Merscope</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/slide13_img01.png" class="quarto-figure quarto-figure-center" height="400"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="el-concepto-detrás-de-merfish" class="slide level2">
+<h2>El concepto detrás de MERFISH</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>La idea es genial:</strong></p>
+<ol type="1">
+<li>Marcar cada especie de RNA <strong>sondas</strong> que codifican en conjunto una secuencia binaria</li>
+<li>Hacer <strong>N rondas</strong> de hibridación con sondas fluorescentes</li>
+<li>En cada ronda, algunos RNAs se detectan (bit = 1), algunos no (bit = 0)</li>
+<li>A lo largo de las rondas, el patrón es el código de barras que identifica al gene</li>
+</ol>
+<p>Con 16 bits (8 rondas × 2 canales), teóricamente se podrían codificar <strong>miles</strong> de códigos de barras únicos. ¿Cuántos?</p>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/slide13_img03.jpg" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+<p>. . .</p>
+<p>2^16 = 65,536</p>
+</div></div>
+</section>
+<section id="códigos-de-barra-robustos-a-errores" class="slide level2">
+<h2>Códigos de barra robustos a errores</h2>
+<p>No se utilizan todos los posibles códigos binarios. Si se deja una <strong>distancia Hamming mínima de 4</strong>(MHD4):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/slide14_img02.png" class="quarto-figure quarto-figure-center" height="350"></p>
+</figure>
+</div>
+<div class="fragment">
+<ul>
+<li><strong>Errores de 1 bit</strong> pueden <strong>corregirse</strong>.</li>
+<li><strong>Errores de 2 bits</strong> pueden <strong>detectarse</strong> y eliminarse.</li>
+</ul>
+</div>
+<div class="fragment">
+<p>Es crucial por el ruido intrínseco de las imágenes de microscopía fluorescente: <em>spots</em> no detectados, hibridación no específica de las sondas, fotoblanqueo, pueden introducir bits erróneos.</p>
+</div>
+</section>
+<section id="datos-de-hoy-vizgen-merfish" class="slide level2">
+<h2>Datos de hoy: Vizgen MERFISH</h2>
+<p>Adaptación del tutorial del paquete <a href="https://spacetx-starfish.readthedocs.io/en/latest/gallery/pipelines/merfish_pipeline.html">starfish</a> en python (SpaceTx consortium):</p>
+<ul>
+<li><strong>Células U-2 OS</strong> (human osteosarcoma cell line)</li>
+<li><strong>~100 genes</strong> codificados por <strong>16-bit MHD4</strong></li>
+<li><strong>8 rondas de hibridación × 2 canales</strong> = 16 imágenes</li>
+<li>Cada imagen: <strong>2048 × 2048 pixeles</strong>, plano-z único</li>
+<li>Plus: imagen de <strong>núcleos marcados con DAPI</strong>, <strong>libro de códigos (codebook)</strong>, <strong>factores de escala</strong></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p>Utilizaremos un grupo de datos reales de Merfish. Los pasos a seguir son</p>
+<ol type="1">
+<li><strong>Preprocesar</strong> imágenes en FIJI (filtrado y deconvolución)</li>
+<li><strong>Decodificar</strong> cada pixel de acuerdo al barcode y asignarlo a un gen en R</li>
+<li><strong>Comparar</strong> los resultados con un <em>benchmark</em>.csv</li>
+</ol>
+<div class="fragment">
+<blockquote>
+<p>Son datos de “juguete”. La idea es que no haya cajas negras.</p>
+<p>Las plataformas comerciales hacen este pre-procesamiento, pero no es posible saber en el futuro si serán las mismas. Mejor aprender conceptos. Saber las limitaciones del <em>pipeline.</em></p>
+</blockquote>
+</div>
+</section>
+<section id="vista-general-del-pre-procesamiento" class="slide level2">
+<h2>Vista general del pre-procesamiento</h2>
+<p>Las imágenes crudas tienen ruido y fluorescencia de fondo (background).</p>
+<p><strong>Pipeline (en FIJI):</strong></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 26%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Paso</th>
+<th>Método</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. Filtro High-pass</td>
+<td>Gaussian, σ=3</td>
+<td>Quitar fondo de baja frecuencia</td>
+</tr>
+<tr class="even">
+<td>2. Deconvolución</td>
+<td>Richardson-Lucy/Unsharp mask</td>
+<td>Definir los puntos fluorescentes</td>
+</tr>
+<tr class="odd">
+<td>3. Filtro Low-pass</td>
+<td>Gaussian, σ=1</td>
+<td>Suavizar el ruido nivel pixel (usualmente del detector)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="slide level2">
+
+<h3 id="primer-filtro-gaussian-high-pass">Primer filtro Gaussian high pass</h3>
+<p>Mantiene señal de alta frecuencia (púntitos) y quita señal de baja frecuencia (background, autofluorescencia)</p>
+<p><strong>High-passed = Original − GaussianBlur(Original, σ=3)</strong></p>
+<p>. . .</p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Abriremos el hyperstack en FIJI and experiment with different σ values (1, 3, 10). Mayor σ = más agresivo la remoción de background.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="los-datos-crudos">Los datos crudos</h4>
+<h4 id="identifica-ruta-a-tus-imágenes">1. Identifica ruta a tus imágenes</h4>
+
+<img data-src="ST_clase12_files/images/step-0.png" alt="Identifica ruta a imágenes que descargaste" class="r-stretch quarto-figure-center"><p class="caption">Identifica ruta a tus imágenes</p></section>
+<section class="slide level2">
+
+<h4 id="import-image-sequence">2. import image sequence</h4>
+
+<img data-src="ST_clase12_files/images/step-1.png" class="r-stretch quarto-figure-center"><p class="caption">import image sequence</p></section>
+<section class="slide level2">
+
+<h4 id="browse-al-directorio-con-las-imagenes">3.Browse al directorio con las imagenes</h4>
+
+<img data-src="ST_clase12_files/images/step-2.png" class="r-stretch quarto-figure-center"><p class="caption">Escribe “round” en el campo Filter:</p><p>. . .</p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>ℹ️ Escribimos “round” para que solo abra las imagenes (count debe cambiar a 16)</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="stack-to-hyperstack">4. stack to hyperstack</h4>
+
+<img data-src="ST_clase12_files/images/step-3.png" class="r-stretch quarto-figure-center"><p class="caption">stack to hyperstack</p></section>
+<section class="slide level2">
+
+<h4 id="canales-y-8-ronda">5. 2 canales y 8 ronda</h4>
+
+<img data-src="ST_clase12_files/images/step-4.png" class="r-stretch"><p>. . .</p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>ℹ️ También cambia el modo de “Color” a “Composite”</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="selecciona-el-stack">6. Selecciona el stack</h4>
+
+<img data-src="ST_clase12_files/images/step-5.png" class="r-stretch quarto-figure-center"><p class="caption">Selecciona el stack</p></section>
+<section class="slide level2">
+
+<h4 id="duplicate">7. duplicate</h4>
+
+<img data-src="ST_clase12_files/images/step-6.png" class="r-stretch quarto-figure-center"><p class="caption">duplicate</p></section>
+<section class="slide level2">
+
+<h4 id="cambia-nombre-a-gauss3">8. Cambia nombre a gauss3</h4>
+
+<img data-src="ST_clase12_files/images/step-7.png" class="r-stretch quarto-figure-center"><p class="caption">Cambia nombre a gauss3</p></section>
+<section class="slide level2">
+
+<h4 id="selecciona-la-nueva-copia">9. selecciona la nueva copia</h4>
+
+<img data-src="ST_clase12_files/images/step-8.png" class="r-stretch quarto-figure-center"><p class="caption">selecciona la nueva copia</p></section>
+<section class="slide level2">
+
+<h4 id="click-en-blur-gaussiano">10. Click en Blur Gaussiano</h4>
+
+<img data-src="ST_clase12_files/images/step-9.png" class="r-stretch quarto-figure-center"><p class="caption">Click en Blur Gaussiano</p></section>
+<section class="slide level2">
+
+<h4 id="sigma-3">11. Sigma 3</h4>
+
+<img data-src="ST_clase12_files/images/step-10.png" class="r-stretch quarto-figure-center"><p class="caption">Sigma 3</p><p><strong>ℹ️</strong> NO scaled units. Puedes experimentar con 5..10</p>
+</section>
+<section class="slide level2">
+
+<h4 id="selecciona-image-calculator">12. Selecciona Image Calculator</h4>
+
+<img data-src="ST_clase12_files/images/step-11.png" class="r-stretch quarto-figure-center"><p class="caption">Image Calculator</p></section>
+<section class="slide level2">
+
+<h4 id="resta-el-blur-a-la-original">13. Resta el blur a la original</h4>
+
+<img data-src="ST_clase12_files/images/step-12.png" class="r-stretch quarto-figure-center"><p class="caption">Resta el blur a la original</p><p><strong>ℹ️</strong> Manten output de 32 bits</p>
+</section>
+<section class="slide level2">
+
+<h4 id="click-ok">14. Click “OK”</h4>
+
+<img data-src="ST_clase12_files/images/step-13.png" class="r-stretch quarto-figure-center"><p class="caption">Click “OK”</p></section>
+<section class="slide level2">
+
+<h4 id="image---adjust-brightness-contrast">15.Image - Adjust Brightness &amp; Contrast</h4>
+
+<img data-src="ST_clase12_files/images/step-14.png" class="r-stretch quarto-figure-center"><p class="caption">“B&amp;C”</p><p><strong>ℹ️</strong> (Shift + C) No cambia nuestros datos, sólo el mapeo a nuestra pantalla para poder verlo.</p>
+</section>
+<section class="slide level2">
+
+<h3 id="paso-2-deconvolución">Paso 2: Deconvolución</h3>
+<p>Cuestión inherente a la microscopía óptica. Una fuente de luz puntual se difumina por la difracción a un punto más ancho. La <strong>Point Spread Function</strong>, PSF. La deconvolución sirve para revertir esto.</p>
+<p>. . .</p>
+<p><strong>En FIJI:</strong></p>
+<ul>
+<li>Richardson-Lucy deconvolution (via Deconvolution Lab 2 plugin)</li>
+<li>O <strong>Unsharp Mask</strong> como aprox: Process → Filters → Unsharp Mask (σ=2, weight=0.6)</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h4 id="unsharp-mask">1. Unsharp mask</h4>
+
+<img data-src="ST_clase12_files/images/unsharp_mask-step-0.png" class="r-stretch quarto-figure-center"><p class="caption">Unsharp mask</p></section>
+<section class="slide level2">
+
+<h4 id="sigma-2-pixeles">2. sigma 2 pixeles</h4>
+
+<img data-src="ST_clase12_files/images/unsharp_mask-step-1.png" class="r-stretch quarto-figure-center"><p class="caption">sigma 2 pixeles</p></section>
+<section class="slide level2">
+
+<h4 id="renombra-la-imagen-a-algo-informativo">3. Renombra la imagen a algo informativo</h4>
+
+<img data-src="ST_clase12_files/images/unsharp_mask-step-2.png" class="r-stretch quarto-figure-center"><p class="caption">Para no perdernos</p></section>
+<section class="slide level2">
+
+<h4 id="aqui-unsharped-fov_377">4. Aqui “Unsharped fov_377”</h4>
+
+<img data-src="ST_clase12_files/images/unsharp_mask-step-3.png" class="r-stretch quarto-figure-center"><p class="caption">Ejemplo</p></section>
+<section class="slide level2">
+
+<h3 id="paso-3-filtro-gaussiano-low-pass">Paso 3: Filtro gaussiano (low-pass)</h3>
+<p>Pequeño desenfoque (σ=1) para suavizar el ruido a nivel pixel.</p>
+<p>. . .</p>
+<p><strong>En FIJI:</strong></p>
+<p>Process → Filters → Gaussian Blur → σ = 1</p>
+<p>. . .</p>
+<p>Luego de estos tres pasos, tenemos un hyperstack limpio listo para la de-codificación.</p>
+<p><strong>Save as:</strong> <code>merfish_preprocessed_fov_NNN.tif</code></p>
+</section>
+<section id="cargando-los-datos-en-r" class="slide level2">
+<h2>Cargando los datos en R</h2>
+<p>Acá es muy importante modificar fov al tuyo</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">library</span>(EBImage)</span>
+<span id="cb2-2"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-3"><a href=""></a></span>
+<span id="cb2-4"><a href=""></a>fov_num <span class="ot">&lt;-</span> <span class="dv">457</span>  <span class="co"># change to your FOV number</span></span>
+<span id="cb2-5"><a href=""></a><span class="co">#No worries, esta lìnea le pone el leading zero</span></span>
+<span id="cb2-6"><a href=""></a>fov_dir <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"fov_%03d"</span>, fov_num)</span>
+<span id="cb2-7"><a href=""></a><span class="co"># Load preprocessed hyperstack (8 rounds x 2 channels = 16 frames)</span></span>
+<span id="cb2-8"><a href=""></a>img <span class="ot">&lt;-</span> <span class="fu">readImage</span>(<span class="fu">paste0</span>(<span class="st">"merfish_processed_"</span>, fov_dir, <span class="st">".tif"</span>))</span>
+<span id="cb2-9"><a href=""></a><span class="fu">cat</span>(<span class="st">"Image dimensions:"</span>, <span class="fu">dim</span>(img), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Image dimensions: 2048 2048 16 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">cat</span>(<span class="st">"Frames: 8 rounds x 2 channels = 16</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Frames: 8 rounds x 2 channels = 16</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co"># Frame ordering: channel-first</span></span>
+<span id="cb6-2"><a href=""></a>frame_map <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">ch =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">r =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="los-datos-en-matriz">Los datos en matriz</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Código para graficar las imágenes</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb7-2"><a href=""></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">16</span>, <span class="at">by =</span> <span class="dv">2</span>)) {</span>
+<span id="cb7-3"><a href=""></a>  frame <span class="ot">&lt;-</span> img[,,i]</span>
+<span id="cb7-4"><a href=""></a>  <span class="co"># Clip to 99.5th percentile to handle bright outliers</span></span>
+<span id="cb7-5"><a href=""></a>  upper <span class="ot">&lt;-</span> <span class="fu">quantile</span>(frame, <span class="fl">0.995</span>)</span>
+<span id="cb7-6"><a href=""></a>  frame[frame <span class="sc">&gt;</span> upper] <span class="ot">&lt;-</span> upper</span>
+<span id="cb7-7"><a href=""></a>  frame[frame <span class="sc">&lt;</span> <span class="dv">0</span> ] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb7-8"><a href=""></a>  <span class="co"># Rescale 0-1</span></span>
+<span id="cb7-9"><a href=""></a>  frame <span class="ot">&lt;-</span> frame  <span class="sc">/</span> (<span class="fu">max</span>(frame) <span class="sc">-</span> <span class="fu">min</span>(frame))</span>
+<span id="cb7-10"><a href=""></a> <span class="fu">display</span>(<span class="fu">normalize</span>(frame), <span class="at">method =</span> <span class="st">"raster"</span>)</span>
+<span id="cb7-11"><a href=""></a></span>
+<span id="cb7-12"><a href=""></a>   <span class="co">#image(frame, col = grey.colors(256),</span></span>
+<span id="cb7-13"><a href=""></a>   <span class="co">#     main = paste0("Round ", frame_map$r[i], " Ch ", frame_map$ch[i]),</span></span>
+<span id="cb7-14"><a href=""></a> <span class="co">#       axes = FALSE)</span></span>
+<span id="cb7-15"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="ST_clase12_files/figure-revealjs/show-frames-1.png" width="960" class="r-stretch"><p>Cada punto es un cluster de sondas fluorescentes unida a una molécula de RNA. En cada ronda y canal, <strong>differentes genes se detectan</strong> dependiendo de su código.</p>
+</section>
+<section class="slide level2">
+
+<h3 id="el-codebook-es-la-correspondencia-de-barcodes-a-genes">El <em>codebook</em> es la correspondencia de <em>barcodes</em> a genes</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>codebook <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"codebook.csv"</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb8-2"><a href=""></a></span>
+<span id="cb8-3"><a href=""></a><span class="co"># Show first 6 genes</span></span>
+<span id="cb8-4"><a href=""></a><span class="fu">slice_sample</span>(codebook, <span class="at">n =</span><span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href=""></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Cada fila un gene, cada columna 1 bit ronda/canal. 1 = fluorescente"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top">
+<caption>Cada fila un gene, cada columna 1 bit ronda/canal. 1 = fluorescente</caption>
+<colgroup>
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">r0_c0</th>
+<th style="text-align: right;">r0_c1</th>
+<th style="text-align: right;">r1_c0</th>
+<th style="text-align: right;">r1_c1</th>
+<th style="text-align: right;">r2_c0</th>
+<th style="text-align: right;">r2_c1</th>
+<th style="text-align: right;">r3_c0</th>
+<th style="text-align: right;">r3_c1</th>
+<th style="text-align: right;">r4_c0</th>
+<th style="text-align: right;">r4_c1</th>
+<th style="text-align: right;">r5_c0</th>
+<th style="text-align: right;">r5_c1</th>
+<th style="text-align: right;">r6_c0</th>
+<th style="text-align: right;">r6_c1</th>
+<th style="text-align: right;">r7_c0</th>
+<th style="text-align: right;">r7_c1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Blank-7</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMPS</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SCUBE3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KIF13B</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PTPN14</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>. . .</p>
+<p><strong>Cada gen tiene un patrón único de 0s y 1s</strong></p>
+<p>Decodificación es mapear la señal observada de cada pixel al código más cercano.</p>
+</section>
+<section class="slide level2">
+
+<h3 id="normalización-por-factor-de-escala">Normalización por factor de escala</h3>
+<p>Cada bit (ronda/canal) tiene diferente fluorescencia. Hace falta normalizar.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="co">#Ajust el path de acuerdo a donde guardaste los archivos</span></span>
+<span id="cb9-2"><a href=""></a>sf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">file.path</span>(fov_dir, <span class="st">"scale_factors.csv"</span>))</span>
+<span id="cb9-3"><a href=""></a></span>
+<span id="cb9-4"><a href=""></a><span class="co"># Show the variation</span></span>
+<span id="cb9-5"><a href=""></a><span class="fu">ggplot</span>(sf, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(r), <span class="at">y =</span> scale_factor, <span class="at">fill =</span> <span class="fu">factor</span>(c))) <span class="sc">+</span></span>
+<span id="cb9-6"><a href=""></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Ronda"</span>, <span class="at">y =</span> <span class="st">"Factor de escala"</span>, <span class="at">fill =</span> <span class="st">"Canal"</span>,</span>
+<span id="cb9-8"><a href=""></a>       <span class="at">title =</span> <span class="st">"La intensidad de fluorescencia varía entre canales y rondas"</span>) <span class="sc">+</span></span>
+<span id="cb9-9"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="ST_clase12_files/figure-revealjs/scale-factors-1.png" width="960" class="r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="aplicando-los-factores-de-escala">Aplicando los factores de escala</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>img_norm <span class="ot">&lt;-</span> img</span>
+<span id="cb10-2"><a href=""></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>) {</span>
+<span id="cb10-3"><a href=""></a>  r <span class="ot">&lt;-</span> frame_map<span class="sc">$</span>r[i]</span>
+<span id="cb10-4"><a href=""></a>  ch <span class="ot">&lt;-</span> frame_map<span class="sc">$</span>ch[i]</span>
+<span id="cb10-5"><a href=""></a>  scale_val <span class="ot">&lt;-</span> sf<span class="sc">$</span>scale_factor[sf<span class="sc">$</span>r <span class="sc">==</span> r <span class="sc">&amp;</span> sf<span class="sc">$</span>c <span class="sc">==</span> ch]</span>
+<span id="cb10-6"><a href=""></a>  img_norm[,,i] <span class="ot">&lt;-</span> img[,,i] <span class="sc">/</span> scale_val</span>
+<span id="cb10-7"><a href=""></a>  <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Frame %2d (r=%d, c=%d) / %.3f</span><span class="sc">\n</span><span class="st">"</span>, i, r, ch, scale_val))</span>
+<span id="cb10-8"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Frame  1 (r=0, c=0) / 104.830
+Frame  2 (r=0, c=1) / 45.660
+Frame  3 (r=1, c=0) / 87.186
+Frame  4 (r=1, c=1) / 41.184
+Frame  5 (r=2, c=0) / 89.545
+Frame  6 (r=2, c=1) / 44.731
+Frame  7 (r=3, c=0) / 107.290
+Frame  8 (r=3, c=1) / 50.718
+Frame  9 (r=4, c=0) / 83.262
+Frame 10 (r=4, c=1) / 44.572
+Frame 11 (r=5, c=0) / 79.469
+Frame 12 (r=5, c=1) / 41.757
+Frame 13 (r=6, c=0) / 78.451
+Frame 14 (r=6, c=1) / 45.019
+Frame 15 (r=7, c=0) / 67.742
+Frame 16 (r=7, c=1) / 44.622</code></pre>
+</div>
+</div>
+<p>Ahora podemos comparar las intensidades de fluorescencia entre los distintos bits.</p>
+</section>
+<section id="algoritmo-decodificador" class="slide level2">
+<h2>Algoritmo decodificador</h2>
+<p>Cada pixel es un <strong>vector de longitud 16 con valores de intensidad</strong> (one valor por round/channel).</p>
+<ol type="1">
+<li><strong>Normalizar</strong> cada pixel a una longitud unitaria (norma L2 o euclidiana)</li>
+<li><strong>Normalizar</strong> cada código del libro a longitud 1.</li>
+<li><strong>Calcular la distancia Euclidina</strong> entre el vector pixel y cada código del libro.</li>
+<li><strong>Assignar</strong> a cada pixel el gen más cercano si la distancia &lt; threshold</li>
+</ol>
+<div class="fragment">
+<p>Truco para usar producto punto (convertir cosine similarity a distancia euclidiana) <span class="math display">\[d(\mathbf{p}, \mathbf{c}) = \sqrt{2 - 2 \cdot \frac{\mathbf{p} \cdot \mathbf{c}}{||\mathbf{p}|| \cdot ||\mathbf{c}||}}\]</span></p>
+<p>La manera naïve</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="co"># Takes longer??</span></span>
+<span id="cb12-2"><a href=""></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(pixel_matrix)) {</span>
+<span id="cb12-3"><a href=""></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(cb_matrix)) {</span>
+<span id="cb12-4"><a href=""></a>    d[i,j] <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>((pixel_normed[i,] <span class="sc">-</span> cb_normed[j,])<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb12-5"><a href=""></a>  }</span>
+<span id="cb12-6"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="preparando-decodificación-en-r">Preparando decodificación en R</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Normalización de las matrices de pixeles y códigos</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="co"># Reshape image into pixel matrix: n_pixels x 16</span></span>
+<span id="cb13-2"><a href=""></a>nx <span class="ot">&lt;-</span> <span class="fu">dim</span>(img_norm)[<span class="dv">1</span>]</span>
+<span id="cb13-3"><a href=""></a>ny <span class="ot">&lt;-</span> <span class="fu">dim</span>(img_norm)[<span class="dv">2</span>]</span>
+<span id="cb13-4"><a href=""></a>pixel_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(img_norm, <span class="at">nrow =</span> nx <span class="sc">*</span> ny, <span class="at">ncol =</span> <span class="dv">16</span>)</span>
+<span id="cb13-5"><a href=""></a></span>
+<span id="cb13-6"><a href=""></a><span class="co"># Normalize pixels to unit length</span></span>
+<span id="cb13-7"><a href=""></a>pixel_norms <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">rowSums</span>(pixel_matrix<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb13-8"><a href=""></a>pixel_normed <span class="ot">&lt;-</span> pixel_matrix <span class="sc">/</span> pixel_norms</span>
+<span id="cb13-9"><a href=""></a>pixel_normed[<span class="fu">is.nan</span>(pixel_normed)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb13-10"><a href=""></a></span>
+<span id="cb13-11"><a href=""></a><span class="co"># Normalize codebook to unit length</span></span>
+<span id="cb13-12"><a href=""></a>col_order <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"r"</span>, frame_map<span class="sc">$</span>r, <span class="st">"_c"</span>, frame_map<span class="sc">$</span>ch)</span>
+<span id="cb13-13"><a href=""></a>codebook_ordered <span class="ot">&lt;-</span> codebook[, col_order]</span>
+<span id="cb13-14"><a href=""></a>cb_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(codebook_ordered)</span>
+<span id="cb13-15"><a href=""></a><span class="co">#Dumb to take square root they are all ones</span></span>
+<span id="cb13-16"><a href=""></a>cb_norms <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">rowSums</span>(cb_matrix<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb13-17"><a href=""></a>cb_normed <span class="ot">&lt;-</span> cb_matrix <span class="sc">/</span> cb_norms</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="images/pixel_normed_diagram.svg"></p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="images/cb_matrix_diagram.svg"></p>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="decodificación-en-r-encontrando-los-matches">Decodificación en R encontrando los matches</h3>
+<p>threshold es tunable pero este es el que usan en el tutorial de starfish</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="co"># Dot product: pixel similarity to each codeword</span></span>
+<span id="cb14-2"><a href=""></a><span class="fu">cat</span>(<span class="st">"Computing dot products...</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Computing dot products...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>dots <span class="ot">&lt;-</span> pixel_normed <span class="sc">%*%</span> <span class="fu">t</span>(cb_normed)</span>
+<span id="cb16-2"><a href=""></a><span class="co"># Find best match per pixel (vectorized — fast!) BaseR</span></span>
+<span id="cb16-3"><a href=""></a>best_gene_idx <span class="ot">&lt;-</span> <span class="fu">max.col</span>(dots, <span class="at">ties.method =</span> <span class="st">"first"</span>)</span>
+<span id="cb16-4"><a href=""></a><span class="co">#Highest cosine similarity for each pixel</span></span>
+<span id="cb16-5"><a href=""></a>best_dot <span class="ot">&lt;-</span> dots[<span class="fu">cbind</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dots), best_gene_idx)]</span>
+<span id="cb16-6"><a href=""></a><span class="co">#Por si las moscas (que no de negativo)</span></span>
+<span id="cb16-7"><a href=""></a>best_distance <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pmin</span>(best_dot, <span class="dv">1</span>))</span>
+<span id="cb16-8"><a href=""></a><span class="co"># Apply distance threshold</span></span>
+<span id="cb16-9"><a href=""></a>threshold <span class="ot">&lt;-</span> .<span class="dv">572</span></span>
+<span id="cb16-10"><a href=""></a>decoded <span class="ot">&lt;-</span> best_gene_idx</span>
+<span id="cb16-11"><a href=""></a>decoded[best_distance <span class="sc">&gt;</span> threshold] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb16-12"><a href=""></a><span class="co"># Reshape to image</span></span>
+<span id="cb16-13"><a href=""></a>decoded_full <span class="ot">&lt;-</span> <span class="fu">matrix</span>(decoded, <span class="at">nrow =</span> nx, <span class="at">ncol =</span> ny)</span>
+<span id="cb16-14"><a href=""></a>gene_names <span class="ot">&lt;-</span> <span class="fu">rownames</span>(codebook)</span>
+<span id="cb16-15"><a href=""></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Decoded %d out of %d pixels (%.1f%%)</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb16-16"><a href=""></a>            <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(decoded)), <span class="fu">length</span>(decoded),</span>
+<span id="cb16-17"><a href=""></a>            <span class="dv">100</span> <span class="sc">*</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(decoded)) <span class="sc">/</span> <span class="fu">length</span>(decoded)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Decoded 314767 out of 4194304 pixels (7.5%)</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="images/dots_matrix_diagram.svg" width="550"></p>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="the-decoded-image">The decoded image</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">image</span>(decoded_full, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="fu">rainbow</span>(<span class="fu">length</span>(gene_names))),</span>
+<span id="cb18-2"><a href=""></a>      <span class="at">main =</span> <span class="st">"Genes decodificados: 140 colores "</span>,</span>
+<span id="cb18-3"><a href=""></a>      <span class="at">useRaster =</span> <span class="cn">TRUE</span>, <span class="at">axes =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="ST_clase12_files/figure-revealjs/decoded-image-1.png" width="768" class="r-stretch"><p>Cada pixel tiene asignada un gen de acuerdo a su patrón de intensidad a lo largo de 16 rondas de microscopía (Arcoiris con 140 colores, difícil distinguir)</p>
+</section>
+<section class="slide level2">
+
+<h3 id="validación-comparando-con-un-benchmark">Validación comparando con un benchmark</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Código benchmark</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="co"># Published benchmark results</span></span>
+<span id="cb19-2"><a href=""></a>bench <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
+<span id="cb19-3"><a href=""></a>  <span class="st">"https://d2nhj9g34unfro.cloudfront.net/MERFISH/benchmark_results.csv"</span>,</span>
+<span id="cb19-4"><a href=""></a>  <span class="at">colClasses =</span> <span class="fu">c</span>(<span class="st">"barcode"</span> <span class="ot">=</span> <span class="st">"character"</span>)</span>
+<span id="cb19-5"><a href=""></a>)</span>
+<span id="cb19-6"><a href=""></a></span>
+<span id="cb19-7"><a href=""></a>bench_counts <span class="ot">&lt;-</span> bench <span class="sc">%&gt;%</span></span>
+<span id="cb19-8"><a href=""></a>  <span class="fu">group_by</span>(gene) <span class="sc">%&gt;%</span></span>
+<span id="cb19-9"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">benchmark =</span> <span class="fu">n</span>())</span>
+<span id="cb19-10"><a href=""></a></span>
+<span id="cb19-11"><a href=""></a><span class="co"># Our decoded counts</span></span>
+<span id="cb19-12"><a href=""></a>decoded_vector <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(decoded_full)</span>
+<span id="cb19-13"><a href=""></a>decoded_genes <span class="ot">&lt;-</span> gene_names[decoded_vector[<span class="sc">!</span><span class="fu">is.na</span>(decoded_vector)]]</span>
+<span id="cb19-14"><a href=""></a></span>
+<span id="cb19-15"><a href=""></a>our_counts <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">gene =</span> decoded_genes) <span class="sc">%&gt;%</span></span>
+<span id="cb19-16"><a href=""></a>  <span class="fu">group_by</span>(gene) <span class="sc">%&gt;%</span></span>
+<span id="cb19-17"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">ours =</span> <span class="fu">n</span>())</span>
+<span id="cb19-18"><a href=""></a></span>
+<span id="cb19-19"><a href=""></a><span class="co"># Compare</span></span>
+<span id="cb19-20"><a href=""></a>comparison <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(bench_counts, our_counts, <span class="at">by =</span> <span class="st">"gene"</span>)</span>
+<span id="cb19-21"><a href=""></a>r_val <span class="ot">&lt;-</span> <span class="fu">cor</span>(comparison<span class="sc">$</span>benchmark, comparison<span class="sc">$</span>ours)</span>
+<span id="cb19-22"><a href=""></a></span>
+<span id="cb19-23"><a href=""></a><span class="fu">ggplot</span>(comparison, <span class="fu">aes</span>(<span class="at">x =</span> benchmark, <span class="at">y =</span> ours)) <span class="sc">+</span></span>
+<span id="cb19-24"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">"#00BFC4"</span>) <span class="sc">+</span></span>
+<span id="cb19-25"><a href=""></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb19-26"><a href=""></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb19-27"><a href=""></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb19-28"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Gene copy number (published benchmark)"</span>,</span>
+<span id="cb19-29"><a href=""></a>       <span class="at">y =</span> <span class="st">"Gene copy number (our R pipeline)"</span>,</span>
+<span id="cb19-30"><a href=""></a>       <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Correlation: r = "</span>, <span class="fu">round</span>(r_val, <span class="dv">3</span>))) <span class="sc">+</span></span>
+<span id="cb19-31"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb19-32"><a href=""></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"grey20"</span>),</span>
+<span id="cb19-33"><a href=""></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"grey20"</span>),</span>
+<span id="cb19-34"><a href=""></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"white"</span>),</span>
+<span id="cb19-35"><a href=""></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"grey80"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="ST_clase12_files/figure-revealjs/benchmark-1.png" width="672" class="r-stretch"></section>
+<section id="lo-que-tenemos-hasta-ahora" class="slide level2">
+<h2>Lo que tenemos hasta ahora</h2>
+<p>De los pasos anteriores:</p>
+<ul>
+<li><code>merfish_preprocessed_fovNNN.tif</code> — hyperstack de 16 frames (8 rounds × 2 canales)</li>
+<li><code>codebook.csv</code> — barcodes de genes</li>
+<li><code>scale_factors.csv</code> — normalización de intensidad</li>
+<li><code>decoded_full</code> — matriz 2048×2048 de índices de genes (de la decodificación en R)</li>
+</ul>
+<p>Las hice con Cellpose - <code>fov_NNN/cell_masks.tif</code> — máscaras de Cellpose - <code>fov_NNN/expanded_masks.tif</code> — expansión Voronoi máximo 50 pixeles</p>
+<div class="fragment">
+<p><strong>Objetivo:</strong> combinar genes decodificados, asignarlo a células y crear un objeto espacial de Seurat</p>
+</div>
+</section>
+<section id="preparando-datos-para-objeto-seurat" class="slide level2">
+<h2>Preparando datos para objeto Seurat</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb20-2"><a href=""></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb20-3"><a href=""></a><span class="fu">library</span>(tiff)</span>
+<span id="cb20-4"><a href=""></a><span class="fu">library</span>(Matrix)</span>
+<span id="cb20-5"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb20-6"><a href=""></a></span>
+<span id="cb20-7"><a href=""></a></span>
+<span id="cb20-8"><a href=""></a><span class="co"># 1. Nuclei image. </span></span>
+<span id="cb20-9"><a href=""></a>nuclei <span class="ot">&lt;-</span> <span class="fu">readTIFF</span>(<span class="fu">file.path</span>(fov_dir, <span class="st">"nuclei_DAPI.tiff"</span>))</span>
+<span id="cb20-10"><a href=""></a><span class="co">#Readtiff transpone las imágenes respecto a ebiimage </span></span>
+<span id="cb20-11"><a href=""></a>nuclei <span class="ot">&lt;-</span> <span class="fu">t</span>(nuclei)</span>
+<span id="cb20-12"><a href=""></a></span>
+<span id="cb20-13"><a href=""></a></span>
+<span id="cb20-14"><a href=""></a><span class="co"># 2. Cell masks (Voronoi-expanded from Cellpose)</span></span>
+<span id="cb20-15"><a href=""></a>expanded_masks <span class="ot">&lt;-</span> <span class="fu">readTIFF</span>(<span class="fu">file.path</span>(fov_dir, <span class="st">"expanded_masks.tif"</span>), <span class="at">as.is =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-16"><a href=""></a><span class="co">#Physicists vs engineers</span></span>
+<span id="cb20-17"><a href=""></a>expanded_masks <span class="ot">&lt;-</span> <span class="fu">t</span>(expanded_masks)</span>
+<span id="cb20-18"><a href=""></a></span>
+<span id="cb20-19"><a href=""></a><span class="co"># 3. Nuclei-only masks (for comparison)</span></span>
+<span id="cb20-20"><a href=""></a>cell_masks <span class="ot">&lt;-</span> <span class="fu">readTIFF</span>(<span class="fu">file.path</span>(fov_dir, <span class="st">"cell_masks.tif"</span>), <span class="at">as.is =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-21"><a href=""></a>cell_masks <span class="ot">&lt;-</span> <span class="fu">t</span>(cell_masks)</span>
+<span id="cb20-22"><a href=""></a><span class="co"># 4. Your decoded image (from the decoding pipeline)</span></span>
+<span id="cb20-23"><a href=""></a><span class="co"># decoded_full and gene_names should be in your environment</span></span>
+<span id="cb20-24"><a href=""></a></span>
+<span id="cb20-25"><a href=""></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Nuclei image:  %s</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">paste</span>(<span class="fu">dim</span>(nuclei), <span class="at">collapse =</span> <span class="st">"x"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Nuclei image:  2048x2048</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Cell masks:    %d cells</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">length</span>(<span class="fu">unique</span>(expanded_masks[expanded_masks <span class="sc">&gt;</span> <span class="dv">0</span>]))))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cell masks:    33 cells</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Decoded genes: %d pixels assigned</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(decoded_full))))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Decoded genes: 314767 pixels assigned</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="visualizar-dapi-segmentación">Visualizar: DAPI + segmentación</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Código nucleos y segmentación</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb26-2"><a href=""></a></span>
+<span id="cb26-3"><a href=""></a><span class="co"># DAPI</span></span>
+<span id="cb26-4"><a href=""></a>dapi_disp <span class="ot">&lt;-</span> nuclei</span>
+<span id="cb26-5"><a href=""></a>upper <span class="ot">&lt;-</span> <span class="fu">quantile</span>(dapi_disp, <span class="fl">0.995</span>)</span>
+<span id="cb26-6"><a href=""></a>dapi_disp[dapi_disp <span class="sc">&gt;</span> upper] <span class="ot">&lt;-</span> upper</span>
+<span id="cb26-7"><a href=""></a>dapi_disp <span class="ot">&lt;-</span> (dapi_disp <span class="sc">-</span> <span class="fu">min</span>(dapi_disp)) <span class="sc">/</span> (<span class="fu">max</span>(dapi_disp) <span class="sc">-</span> <span class="fu">min</span>(dapi_disp))</span>
+<span id="cb26-8"><a href=""></a><span class="fu">image</span>(dapi_disp, <span class="at">col =</span> <span class="fu">grey.colors</span>(<span class="dv">256</span>), <span class="at">main =</span> <span class="st">"DAPI nuclei"</span>, <span class="at">axes =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb26-9"><a href=""></a></span>
+<span id="cb26-10"><a href=""></a><span class="co"># Nuclei masks</span></span>
+<span id="cb26-11"><a href=""></a><span class="fu">image</span>(cell_masks, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="fu">rainbow</span>(<span class="fu">max</span>(cell_masks))),</span>
+<span id="cb26-12"><a href=""></a>      <span class="at">main =</span> <span class="st">"Nuclei masks (Cellpose)"</span>, <span class="at">axes =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb26-13"><a href=""></a></span>
+<span id="cb26-14"><a href=""></a><span class="co"># Expanded cell masks</span></span>
+<span id="cb26-15"><a href=""></a><span class="fu">image</span>(expanded_masks, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="fu">rainbow</span>(<span class="fu">max</span>(expanded_masks))),</span>
+<span id="cb26-16"><a href=""></a>      <span class="at">main =</span> <span class="st">"Cell masks (Voronoi, 50px)"</span>, <span class="at">axes =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="ST_clase12_files/figure-revealjs/viz-segmentation-1.png" width="960" class="r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="asignar-transcritos-a-células">Asignar transcritos a células</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="co"># Each pixel that has BOTH a decoded gene AND falls inside a cell mask</span></span>
+<span id="cb27-2"><a href=""></a><span class="co"># gets counted for that cell</span></span>
+<span id="cb27-3"><a href=""></a>has_gene <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">is.na</span>(decoded_full)</span>
+<span id="cb27-4"><a href=""></a>has_cell <span class="ot">&lt;-</span> expanded_masks <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb27-5"><a href=""></a>valid <span class="ot">&lt;-</span> has_gene <span class="sc">&amp;</span> has_cell</span>
+<span id="cb27-6"><a href=""></a></span>
+<span id="cb27-7"><a href=""></a>gene_vec <span class="ot">&lt;-</span> gene_names[decoded_full[valid]]</span>
+<span id="cb27-8"><a href=""></a>cell_vec <span class="ot">&lt;-</span> expanded_masks[valid]</span>
+<span id="cb27-9"><a href=""></a></span>
+<span id="cb27-10"><a href=""></a>transcript_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb27-11"><a href=""></a>  <span class="at">cell =</span> cell_vec,</span>
+<span id="cb27-12"><a href=""></a>  <span class="at">gene =</span> gene_vec,</span>
+<span id="cb27-13"><a href=""></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb27-14"><a href=""></a>)</span>
+<span id="cb27-15"><a href=""></a></span>
+<span id="cb27-16"><a href=""></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Total decoded pixels:     %d</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">sum</span>(has_gene)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total decoded pixels:     314767</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Pixels inside cells:      %d</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">sum</span>(valid)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Pixels inside cells:      169773</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Pixels outside cells:     %d</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">sum</span>(has_gene <span class="sc">&amp;</span> <span class="sc">!</span>has_cell)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Pixels outside cells:     144994</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Fraction assigned: %.1f%%</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb33-2"><a href=""></a>            <span class="dv">100</span> <span class="sc">*</span> <span class="fu">sum</span>(valid) <span class="sc">/</span> <span class="fu">sum</span>(has_gene)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fraction assigned: 53.9%</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="contruir-la-matriz-de-conteo">Contruir la matriz de conteo</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="co"># Cross-tabulate: genes (rows) × cells (columns)</span></span>
+<span id="cb35-2"><a href=""></a>count_table <span class="ot">&lt;-</span> <span class="fu">table</span>(transcript_table<span class="sc">$</span>gene, transcript_table<span class="sc">$</span>cell)</span>
+<span id="cb35-3"><a href=""></a>count_matrix <span class="ot">&lt;-</span> <span class="fu">as</span>(count_table, <span class="st">"sparseMatrix"</span>)</span>
+<span id="cb35-4"><a href=""></a></span>
+<span id="cb35-5"><a href=""></a><span class="co"># Clean column names</span></span>
+<span id="cb35-6"><a href=""></a><span class="fu">colnames</span>(count_matrix) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"cell_"</span>, <span class="fu">colnames</span>(count_matrix))</span>
+<span id="cb35-7"><a href=""></a></span>
+<span id="cb35-8"><a href=""></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Count matrix: %d genes × %d cells</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb35-9"><a href=""></a>            <span class="fu">nrow</span>(count_matrix), <span class="fu">ncol</span>(count_matrix)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Count matrix: 140 genes × 33 cells</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Total counts: %d</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">sum</span>(count_matrix)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total counts: 169773</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Median counts/cell: %.0f</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">median</span>(<span class="fu">colSums</span>(count_matrix))))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Median counts/cell: 5727</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Median genes/cell: %.0f</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb41-2"><a href=""></a>            <span class="fu">median</span>(<span class="fu">colSums</span>(count_matrix <span class="sc">&gt;</span> <span class="dv">0</span>))))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Median genes/cell: 114</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="distribución-de-conteos-por-célula">Distribución de conteos por célula</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a>counts_per_cell <span class="ot">&lt;-</span> <span class="fu">colSums</span>(count_matrix)</span>
+<span id="cb43-2"><a href=""></a>genes_per_cell <span class="ot">&lt;-</span> <span class="fu">colSums</span>(count_matrix <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb43-3"><a href=""></a></span>
+<span id="cb43-4"><a href=""></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb43-5"><a href=""></a><span class="fu">hist</span>(counts_per_cell, <span class="at">breaks =</span> <span class="dv">50</span>, <span class="at">col =</span> <span class="st">"steelblue"</span>,</span>
+<span id="cb43-6"><a href=""></a>     <span class="at">main =</span> <span class="st">"Transcripts per cell"</span>, <span class="at">xlab =</span> <span class="st">"Count"</span>)</span>
+<span id="cb43-7"><a href=""></a><span class="fu">hist</span>(genes_per_cell, <span class="at">breaks =</span> <span class="dv">50</span>, <span class="at">col =</span> <span class="st">"coral"</span>,</span>
+<span id="cb43-8"><a href=""></a>     <span class="at">main =</span> <span class="st">"Genes detected per cell"</span>, <span class="at">xlab =</span> <span class="st">"Count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="ST_clase12_files/figure-revealjs/counts-distribution-1.png" width="768" class="r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="metadatos-celulares">Metadatos celulares</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a><span class="co"># Compute centroids and area from the cell masks</span></span>
+<span id="cb44-2"><a href=""></a>cell_ids <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(<span class="fu">as.vector</span>(expanded_masks)))</span>
+<span id="cb44-3"><a href=""></a>cell_ids <span class="ot">&lt;-</span> cell_ids[cell_ids <span class="sc">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb44-4"><a href=""></a></span>
+<span id="cb44-5"><a href=""></a><span class="co"># Use EBImage to compute features</span></span>
+<span id="cb44-6"><a href=""></a>props_moment <span class="ot">&lt;-</span> <span class="fu">computeFeatures.moment</span>(expanded_masks)</span>
+<span id="cb44-7"><a href=""></a>props_shape <span class="ot">&lt;-</span> <span class="fu">computeFeatures.shape</span>(expanded_masks)</span>
+<span id="cb44-8"><a href=""></a></span>
+<span id="cb44-9"><a href=""></a>cell_meta <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb44-10"><a href=""></a>  <span class="at">cell =</span> <span class="fu">paste0</span>(<span class="st">"cell_"</span>, cell_ids),</span>
+<span id="cb44-11"><a href=""></a>  <span class="at">center_x =</span> props_moment[, <span class="st">"m.cx"</span>],</span>
+<span id="cb44-12"><a href=""></a>  <span class="at">center_y =</span> props_moment[, <span class="st">"m.cy"</span>],</span>
+<span id="cb44-13"><a href=""></a>  <span class="at">area =</span> props_shape[, <span class="st">"s.area"</span>],</span>
+<span id="cb44-14"><a href=""></a>  <span class="at">fov =</span> fov_num,</span>
+<span id="cb44-15"><a href=""></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb44-16"><a href=""></a>)</span>
+<span id="cb44-17"><a href=""></a><span class="fu">rownames</span>(cell_meta) <span class="ot">&lt;-</span> cell_meta<span class="sc">$</span>cell</span>
+<span id="cb44-18"><a href=""></a></span>
+<span id="cb44-19"><a href=""></a><span class="co"># Keep only cells that appear in count matrix</span></span>
+<span id="cb44-20"><a href=""></a>cell_meta <span class="ot">&lt;-</span> cell_meta[<span class="fu">colnames</span>(count_matrix), ]</span>
+<span id="cb44-21"><a href=""></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Metadata for %d cells</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">nrow</span>(cell_meta)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Metadata for 33 cells</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a><span class="fu">head</span>(cell_meta)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         cell   center_x center_y  area fov
+cell_1 cell_1   74.38688 63.13446 20221 457
+cell_2 cell_2 1374.89233 27.79405  6919 457
+cell_3 cell_3 1727.98362 36.13627 13488 457
+cell_4 cell_4 1995.46701 54.58727 12381 457
+cell_5 cell_5  388.08022 96.70507 57618 457
+cell_6 cell_6 1508.32731 69.88878 23467 457</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="crear-el-objeto-seurat-voronoi">Crear el objeto Seurat (Voronoi)</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a>seurat_voronoi <span class="ot">&lt;-</span> <span class="fu">CreateSeuratObject</span>(</span>
+<span id="cb48-2"><a href=""></a>  <span class="at">counts =</span> count_matrix,</span>
+<span id="cb48-3"><a href=""></a>  <span class="at">meta.data =</span> cell_meta,</span>
+<span id="cb48-4"><a href=""></a>  <span class="at">assay =</span> <span class="st">"MERFISH"</span></span>
+<span id="cb48-5"><a href=""></a>)</span>
+<span id="cb48-6"><a href=""></a></span>
+<span id="cb48-7"><a href=""></a><span class="co"># Add spatial coordinates as centroids</span></span>
+<span id="cb48-8"><a href=""></a>coords <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb48-9"><a href=""></a>  <span class="at">x =</span> cell_meta<span class="sc">$</span>center_x,</span>
+<span id="cb48-10"><a href=""></a>  <span class="at">y =</span> cell_meta<span class="sc">$</span>center_y,</span>
+<span id="cb48-11"><a href=""></a>  <span class="at">cell =</span> cell_meta<span class="sc">$</span>cell</span>
+<span id="cb48-12"><a href=""></a>)</span>
+<span id="cb48-13"><a href=""></a></span>
+<span id="cb48-14"><a href=""></a>cents <span class="ot">&lt;-</span> <span class="fu">CreateCentroids</span>(coords)</span>
+<span id="cb48-15"><a href=""></a>segmentations.data <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb48-16"><a href=""></a>  <span class="st">"centroids"</span> <span class="ot">=</span> cents</span>
+<span id="cb48-17"><a href=""></a>)</span>
+<span id="cb48-18"><a href=""></a></span>
+<span id="cb48-19"><a href=""></a>fov_label <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"fov_%03d"</span>, fov_num)</span>
+<span id="cb48-20"><a href=""></a>fov_obj <span class="ot">&lt;-</span> <span class="fu">CreateFOV</span>(</span>
+<span id="cb48-21"><a href=""></a>  <span class="at">coords =</span> segmentations.data,</span>
+<span id="cb48-22"><a href=""></a>  <span class="at">type =</span> <span class="fu">c</span>(<span class="st">"centroids"</span>),</span>
+<span id="cb48-23"><a href=""></a>  <span class="at">molecules =</span> <span class="cn">NULL</span>,</span>
+<span id="cb48-24"><a href=""></a>  <span class="at">assay =</span> <span class="st">"MERFISH"</span></span>
+<span id="cb48-25"><a href=""></a>)</span>
+<span id="cb48-26"><a href=""></a></span>
+<span id="cb48-27"><a href=""></a>seurat_voronoi[[fov_label]] <span class="ot">&lt;-</span> fov_obj</span>
+<span id="cb48-28"><a href=""></a></span>
+<span id="cb48-29"><a href=""></a><span class="fu">print</span>(seurat_voronoi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>An object of class Seurat 
+140 features across 33 samples within 1 assay 
+Active assay: MERFISH (140 features, 0 variable features)
+ 1 layer present: counts
+ 1 spatial field of view present: fov_457</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="pero-qué-tan-buena-es-la-asignación">Pero… ¿qué tan buena es la asignación?</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Código genes asignados</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb50-2"><a href=""></a></span>
+<span id="cb50-3"><a href=""></a><span class="co"># Base layer: nuclei masks in grey on white</span></span>
+<span id="cb50-4"><a href=""></a><span class="fu">image</span>(cell_masks <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"white"</span>, <span class="st">"grey80"</span>),</span>
+<span id="cb50-5"><a href=""></a>      <span class="at">main =</span> <span class="st">"Transcript assignment"</span>, <span class="at">axes =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb50-6"><a href=""></a></span>
+<span id="cb50-7"><a href=""></a><span class="co"># Assigned transcripts (cyan)</span></span>
+<span id="cb50-8"><a href=""></a>assigned_coords <span class="ot">&lt;-</span> <span class="fu">which</span>(valid, <span class="at">arr.ind =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb50-9"><a href=""></a><span class="cf">if</span> (<span class="fu">nrow</span>(assigned_coords) <span class="sc">&gt;</span> <span class="dv">50000</span>) {</span>
+<span id="cb50-10"><a href=""></a>  idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(assigned_coords), <span class="dv">50000</span>)</span>
+<span id="cb50-11"><a href=""></a>  assigned_coords <span class="ot">&lt;-</span> assigned_coords[idx, ]</span>
+<span id="cb50-12"><a href=""></a>}</span>
+<span id="cb50-13"><a href=""></a><span class="fu">points</span>(assigned_coords[,<span class="dv">1</span>] <span class="sc">/</span> <span class="fu">nrow</span>(decoded_full),</span>
+<span id="cb50-14"><a href=""></a>       assigned_coords[,<span class="dv">2</span>] <span class="sc">/</span> <span class="fu">ncol</span>(decoded_full),</span>
+<span id="cb50-15"><a href=""></a>       <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">0.4</span>, <span class="at">col =</span> <span class="fu">adjustcolor</span>(<span class="st">"cyan"</span>, <span class="fl">0.7</span>))</span>
+<span id="cb50-16"><a href=""></a></span>
+<span id="cb50-17"><a href=""></a><span class="co"># Unassigned transcripts (red)</span></span>
+<span id="cb50-18"><a href=""></a>unassigned_mask <span class="ot">&lt;-</span> has_gene <span class="sc">&amp;</span> <span class="sc">!</span>has_cell</span>
+<span id="cb50-19"><a href=""></a>unassigned_coords <span class="ot">&lt;-</span> <span class="fu">which</span>(unassigned_mask, <span class="at">arr.ind =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb50-20"><a href=""></a><span class="cf">if</span> (<span class="fu">nrow</span>(unassigned_coords) <span class="sc">&gt;</span> <span class="dv">50000</span>) {</span>
+<span id="cb50-21"><a href=""></a>  idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(unassigned_coords), <span class="dv">50000</span>)</span>
+<span id="cb50-22"><a href=""></a>  unassigned_coords <span class="ot">&lt;-</span> unassigned_coords[idx, ]</span>
+<span id="cb50-23"><a href=""></a>}</span>
+<span id="cb50-24"><a href=""></a><span class="fu">points</span>(unassigned_coords[,<span class="dv">1</span>] <span class="sc">/</span> <span class="fu">nrow</span>(decoded_full),</span>
+<span id="cb50-25"><a href=""></a>       unassigned_coords[,<span class="dv">2</span>] <span class="sc">/</span> <span class="fu">ncol</span>(decoded_full),</span>
+<span id="cb50-26"><a href=""></a>       <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">0.4</span>, <span class="at">col =</span> <span class="fu">adjustcolor</span>(<span class="st">"red"</span>, <span class="fl">0.7</span>))</span>
+<span id="cb50-27"><a href=""></a></span>
+<span id="cb50-28"><a href=""></a><span class="co"># Legend</span></span>
+<span id="cb50-29"><a href=""></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"grey80"</span>, <span class="st">"cyan"</span>, <span class="st">"red"</span>),</span>
+<span id="cb50-30"><a href=""></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Nuclei"</span>, </span>
+<span id="cb50-31"><a href=""></a>                  <span class="fu">sprintf</span>(<span class="st">"Assigned (%d)"</span>, <span class="fu">sum</span>(valid)),</span>
+<span id="cb50-32"><a href=""></a>                  <span class="fu">sprintf</span>(<span class="st">"Unassigned (%d)"</span>, <span class="fu">sum</span>(has_gene <span class="sc">&amp;</span> <span class="sc">!</span>has_cell))),</span>
+<span id="cb50-33"><a href=""></a>       <span class="at">bg =</span> <span class="st">"white"</span>, <span class="at">cex =</span> <span class="fl">0.9</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="ST_clase12_files/figure-revealjs/viz-assignment-1.png" width="768" class="r-stretch"><p>. . .</p>
+<p>La expansión Voronoi es geométrica, no biológica. Muchos transcritos citoplasmáticos quedan sin asignar. ¿Se puede mejorar?</p>
+</section>
+<section id="opción-avanzada-proseg" class="slide level2">
+<h2>Opción avanzada: Proseg</h2>
+<p><a href="https://github.com/dcjones/proseg">Proseg</a> usa un modelo probabilístico (Cellular Potts) que inicializa con los núcleos y <strong>expande las células hasta explicar la distribución espacial de transcritos</strong> utilizando Cellular Potts Model.</p>
+<div class="fragment">
+<p>Para una aplicación de CPM en mecanobiología de la regeneración, chequen este <a href="https://www.sciencedirect.com/science/article/pii/S0022519326000159">artículo</a> reciente en Journal of Theoretical Biology</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="exportar-transcritos-para-proseg">Exportar transcritos para Proseg</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a><span class="co"># Export decoded transcripts as a point cloud</span></span>
+<span id="cb51-2"><a href=""></a>coords <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(decoded_full), <span class="at">arr.ind =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb51-3"><a href=""></a></span>
+<span id="cb51-4"><a href=""></a>transcripts_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb51-5"><a href=""></a>  <span class="at">x =</span> coords[, <span class="dv">1</span>],</span>
+<span id="cb51-6"><a href=""></a>  <span class="at">y =</span> coords[, <span class="dv">2</span>],</span>
+<span id="cb51-7"><a href=""></a>  <span class="at">gene =</span> gene_names[decoded_full[coords]],</span>
+<span id="cb51-8"><a href=""></a>  <span class="at">cell_id =</span> expanded_masks[coords]  <span class="co"># 0 = not in any nucleus</span></span>
+<span id="cb51-9"><a href=""></a>)</span>
+<span id="cb51-10"><a href=""></a></span>
+<span id="cb51-11"><a href=""></a><span class="co"># Remove BLANKs if you want</span></span>
+<span id="cb51-12"><a href=""></a>transcripts_df <span class="ot">&lt;-</span> transcripts_df[<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"BLANK"</span>, transcripts_df<span class="sc">$</span>gene), ]</span>
+<span id="cb51-13"><a href=""></a></span>
+<span id="cb51-14"><a href=""></a>transcripts_df<span class="sc">$</span>z <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb51-15"><a href=""></a></span>
+<span id="cb51-16"><a href=""></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Exporting %d transcripts for %d genes</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb51-17"><a href=""></a>            <span class="fu">nrow</span>(transcripts_df), <span class="fu">length</span>(<span class="fu">unique</span>(transcripts_df<span class="sc">$</span>gene))))</span>
+<span id="cb51-18"><a href=""></a></span>
+<span id="cb51-19"><a href=""></a><span class="fu">write.csv</span>(transcripts_df, <span class="fu">file.path</span>(fov_dir, <span class="st">"transcripts_for_proseg.csv"</span>), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="segmentación-con-proseg">Segmentación con Proseg</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href=""></a><span class="ex">proseg</span> <span class="dt">\</span></span>
+<span id="cb52-2"><a href=""></a>  <span class="at">--x-column</span> x <span class="dt">\</span></span>
+<span id="cb52-3"><a href=""></a>  <span class="at">--y-column</span> y <span class="dt">\</span></span>
+<span id="cb52-4"><a href=""></a>  <span class="at">--z-column</span> z <span class="dt">\</span></span>
+<span id="cb52-5"><a href=""></a>  <span class="at">--gene-column</span> gene <span class="dt">\</span></span>
+<span id="cb52-6"><a href=""></a>  <span class="at">--cell-id-column</span> cell_id <span class="dt">\</span></span>
+<span id="cb52-7"><a href=""></a>  <span class="at">--cell-id-unassigned</span> 0 <span class="dt">\</span></span>
+<span id="cb52-8"><a href=""></a>  <span class="at">--voxel-layers</span> 1 <span class="dt">\</span></span>
+<span id="cb52-9"><a href=""></a>  <span class="at">--expand-initialized-cells</span> 10 <span class="dt">\</span></span>
+<span id="cb52-10"><a href=""></a>  <span class="at">--max-transcript-nucleus-distance</span> 200 <span class="dt">\</span></span>
+<span id="cb52-11"><a href=""></a>  <span class="at">--voxel-size</span> 4 <span class="dt">\</span></span>
+<span id="cb52-12"><a href=""></a>  <span class="at">--burnin-voxel-size</span> 8 <span class="dt">\</span></span>
+<span id="cb52-13"><a href=""></a>  <span class="at">--output-cell-metadata</span> proseg_output/cell-metadata.csv.gz <span class="dt">\</span></span>
+<span id="cb52-14"><a href=""></a>  <span class="at">--output-transcript-metadata</span> proseg_output/transcript-metadata.csv.gz <span class="dt">\</span></span>
+<span id="cb52-15"><a href=""></a>  <span class="at">--output-counts</span> proseg_output/counts.csv.gz <span class="dt">\</span></span>
+<span id="cb52-16"><a href=""></a>  <span class="at">--output-cell-polygons</span> proseg_output/cell-polygons.geojson.gz <span class="dt">\</span></span>
+<span id="cb52-17"><a href=""></a>  <span class="at">--overwrite</span> <span class="dt">\</span></span>
+<span id="cb52-18"><a href=""></a>  transcripts_for_proseg.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>A veces falla si no encuentra proseg_output</p>
+</section>
+<section class="slide level2">
+
+<h3 id="cargando-resultados-de-proseg">Cargando resultados de Proseg</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Cargar datos de proseg</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a><span class="fu">library</span>(Matrix)</span>
+<span id="cb53-2"><a href=""></a><span class="co">#library(jsonlite)</span></span>
+<span id="cb53-3"><a href=""></a><span class="co">#library(sf)</span></span>
+<span id="cb53-4"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb53-5"><a href=""></a></span>
+<span id="cb53-6"><a href=""></a><span class="co"># Transcript metadata</span></span>
+<span id="cb53-7"><a href=""></a>tx <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="fu">gzfile</span>(<span class="fu">file.path</span>(fov_dir,<span class="st">"proseg_output/transcript-metadata.csv.gz"</span>)), <span class="at">sep =</span> <span class="st">","</span>)</span>
+<span id="cb53-8"><a href=""></a></span>
+<span id="cb53-9"><a href=""></a><span class="co"># Classify transcripts</span></span>
+<span id="cb53-10"><a href=""></a>tx<span class="sc">$</span>status <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(tx<span class="sc">$</span>background <span class="sc">==</span> <span class="st">"true"</span>, <span class="st">"background"</span>,</span>
+<span id="cb53-11"><a href=""></a>             <span class="fu">ifelse</span>(tx<span class="sc">$</span>assignment <span class="sc">==</span> <span class="st">""</span>, <span class="st">"unassigned"</span>, <span class="st">"assigned"</span>))</span>
+<span id="cb53-12"><a href=""></a></span>
+<span id="cb53-13"><a href=""></a><span class="fu">head</span>(tx)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  transcript_id  qv    x y z observed_x observed_y observed_z    gene
+1            NA Inf 1575 2 0       1575          2          0 PROSER1
+2            NA Inf 1576 2 0       1576          2          0 PROSER1
+3            NA Inf    1 3 0          1          3          0   AGAP1
+4            NA Inf    2 3 0          2          3          0   AGAP1
+5            NA Inf    3 3 0          3          3          0   AGAP1
+6            NA Inf    4 3 0          4          3          0   AGAP1
+  assignment background   status
+1         21      false assigned
+2         21      false assigned
+3          0      false assigned
+4          0      false assigned
+5          0      false assigned
+6          0      false assigned</code></pre>
+</div>
+<details class="code-fold">
+<summary>Cargar datos de proseg</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Total transcripts: %d</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">nrow</span>(tx)), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb55-2"><a href=""></a>  <span class="fu">sprintf</span>(<span class="st">"Assigned to cells:    %d (%.1f%%)</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb55-3"><a href=""></a>    <span class="fu">sum</span>(tx<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"assigned"</span>),</span>
+<span id="cb55-4"><a href=""></a>    <span class="dv">100</span> <span class="sc">*</span> <span class="fu">sum</span>(tx<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"assigned"</span>) <span class="sc">/</span> <span class="fu">nrow</span>(tx)),   <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb55-5"><a href=""></a>  <span class="fu">sprintf</span>(<span class="st">"Unassigned: %d (%.1f%%)</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">sum</span>(tx<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"unassigned"</span>),</span>
+<span id="cb55-6"><a href=""></a>    <span class="dv">100</span> <span class="sc">*</span> <span class="fu">sum</span>(tx<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"unassigned"</span>) <span class="sc">/</span> <span class="fu">nrow</span>(tx)),  <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb55-7"><a href=""></a>  <span class="fu">sprintf</span>(<span class="st">"Background (noise):   %d (%.1f%%)</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb55-8"><a href=""></a>    <span class="fu">sum</span>(tx<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"background"</span>),</span>
+<span id="cb55-9"><a href=""></a>    <span class="dv">100</span> <span class="sc">*</span> <span class="fu">sum</span>(tx<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"background"</span>) <span class="sc">/</span> <span class="fu">nrow</span>(tx)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total transcripts: 252384
+ 
+ Assigned to cells:    239422 (94.9%)
+ 
+ Unassigned: 0 (0.0%)
+ 
+ Background (noise):   12962 (5.1%)</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="transcritos-asignados-vs-no-asignados">Transcritos asignados vs no asignados</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Visualización de asignación</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb57-2"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> tx[tx<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"background"</span>, ],</span>
+<span id="cb57-3"><a href=""></a>             <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">color =</span> <span class="st">"grey50"</span>, <span class="at">size =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb57-4"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> tx[tx<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"unassigned"</span>, ],</span>
+<span id="cb57-5"><a href=""></a>             <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="fl">0.3</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb57-6"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> tx[tx<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"assigned"</span>, ],</span>
+<span id="cb57-7"><a href=""></a>             <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">color =</span> <span class="st">"cyan"</span>, <span class="at">size =</span> <span class="fl">0.3</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb57-8"><a href=""></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb57-9"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Proseg: asignación de transcritos"</span>,</span>
+<span id="cb57-10"><a href=""></a>       <span class="at">subtitle =</span> <span class="fu">sprintf</span>(<span class="st">"Asignados: %d | Sin asignar: %d | Ruido: %d"</span>,</span>
+<span id="cb57-11"><a href=""></a>                          <span class="fu">sum</span>(tx<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"assigned"</span>),</span>
+<span id="cb57-12"><a href=""></a>                          <span class="fu">sum</span>(tx<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"unassigned"</span>),</span>
+<span id="cb57-13"><a href=""></a>                          <span class="fu">sum</span>(tx<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"background"</span>))) <span class="sc">+</span></span>
+<span id="cb57-14"><a href=""></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="ST_clase12_files/figure-revealjs/proseg-assignment-viz-1.png" width="768" class="r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="transcritos-coloreados-por-célula">Transcritos coloreados por célula</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Transcritos por célula</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href=""></a>assigned_tx <span class="ot">&lt;-</span> tx[tx<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"assigned"</span>, ]</span>
+<span id="cb58-2"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb58-3"><a href=""></a>n_cells <span class="ot">&lt;-</span> <span class="fu">nrow</span>(cell_meta)</span>
+<span id="cb58-4"><a href=""></a>cell_colors <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">colors</span>(<span class="at">distinct =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n_cells])</span>
+<span id="cb58-5"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb58-6"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> assigned_tx,</span>
+<span id="cb58-7"><a href=""></a>             <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> <span class="fu">factor</span>(assignment)),</span>
+<span id="cb58-8"><a href=""></a>             <span class="at">size =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb58-9"><a href=""></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> cell_colors) <span class="sc">+</span></span>
+<span id="cb58-10"><a href=""></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb58-11"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Asignación con proseg"</span>,</span>
+<span id="cb58-12"><a href=""></a>       <span class="at">subtitle =</span> <span class="st">"Cellular Potts model"</span>) <span class="sc">+</span></span>
+<span id="cb58-13"><a href=""></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"black"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="ST_clase12_files/figure-revealjs/proseg-transcripts-by-cell-1.png" width="768" class="r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="qué-nos-da-proseg">¿Qué nos da Proseg?</h3>
+<p>Aunque tiene opciones para cargar y producir archivos listos para scanpy o Seurat</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Archivo</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>counts.csv.gz</code></td>
+<td>Matriz celda × gen (MatrixMarket)</td>
+</tr>
+<tr class="even">
+<td><code>cell-metadata.csv.gz</code></td>
+<td>Centroides, volumen, área</td>
+</tr>
+<tr class="odd">
+<td><code>transcript-metadata.csv.gz</code></td>
+<td>Asignación por transcrito + QC</td>
+</tr>
+<tr class="even">
+<td><code>cell-polygons.geojson.gz</code></td>
+<td>Contornos celulares</td>
+</tr>
+</tbody>
+</table>
+<p>. . .</p>
+<p>A diferencia de la expansión Voronoi, Proseg:</p>
+<ul>
+<li>Modela la <strong>forma real</strong> de las células (incluyendo filopodios)</li>
+<li>Clasifica transcritos como <strong>señal vs ruido</strong> (<em>background</em>)</li>
+<li>Genera <strong>conteos fraccionales</strong> (estimación probabilística)</li>
+<li>Puede reposicionar transcritos que <strong>difundieron</strong> de células vecinas</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="construyendo-el-objeto-seurat-proseg">Construyendo el objeto Seurat (proseg)</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Crear objeto Seurat</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href=""></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb59-2"><a href=""></a></span>
+<span id="cb59-3"><a href=""></a><span class="co"># Count matrix (MatrixMarket format)</span></span>
+<span id="cb59-4"><a href=""></a>count_matrix <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">readMM</span>(<span class="fu">gzfile</span>(<span class="fu">file.path</span>(fov_dir,<span class="st">"proseg_output/counts.csv.gz"</span>))))</span>
+<span id="cb59-5"><a href=""></a>all_genes <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(tx<span class="sc">$</span>gene))</span>
+<span id="cb59-6"><a href=""></a><span class="fu">rownames</span>(count_matrix) <span class="ot">&lt;-</span> all_genes</span>
+<span id="cb59-7"><a href=""></a><span class="fu">colnames</span>(count_matrix) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"cell_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(count_matrix))</span>
+<span id="cb59-8"><a href=""></a></span>
+<span id="cb59-9"><a href=""></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Matriz: %d genes × %d células</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb59-10"><a href=""></a>            <span class="fu">nrow</span>(count_matrix), <span class="fu">ncol</span>(count_matrix)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Matriz: 140 genes × 33 células</code></pre>
+</div>
+<details class="code-fold">
+<summary>Crear objeto Seurat</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a><span class="co"># Cell metadata</span></span>
+<span id="cb61-2"><a href=""></a>cell_meta_proseg <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">gzfile</span>(<span class="fu">file.path</span>(fov_dir,<span class="st">"proseg_output/cell-metadata.csv.gz"</span>)))</span>
+<span id="cb61-3"><a href=""></a><span class="fu">rownames</span>(cell_meta_proseg) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(count_matrix)</span>
+<span id="cb61-4"><a href=""></a></span>
+<span id="cb61-5"><a href=""></a><span class="co"># Create Seurat object</span></span>
+<span id="cb61-6"><a href=""></a>seurat_proseg <span class="ot">&lt;-</span> <span class="fu">CreateSeuratObject</span>(</span>
+<span id="cb61-7"><a href=""></a>  <span class="at">counts =</span> count_matrix,</span>
+<span id="cb61-8"><a href=""></a>  <span class="at">meta.data =</span> cell_meta_proseg,</span>
+<span id="cb61-9"><a href=""></a>  <span class="at">assay =</span> <span class="st">"MERFISH"</span></span>
+<span id="cb61-10"><a href=""></a>)</span>
+<span id="cb61-11"><a href=""></a></span>
+<span id="cb61-12"><a href=""></a><span class="co"># Add spatial coordinates</span></span>
+<span id="cb61-13"><a href=""></a>coords <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb61-14"><a href=""></a>  <span class="at">x =</span> cell_meta_proseg<span class="sc">$</span>centroid_x,</span>
+<span id="cb61-15"><a href=""></a>  <span class="at">y =</span> cell_meta_proseg<span class="sc">$</span>centroid_y,</span>
+<span id="cb61-16"><a href=""></a>  <span class="at">cell =</span> <span class="fu">rownames</span>(cell_meta_proseg)</span>
+<span id="cb61-17"><a href=""></a>)</span>
+<span id="cb61-18"><a href=""></a></span>
+<span id="cb61-19"><a href=""></a>cents <span class="ot">&lt;-</span> <span class="fu">CreateCentroids</span>(coords)</span>
+<span id="cb61-20"><a href=""></a>fov_obj <span class="ot">&lt;-</span> <span class="fu">CreateFOV</span>(</span>
+<span id="cb61-21"><a href=""></a>  <span class="at">coords =</span> <span class="fu">list</span>(<span class="st">"centroids"</span> <span class="ot">=</span> cents),</span>
+<span id="cb61-22"><a href=""></a>  <span class="at">type =</span> <span class="st">"centroids"</span>,</span>
+<span id="cb61-23"><a href=""></a>  <span class="at">molecules =</span> <span class="cn">NULL</span>,</span>
+<span id="cb61-24"><a href=""></a>  <span class="at">assay =</span> <span class="st">"MERFISH"</span></span>
+<span id="cb61-25"><a href=""></a>)</span>
+<span id="cb61-26"><a href=""></a>seurat_proseg[[fov_dir]] <span class="ot">&lt;-</span> fov_obj</span>
+<span id="cb61-27"><a href=""></a></span>
+<span id="cb61-28"><a href=""></a><span class="fu">print</span>(seurat_proseg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>An object of class Seurat 
+140 features across 33 samples within 1 assay 
+Active assay: MERFISH (140 features, 0 variable features)
+ 1 layer present: counts
+ 1 spatial field of view present: fov_457</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="elegir-tu-objeto-y-continuar"><strong>Elegir tu objeto y continuar</strong></h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href=""></a><span class="co"># Si tienes Proseg:</span></span>
+<span id="cb63-2"><a href=""></a>seurat_obj <span class="ot">&lt;-</span> seurat_proseg</span>
+<span id="cb63-3"><a href=""></a>cell_meta <span class="ot">&lt;-</span> cell_meta_proseg</span>
+<span id="cb63-4"><a href=""></a></span>
+<span id="cb63-5"><a href=""></a><span class="co"># Si no tienes Proseg:</span></span>
+<span id="cb63-6"><a href=""></a><span class="co"># seurat_obj &lt;- seurat_voronoi</span></span>
+<span id="cb63-7"><a href=""></a><span class="co"># cell_meta ya está definido de antes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>. . .</p>
+<p>A partir de aquí, el pipeline es <strong>idéntico</strong> independientemente de cómo se hizo la segmentación.</p>
+</section>
+<section id="pipeline-estándar-de-seurat" class="slide level2">
+<h2>Pipeline estándar de Seurat</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Pipeline Seurat</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href=""></a>seurat_obj <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(seurat_obj)</span>
+<span id="cb64-2"><a href=""></a>seurat_obj <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(seurat_obj)</span>
+<span id="cb64-3"><a href=""></a>seurat_obj <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(seurat_obj)</span>
+<span id="cb64-4"><a href=""></a>seurat_obj <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(seurat_obj, <span class="at">npcs =</span> <span class="dv">15</span>)</span>
+<span id="cb64-5"><a href=""></a>seurat_obj <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(seurat_obj, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb64-6"><a href=""></a>seurat_obj <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(seurat_obj, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb64-7"><a href=""></a>seurat_obj <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(seurat_obj, <span class="at">resolution =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 33
+Number of edges: 528
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.0105
+Number of communities: 2
+Elapsed time: 0 seconds</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="umap-y-mapa-espacial">UMAP y mapa espacial</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Visualización UMAP + espacial</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href=""></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb66-2"><a href=""></a></span>
+<span id="cb66-3"><a href=""></a>p1 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(seurat_obj, <span class="at">reduction =</span> <span class="st">"umap"</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">pt.size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb66-4"><a href=""></a>  <span class="fu">ggtitle</span>(<span class="st">"UMAP — clusters"</span>) <span class="sc">+</span></span>
+<span id="cb66-5"><a href=""></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb66-6"><a href=""></a></span>
+<span id="cb66-7"><a href=""></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> cell_meta<span class="sc">$</span>centroid_x,</span>
+<span id="cb66-8"><a href=""></a>                        <span class="at">y =</span> cell_meta<span class="sc">$</span>centroid_y,</span>
+<span id="cb66-9"><a href=""></a>                        <span class="at">cluster =</span> seurat_obj<span class="sc">$</span>seurat_clusters),</span>
+<span id="cb66-10"><a href=""></a>             <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> cluster)) <span class="sc">+</span></span>
+<span id="cb66-11"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb66-12"><a href=""></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb66-13"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Clusters en el tejido"</span>) <span class="sc">+</span></span>
+<span id="cb66-14"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb66-15"><a href=""></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"black"</span>))</span>
+<span id="cb66-16"><a href=""></a></span>
+<span id="cb66-17"><a href=""></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="ST_clase12_files/figure-revealjs/umap-spatial-proseg-1.png" width="1152" class="r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="marcadores-por-cluster">Marcadores por cluster</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Marcadores</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href=""></a>markers <span class="ot">&lt;-</span> <span class="fu">FindAllMarkers</span>(seurat_obj,</span>
+<span id="cb67-2"><a href=""></a>                          <span class="at">only.pos =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb67-3"><a href=""></a>                          <span class="at">min.pct =</span> <span class="fl">0.1</span>,</span>
+<span id="cb67-4"><a href=""></a>                          <span class="at">logfc.threshold =</span> <span class="fl">0.25</span>)</span>
+<span id="cb67-5"><a href=""></a></span>
+<span id="cb67-6"><a href=""></a>top_markers <span class="ot">&lt;-</span> markers <span class="sc">%&gt;%</span></span>
+<span id="cb67-7"><a href=""></a>  <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span></span>
+<span id="cb67-8"><a href=""></a>  <span class="fu">slice_max</span>(avg_log2FC, <span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb67-9"><a href=""></a></span>
+<span id="cb67-10"><a href=""></a><span class="fu">print</span>(top_markers[, <span class="fu">c</span>(<span class="st">"cluster"</span>, <span class="st">"gene"</span>, <span class="st">"avg_log2FC"</span>, <span class="st">"p_val_adj"</span>)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+# Groups:   cluster [1]
+  cluster gene    avg_log2FC p_val_adj
+  &lt;fct&gt;   &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;
+1 0       NRIP1         3.67    0.977 
+2 0       SLC35B4       3.16    0.0974
+3 0       MYH10         3.12    0.0477
+4 0       SULT1C2       2.69    0.596 
+5 0       MED14         1.56    1     </code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="heatmap-de-marcadores">Heatmap de marcadores</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Heatmap</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href=""></a>top5 <span class="ot">&lt;-</span> top_markers <span class="sc">%&gt;%</span></span>
+<span id="cb69-2"><a href=""></a>  <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span></span>
+<span id="cb69-3"><a href=""></a>  <span class="fu">slice_max</span>(avg_log2FC, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb69-4"><a href=""></a>  <span class="fu">pull</span>(gene) <span class="sc">%&gt;%</span></span>
+<span id="cb69-5"><a href=""></a>  <span class="fu">unique</span>()</span>
+<span id="cb69-6"><a href=""></a></span>
+<span id="cb69-7"><a href=""></a><span class="fu">DoHeatmap</span>(seurat_obj, <span class="at">features =</span> top5) <span class="sc">+</span></span>
+<span id="cb69-8"><a href=""></a>  <span class="fu">scale_fill_viridis_c</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="ST_clase12_files/figure-revealjs/heatmap-1.png" width="960" class="r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="expresión-espacial-de-un-gen">Expresión espacial de un gen</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Expresión espacial</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href=""></a>gene_of_interest <span class="ot">&lt;-</span> <span class="fu">sample</span>(top_markers<span class="sc">$</span>gene, <span class="dv">1</span>)</span>
+<span id="cb70-2"><a href=""></a>expr <span class="ot">&lt;-</span> <span class="fu">FetchData</span>(seurat_obj, <span class="at">vars =</span> gene_of_interest)</span>
+<span id="cb70-3"><a href=""></a>gene_tx <span class="ot">&lt;-</span> tx[tx<span class="sc">$</span>gene <span class="sc">==</span> gene_of_interest <span class="sc">&amp;</span> tx<span class="sc">$</span>background <span class="sc">==</span> <span class="st">"false"</span> , ]</span>
+<span id="cb70-4"><a href=""></a></span>
+<span id="cb70-5"><a href=""></a><span class="co"># Count spots per cell for this gene</span></span>
+<span id="cb70-6"><a href=""></a>spots_per_cell <span class="ot">&lt;-</span> <span class="fu">table</span>(gene_tx<span class="sc">$</span>assignment)</span>
+<span id="cb70-7"><a href=""></a></span>
+<span id="cb70-8"><a href=""></a><span class="co"># Build plot data with labels</span></span>
+<span id="cb70-9"><a href=""></a>plot_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb70-10"><a href=""></a>  <span class="at">x =</span> cell_meta<span class="sc">$</span>centroid_x,</span>
+<span id="cb70-11"><a href=""></a>  <span class="at">y =</span> cell_meta<span class="sc">$</span>centroid_y,</span>
+<span id="cb70-12"><a href=""></a>  <span class="at">expression =</span> expr[, <span class="dv">1</span>],</span>
+<span id="cb70-13"><a href=""></a>  <span class="at">cell_id =</span> cell_meta<span class="sc">$</span>cell</span>
+<span id="cb70-14"><a href=""></a>)</span>
+<span id="cb70-15"><a href=""></a><span class="co"># Match spot counts to cells (0-indexed from proseg)</span></span>
+<span id="cb70-16"><a href=""></a>plot_df<span class="sc">$</span>n_spots <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(spots_per_cell[<span class="fu">as.character</span>(<span class="dv">0</span><span class="sc">:</span>(<span class="fu">nrow</span>(plot_df) <span class="sc">-</span> <span class="dv">1</span>))])</span>
+<span id="cb70-17"><a href=""></a>plot_df<span class="sc">$</span>n_spots[<span class="fu">is.na</span>(plot_df<span class="sc">$</span>n_spots)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb70-18"><a href=""></a>plot_df<span class="sc">$</span>label <span class="ot">&lt;-</span> <span class="fu">paste0</span>(plot_df<span class="sc">$</span>cell_id, <span class="st">": "</span>, plot_df<span class="sc">$</span>n_spots)</span>
+<span id="cb70-19"><a href=""></a></span>
+<span id="cb70-20"><a href=""></a><span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb70-21"><a href=""></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> expression), <span class="at">size =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb70-22"><a href=""></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>) <span class="sc">+</span></span>
+<span id="cb70-23"><a href=""></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> label), <span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb70-24"><a href=""></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb70-25"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> gene_tx, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y),</span>
+<span id="cb70-26"><a href=""></a>             <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">shape =</span> <span class="dv">8</span>, <span class="at">position =</span> <span class="st">"jitter"</span>) <span class="sc">+</span></span>
+<span id="cb70-27"><a href=""></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb70-28"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Gen: "</span>, gene_of_interest),</span>
+<span id="cb70-29"><a href=""></a>       <span class="at">subtitle =</span> <span class="st">"Expresión normalizada vs transcritos crudos"</span>) <span class="sc">+</span></span>
+<span id="cb70-30"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="ST_clase12_files/figure-revealjs/spatial-gene-proseg-1.png" width="768" class="r-stretch"></section>
+<section id="tarea" class="slide level2">
+<h2>Tarea</h2>
+<p>Por equipos: exportar los objetos seurat como h5</p>
+<p>Subiré en algún momento el umap y los datos integrados de todos</p>
+</section>
+<section id="overview" class="slide level2">
+<h2>Overview</h2>
+<pre><code>Imágenes crudas de fluorescencia (16 TIFFs)
+    │
+    ▼ FIJI: filtro high-pass, deconvolución, blur
+Hyperstack preprocesado
+    │
+    ▼ R: normalización por scale factors
+Tensor de intensidades normalizado
+    │
+    ▼ R: decodificación pixel (distancia coseno al codebook)
+Mapa de genes decodificado (2048×2048)
+    │
+    ├──────────────────────────────┐
+    ▼                              ▼
+    Cellpose + Voronoi             Proseg (Cellular Potts)
+    Segmentación geométrica        Segmentación probabilística
+    │                              │
+    ▼                              ▼
+    Objeto Seurat                  Objeto Seurat
+    │                              │
+    └──────────────┬───────────────┘
+                   ▼
+    Seurat: normalizar, PCA, UMAP, clustering
+                   ▼
+    Análisis espacial unicelular</code></pre>
+</section>
+<section id="a-pesar-de-todo-nos-faltó" class="slide level2">
+<h2>A pesar de todo, nos faltó:</h2>
+<p>In a real pipeline (Vizgen MERSCOPE, 10x Xenium):</p>
+<ul>
+<li><strong>Multi-FOV stitching</strong> Reconstruir un mosaico de cientos de campos (field of view)</li>
+<li><strong>Procesamiento 3D z-stack</strong></li>
+<li><strong>Correción cromática y registro</strong> alinear canales y rondas si DIY</li>
+<li><strong>Análisis de componentes conectados</strong> Este pipeline es “pixel-based” pero también hay “spot-based”</li>
+<li><strong>Segmentación celular</strong> Más que mejores algoritmos, plataformas como Xenium usan tinción adicional citoplásmica (ej. PolyA) y membranal</li>
+</ul>
+</section>
+<section id="de-raw-a-archivos-finales" class="slide level2">
+<h2>De <em>raw</em> a archivos finales</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 30%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Processing step</th>
+<th>What it produces</th>
+<th>Vizgen output file</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Decoding</td>
+<td>Transcript locations</td>
+<td><code>detected_transcripts.csv</code></td>
+</tr>
+<tr class="even">
+<td>Cell segmentation</td>
+<td>Cell boundaries</td>
+<td><code>cell_boundaries/</code></td>
+</tr>
+<tr class="odd">
+<td>Segmentation metadata</td>
+<td>Cell centroids, area</td>
+<td><code>cell_metadata.csv</code></td>
+</tr>
+<tr class="even">
+<td>Transcript assignment</td>
+<td>Expression matrix</td>
+<td><code>cell_by_gene.csv</code></td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p>Posible que los archivos que descargues de bases de datos sean similares a estos. Ahora sabes qué significan y de dónde vienen.</p>
+</div>
+</section>
+<section id="resumen" class="slide level2">
+<h2>Resumen</h2>
+<ol type="1">
+<li><strong>MERFISH raw data</strong> y en general ST basado en microscopía son (híper)stacks de diferentes rondas/canales/z y fovs</li>
+<li><strong>Barcodes</strong> Son los cógidos binarios que representan la ausencia o presencia de fluorescia</li>
+<li><strong>Preprocesamiento</strong> (filtrado, registro, deconvolución) para extraer señal de las imágenes. Sensibilidad y especificidad dependen de ello.</li>
+<li><strong>Decoding</strong> cada pixel es un vector de intensidades que hay que comparar contra el código más cercano</li>
+<li><strong>Códigos robustos a errores</strong></li>
+<li><strong>Plataformas comerciales</strong> automatizan esto, sí, pero ahora conocemos la lógica detrás</li>
+</ol>
+</section>
+<section id="resources" class="slide level2">
+<h2>Resources</h2>
+<p><strong>Data:</strong></p>
+<ul>
+<li><a href="https://vizgen.com/data-release-program/">Vizgen Data Release Program</a></li>
+<li><a href="https://www.10xgenomics.com/datasets">10x Genomics Xenium datasets</a></li>
+<li><a href="https://zhuang.harvard.edu/merfish.html">Zhuang Lab MERFISH data</a></li>
+</ul>
+<p><strong>Software:</strong></p>
+<ul>
+<li><a href="https://github.com/spacetx/starfish">starfish (Python)</a> — unified pipeline for image-based transcriptomics</li>
+<li><a href="https://bioconductor.org/packages/EBImage/">EBImage (R/Bioconductor)</a> — image processing</li>
+<li><a href="https://satijalab.org/seurat/">Seurat</a> — downstream analysis of spatial data</li>
+</ul>
+<p><strong>Papers:</strong></p>
+<ul>
+<li>Chen et al.&nbsp;(2015) <em>Science</em>: Original MERFISH paper</li>
+<li>Moffitt et al.&nbsp;(2016) <em>Methods in Enzymology</em>: MERFISH protocol</li>
+<li>Moffitt et al.&nbsp;(2018) <em>Science:</em> Hypothalamus cell atlas</li>
+</ul>
+</section>
+<section id="preguntas" class="slide level2">
+<h2>Preguntas</h2>
+<p>All code and data from this session are available at:</p>
+<p>jerolon.github.io</p>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Cosas a intentar</strong></p>
+</div>
+<div class="callout-content">
+<p>Cambiar el umbral de decodificación, parámetros de procesamiento, filtros, etc. Implementar connected components en R (o cargar librería que lo hace)</p>
+</div>
+</div>
+</div>
+<div class="::::::::::::::::">
+
+</div>
+
+</div>
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Transcriptómica Espacial — Clase 3</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="ST_clase12_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="ST_clase12_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="ST_clase12_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1900,
+
+        height: 820,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
