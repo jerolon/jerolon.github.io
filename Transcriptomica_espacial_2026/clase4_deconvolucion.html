@@ -241,10 +241,10 @@ Taller de Transcriptómica Espacial
 <p>Del mismo bloque FFPE se generaron <strong>secciones seriadas</strong> para múltiples plataformas:</p>
 <table class="caption-top">
 <colgroup>
-<col style="width: 26%">
 <col style="width: 24%">
-<col style="width: 24%">
-<col style="width: 24%">
+<col style="width: 18%">
+<col style="width: 31%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -323,6 +323,7 @@ Taller de Transcriptómica Espacial
 </section>
 <section id="datos-descargados-de-10x-genomics" class="slide level2">
 <h2>Datos descargados de 10x Genomics</h2>
+<p>Scripts por si es de su interés <a href="https://github.com/jerolon/jerolon.github.io/blob/main/Transcriptomica_espacial_2026/scripts/FlexSingleCell.R">FlexSingleCell.R</a> ejecutado con <a href="https://github.com/jerolon/jerolon.github.io/blob/main/Transcriptomica_espacial_2026/scripts/flex_singlecell.slurm">slurm script</a></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># Archivos descargados de cf.10xgenomics.com:</span></span>
 <span id="cb1-2"><a href=""></a><span class="co"># 1. HumanColonCancer_Flex_Multiplex_count_filtered_feature_bc_matrix.tar.gz</span></span>
@@ -388,8 +389,8 @@ Taller de Transcriptómica Espacial
 </div>
 </div>
 </section>
-<section id="umap-de-cell-ranger-pacientes-bien-separados" class="slide level2">
-<h2>UMAP de Cell Ranger: ¿Pacientes bien separados?</h2>
+<section id="umap-de-cell-ranger-pacientes-separados" class="slide level2">
+<h2>UMAP de Cell Ranger: ¿Pacientes separados?</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -403,7 +404,7 @@ Taller de Transcriptómica Espacial
 <span id="cb4-8"><a href=""></a>  <span class="at">key =</span> <span class="st">"UMAP_"</span>, <span class="at">assay =</span> <span class="st">"RNA"</span></span>
 <span id="cb4-9"><a href=""></a>)</span>
 <span id="cb4-10"><a href=""></a></span>
-<span id="cb4-11"><a href=""></a><span class="fu">DimPlot</span>(flex, <span class="at">group.by =</span> <span class="st">"patient"</span>, <span class="at">reduction =</span> <span class="st">"umap"</span>, <span class="at">pt.size =</span> <span class="fl">0.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-11"><a href=""></a><span class="fu">DimPlot</span>(flex, <span class="at">group.by =</span> <span class="st">"patient"</span>, <span class="at">reduction =</span> <span class="st">"umap"</span>, <span class="at">pt.size =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 
@@ -506,8 +507,10 @@ Taller de Transcriptómica Espacial
 <section id="validación-con-marcadores-canónicos" class="slide level2">
 <h2>Validación con marcadores canónicos</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>lineage_markers <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb8-2"><a href=""></a>  <span class="st">"EPCAM"</span>,<span class="st">"KRT8"</span>,<span class="st">"KRT20"</span>,<span class="st">"PIGR"</span>,           <span class="co"># epitelial</span></span>
+<span id="cb8-2"><a href=""></a>  <span class="st">"EPCAM"</span>,<span class="st">"KRT8"</span>,<span class="st">"KRT20"</span>,<span class="st">"PIGR"</span>, <span class="st">"LGR5"</span>,          <span class="co"># epitelial</span></span>
 <span id="cb8-3"><a href=""></a>  <span class="st">"CEACAM5"</span>,<span class="st">"CEACAM6"</span>,<span class="st">"MUC2"</span>,              <span class="co"># tumor / goblet</span></span>
 <span id="cb8-4"><a href=""></a>  <span class="st">"CD3D"</span>,<span class="st">"CD3E"</span>,<span class="st">"CD8A"</span>,<span class="st">"CD4"</span>,<span class="st">"FOXP3"</span>,      <span class="co"># T cells</span></span>
 <span id="cb8-5"><a href=""></a>  <span class="st">"NKG7"</span>,<span class="st">"GNLY"</span>,                           <span class="co"># NK</span></span>
@@ -517,6 +520,7 @@ Taller de Transcriptómica Espacial
 <span id="cb8-9"><a href=""></a>  <span class="st">"PECAM1"</span>,<span class="st">"VWF"</span>,<span class="st">"CDH5"</span>,                   <span class="co"># endotelial</span></span>
 <span id="cb8-10"><a href=""></a>  <span class="st">"ACTA2"</span>,<span class="st">"DES"</span>,<span class="st">"MYH11"</span>                    <span class="co"># músculo liso</span></span>
 <span id="cb8-11"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 </section>
 <section id="dotplot-marcadores-vs.-tipos-celulares" class="slide level2">
@@ -745,9 +749,11 @@ Taller de Transcriptómica Espacial
 <span id="cb13-6"><a href=""></a>  <span class="at">bin.size =</span> <span class="dv">16</span></span>
 <span id="cb13-7"><a href=""></a>)</span>
 <span id="cb13-8"><a href=""></a></span>
-<span id="cb13-9"><a href=""></a></span>
-<span id="cb13-10"><a href=""></a><span class="co"># Extraer counts y coordenadas</span></span>
-<span id="cb13-11"><a href=""></a>coords <span class="ot">&lt;-</span> <span class="fu">GetTissueCoordinates</span>(visium)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-9"><a href=""></a><span class="co">#Si viene de geo, especificar nombre de archivos</span></span>
+<span id="cb13-10"><a href=""></a><span class="co">#visium &lt;- Load10X_Spatial(data.dir = "P1CRC_GSM8594567_results/outs/binned_outputs/square_016um", filename = "filtered_feature_bc_matrix.h5", image.name = "tissue_lowres_image.png")</span></span>
+<span id="cb13-11"><a href=""></a></span>
+<span id="cb13-12"><a href=""></a><span class="co"># Extraer counts y coordenadas</span></span>
+<span id="cb13-13"><a href=""></a>coords <span class="ot">&lt;-</span> <span class="fu">GetTissueCoordinates</span>(visium)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -840,7 +846,7 @@ Taller de Transcriptómica Espacial
 <span id="cb16-11"><a href=""></a>rctd <span class="ot">&lt;-</span> <span class="fu">run.RCTD</span>(rctd, <span class="at">doublet_mode =</span> <span class="st">"doublet"</span>)</span>
 <span id="cb16-12"><a href=""></a><span class="co"># doublet_mode: máximo 2 tipos por bin (apropiado para 8 µm)</span></span>
 <span id="cb16-13"><a href=""></a></span>
-<span id="cb16-14"><a href=""></a><span class="fu">saveRDS</span>(rctd, <span class="st">"resultsRCTD_P1CRC_c1.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-14"><a href=""></a><span class="fu">saveRDS</span>(rctd, <span class="st">"resultsRCTD_P1CRC.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="visualizando-la-deconvolución" class="slide level2">
@@ -849,7 +855,7 @@ Taller de Transcriptómica Espacial
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="co"># Extraer los resultados</span></span>
-<span id="cb17-2"><a href=""></a>rctd <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"resultsRCTD_P1CRC_c1.rds"</span>)</span>
+<span id="cb17-2"><a href=""></a>rctd <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"resultsRCTD_P1CRC.rds"</span>)</span>
 <span id="cb17-3"><a href=""></a>results <span class="ot">&lt;-</span> rctd<span class="sc">@</span>results</span>
 <span id="cb17-4"><a href=""></a></span>
 <span id="cb17-5"><a href=""></a><span class="co"># Para modo doublet: tipo celular 1 y 2 por bin + proporciones</span></span>
@@ -936,50 +942,54 @@ Taller de Transcriptómica Espacial
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>coords <span class="ot">&lt;-</span> <span class="fu">GetTissueCoordinates</span>(object)</span>
-<span id="cb19-2"><a href=""></a>object_export <span class="ot">&lt;-</span> object</span>
-<span id="cb19-3"><a href=""></a></span>
-<span id="cb19-4"><a href=""></a>sce <span class="ot">&lt;-</span> <span class="fu">as.SingleCellExperiment</span>(object_export)</span>
-<span id="cb19-5"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">SpatialExperiment</span>(</span>
-<span id="cb19-6"><a href=""></a>  <span class="at">assays =</span> <span class="fu">assays</span>(sce),</span>
-<span id="cb19-7"><a href=""></a>  <span class="at">colData =</span> <span class="fu">colData</span>(sce),</span>
-<span id="cb19-8"><a href=""></a>  <span class="at">spatialCoords =</span> <span class="fu">as.matrix</span>(coords[<span class="fu">colnames</span>(sce), <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
-<span id="cb19-9"><a href=""></a>)</span>
-<span id="cb19-10"><a href=""></a><span class="co">#Quitar los ceros</span></span>
-<span id="cb19-11"><a href=""></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">colSums</span>(<span class="fu">counts</span>(spe)) <span class="sc">&gt;</span> <span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">library</span>(SpatialExperiment)</span>
+<span id="cb19-2"><a href=""></a>coords <span class="ot">&lt;-</span> <span class="fu">GetTissueCoordinates</span>(visium)</span>
+<span id="cb19-3"><a href=""></a>object_export <span class="ot">&lt;-</span> visium</span>
+<span id="cb19-4"><a href=""></a></span>
+<span id="cb19-5"><a href=""></a>sce <span class="ot">&lt;-</span> <span class="fu">as.SingleCellExperiment</span>(object_export)</span>
+<span id="cb19-6"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">SpatialExperiment</span>(</span>
+<span id="cb19-7"><a href=""></a>  <span class="at">assays =</span> <span class="fu">assays</span>(sce),</span>
+<span id="cb19-8"><a href=""></a>  <span class="at">colData =</span> <span class="fu">colData</span>(sce),</span>
+<span id="cb19-9"><a href=""></a>  <span class="at">spatialCoords =</span> <span class="fu">as.matrix</span>(coords[<span class="fu">colnames</span>(sce), <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb19-10"><a href=""></a>)</span>
+<span id="cb19-11"><a href=""></a><span class="co">#Quitar los ceros</span></span>
+<span id="cb19-12"><a href=""></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">colSums</span>(<span class="fu">counts</span>(spe)) <span class="sc">&gt;</span> <span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
-<span id="cb20-2"><a href=""></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
-<span id="cb20-3"><a href=""></a>hvg <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">n=</span><span class="fl">3e3</span>)</span>
-<span id="cb20-4"><a href=""></a><span class="co"># set seed for random number generation</span></span>
-<span id="cb20-5"><a href=""></a><span class="co"># in order to make results reproducible</span></span>
-<span id="cb20-6"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">112358</span>)</span>
-<span id="cb20-7"><a href=""></a><span class="co"># 'Banksy' parameter settings</span></span>
-<span id="cb20-8"><a href=""></a>k <span class="ot">&lt;-</span> <span class="dv">8</span>   <span class="co"># consider first order neighbors</span></span>
-<span id="cb20-9"><a href=""></a>l <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="co"># use little spatial information</span></span>
-<span id="cb20-10"><a href=""></a>a <span class="ot">&lt;-</span> <span class="st">"logcounts"</span></span>
-<span id="cb20-11"><a href=""></a>xy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"array_row"</span>, <span class="st">"array_col"</span>)</span>
-<span id="cb20-12"><a href=""></a><span class="co"># restrict to selected features</span></span>
-<span id="cb20-13"><a href=""></a>tmp <span class="ot">&lt;-</span> spe[hvg, ]</span>
-<span id="cb20-14"><a href=""></a></span>
-<span id="cb20-15"><a href=""></a><span class="co"># compute spatially aware 'Banksy' PCs</span></span>
-<span id="cb20-16"><a href=""></a>tmp <span class="ot">&lt;-</span> <span class="fu">computeBanksy</span>(tmp, <span class="at">assay_name=</span>a, <span class="at">coord_names=</span>xy, <span class="at">k_geom=</span>k)</span>
-<span id="cb20-17"><a href=""></a>tmp <span class="ot">&lt;-</span> <span class="fu">runBanksyPCA</span>(tmp, <span class="at">lambda=</span>l, <span class="at">npcs=</span><span class="dv">50</span>)</span>
-<span id="cb20-18"><a href=""></a><span class="fu">reducedDim</span>(spe, <span class="st">"PCA"</span>) <span class="ot">&lt;-</span> <span class="fu">reducedDim</span>(tmp)</span>
-<span id="cb20-19"><a href=""></a><span class="do">## run UMAP (for visualization purposes only)</span></span>
-<span id="cb20-20"><a href=""></a><span class="co"># .vhd16 &lt;- runUMAP(.vhd16, dimred="PCA")</span></span>
-<span id="cb20-21"><a href=""></a><span class="co"># build cellular shared nearest-neighbor (SNN) graph</span></span>
-<span id="cb20-22"><a href=""></a>g <span class="ot">&lt;-</span> <span class="fu">buildSNNGraph</span>(spe, <span class="at">use.dimred=</span><span class="st">"PCA"</span>, <span class="at">type=</span><span class="st">"jaccard"</span>, <span class="at">k=</span><span class="dv">20</span>)</span>
-<span id="cb20-23"><a href=""></a><span class="co"># cluster using Leiden community detection algorithm</span></span>
-<span id="cb20-24"><a href=""></a>k <span class="ot">&lt;-</span> <span class="fu">cluster_leiden</span>(g, <span class="at">objective_function=</span><span class="st">"modularity"</span>, <span class="at">resolution=</span><span class="fl">2.5</span>)</span>
-<span id="cb20-25"><a href=""></a><span class="fu">table</span>(spe<span class="sc">$</span>Banksy <span class="ot">&lt;-</span> <span class="fu">factor</span>(k<span class="sc">$</span>membership))</span>
-<span id="cb20-26"><a href=""></a>spe<span class="sc">$</span>in_tissue <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb20-27"><a href=""></a></span>
-<span id="cb20-28"><a href=""></a><span class="fu">plotCoords</span>(spe, <span class="at">annotate =</span> <span class="st">"Banksy"</span>, <span class="at">point_size =</span> <span class="dv">2</span>, <span class="at">point_shape =</span> <span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">library</span>(Banksy)</span>
+<span id="cb20-2"><a href=""></a><span class="fu">library</span>(scuttle)</span>
+<span id="cb20-3"><a href=""></a><span class="fu">library</span>(scran)</span>
+<span id="cb20-4"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
+<span id="cb20-5"><a href=""></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
+<span id="cb20-6"><a href=""></a>hvg <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">n=</span><span class="fl">3e3</span>)</span>
+<span id="cb20-7"><a href=""></a><span class="co"># set seed for random number generation</span></span>
+<span id="cb20-8"><a href=""></a><span class="co"># in order to make results reproducible</span></span>
+<span id="cb20-9"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">112358</span>)</span>
+<span id="cb20-10"><a href=""></a><span class="co"># 'Banksy' parameter settings</span></span>
+<span id="cb20-11"><a href=""></a>k <span class="ot">&lt;-</span> <span class="dv">8</span>   <span class="co"># consider first order neighbors</span></span>
+<span id="cb20-12"><a href=""></a>l <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="co"># use little spatial information</span></span>
+<span id="cb20-13"><a href=""></a>a <span class="ot">&lt;-</span> <span class="st">"logcounts"</span></span>
+<span id="cb20-14"><a href=""></a>xy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"array_row"</span>, <span class="st">"array_col"</span>)</span>
+<span id="cb20-15"><a href=""></a><span class="co"># restrict to selected features</span></span>
+<span id="cb20-16"><a href=""></a>tmp <span class="ot">&lt;-</span> spe[hvg, ]</span>
+<span id="cb20-17"><a href=""></a></span>
+<span id="cb20-18"><a href=""></a><span class="co"># compute spatially aware 'Banksy' PCs</span></span>
+<span id="cb20-19"><a href=""></a>tmp <span class="ot">&lt;-</span> <span class="fu">computeBanksy</span>(tmp, <span class="at">assay_name=</span>a, <span class="at">coord_names=</span>xy, <span class="at">k_geom=</span>k)</span>
+<span id="cb20-20"><a href=""></a>tmp <span class="ot">&lt;-</span> <span class="fu">runBanksyPCA</span>(tmp, <span class="at">lambda=</span>l, <span class="at">npcs=</span><span class="dv">20</span>)</span>
+<span id="cb20-21"><a href=""></a><span class="fu">reducedDim</span>(spe, <span class="st">"PCA"</span>) <span class="ot">&lt;-</span> <span class="fu">reducedDim</span>(tmp)</span>
+<span id="cb20-22"><a href=""></a><span class="do">## run UMAP (for visualization purposes only)</span></span>
+<span id="cb20-23"><a href=""></a><span class="co"># .vhd16 &lt;- runUMAP(.vhd16, dimred="PCA")</span></span>
+<span id="cb20-24"><a href=""></a><span class="co"># build cellular shared nearest-neighbor (SNN) graph</span></span>
+<span id="cb20-25"><a href=""></a>g <span class="ot">&lt;-</span> <span class="fu">buildSNNGraph</span>(spe, <span class="at">use.dimred=</span><span class="st">"PCA"</span>, <span class="at">type=</span><span class="st">"jaccard"</span>, <span class="at">k=</span><span class="dv">20</span>)</span>
+<span id="cb20-26"><a href=""></a><span class="co"># cluster using Leiden community detection algorithm</span></span>
+<span id="cb20-27"><a href=""></a>k <span class="ot">&lt;-</span> <span class="fu">cluster_leiden</span>(g, <span class="at">objective_function=</span><span class="st">"modularity"</span>, <span class="at">resolution=</span><span class="fl">2.5</span>)</span>
+<span id="cb20-28"><a href=""></a><span class="fu">table</span>(spe<span class="sc">$</span>Banksy <span class="ot">&lt;-</span> <span class="fu">factor</span>(k<span class="sc">$</span>membership))</span>
+<span id="cb20-29"><a href=""></a>spe<span class="sc">$</span>in_tissue <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb20-30"><a href=""></a></span>
+<span id="cb20-31"><a href=""></a><span class="fu">plotCoords</span>(spe, <span class="at">annotate =</span> <span class="st">"Banksy"</span>, <span class="at">point_size =</span> <span class="dv">2</span>, <span class="at">point_shape =</span> <span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
