@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="ST_clase12_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ST_clase12_files/libs/quarto-html/tabby.min.js"></script>
+<script src="ST_clase12_files/libs/quarto-html/popper.min.js"></script>
+<script src="ST_clase12_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="ST_clase12_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ST_clase12_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="ST_clase12_files/libs/quarto-html/quarto-syntax-highlighting-ff73747157bea4a22cb1ab1a769f836e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
+
+  <meta name="author" content="Taller de Transcriptómica Espacial">
+  <meta name="dcterms.date" content="2026-05-20">
+  <title>Clase 4: Deconvolución e Integración con scRNA-seq</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="ST_clase12_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="ST_clase12_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2; background-color: #2e3440; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #75715e; } /* Annotation */
+    code span.at { color: #f92672; } /* Attribute */
+    code span.bn { color: #ae81ff; } /* BaseN */
+    code span.bu { color: #66d9ef; } /* BuiltIn */
+    code span.cf { color: #f92672; } /* ControlFlow */
+    code span.ch { color: #e6db74; } /* Char */
+    code span.cn { color: #ae81ff; } /* Constant */
+    code span.co { color: #75715e; } /* Comment */
+    code span.cv { color: #75715e; } /* CommentVar */
+    code span.do { color: #75715e; } /* Documentation */
+    code span.dt { color: #66d9ef; font-style: italic; } /* DataType */
+    code span.dv { color: #ae81ff; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #a6e22e; font-weight: bold; } /* Extension */
+    code span.fl { color: #ae81ff; } /* Float */
+    code span.fu { color: #a6e22e; } /* Function */
+    code span.im { color: #f92672; } /* Import */
+    code span.in { color: #f1fa8c; } /* Information */
+    code span.kw { color: #f92672; } /* Keyword */
+    code span.op { color: #f8f8f2; } /* Operator */
+    code span.ot { color: #a6e22e; } /* Other */
+    code span.pp { color: #f92672; } /* Preprocessor */
+    code span.re { color: #75715e; } /* RegionMarker */
+    code span.sc { color: #ae81ff; } /* SpecialChar */
+    code span.ss { color: #e6db74; } /* SpecialString */
+    code span.st { color: #e6db74; } /* String */
+    code span.va { color: #f8f8f2; } /* Variable */
+    code span.vs { color: #e6db74; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="ST_clase12_files/libs/revealjs/dist/theme/quarto-28aa7febc056b98b915b1fadce3127aa.css">
+  <link href="ST_clase12_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="ST_clase12_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="ST_clase12_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="ST_clase12_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="ST_clase12_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="ST_clase12_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <meta name="color-scheme" content="light">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Clase 4: Deconvolución e Integración con scRNA-seq</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Taller de Transcriptómica Espacial 
+</div>
+</div>
+</div>
+
+  <p class="date">2026-05-20</p>
+</section>
+<section id="resumen-dónde-estamos" class="slide level2">
+<h2>Resumen: ¿Dónde estamos?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Clases anteriores:</strong></p>
+<ul>
+<li>Clase 1: Teoría de tecnologías espaciales</li>
+<li>Clase 2: FASTQs → Space Ranger → Matriz de conteo → QC, clustering, genes espacialmente variables (Seurat + Banksy)</li>
+<li>Clase 3: Tecnologías espaciales basadas en microscopía (MERFISH)</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Hoy:</strong></p>
+<ul>
+<li>Procesamiento del atlas scRNA-seq (Chromium Flex)</li>
+<li>Anotación automatizada con Azimuth</li>
+<li>Deconvolución de Visium HD con spacexr/RCTD</li>
+<li>Integración con datos Xenium ??</li>
+</ul>
+</div></div>
+<div class="fragment">
+<p><strong>Pregunta central:</strong>Clusters espaciales en Visium HD (Banksy) vs ¿qué <em>tipos celulares</em> son?</p>
+<p>Necesitamos una referencia anotada.</p>
+</div>
+</section>
+<section id="el-diseño-experimental-del-estudio" class="slide level2">
+<h2>El diseño experimental del estudio</h2>
+<p>Del mismo bloque FFPE se generaron <strong>secciones seriadas</strong> para múltiples plataformas:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Plataforma</th>
+<th>Resolución</th>
+<th>Cobertura</th>
+<th>Pacientes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Visium HD</strong></td>
+<td>2–16 µm bins</td>
+<td>Transcriptoma completo</td>
+<td>P1, P2, P5 CRC</td>
+</tr>
+<tr class="even">
+<td><strong>Chromium Flex</strong></td>
+<td>Unicelular</td>
+<td>Transcriptoma completo</td>
+<td>5 CRC + 3 NAT</td>
+</tr>
+<tr class="odd">
+<td><strong>Xenium</strong></td>
+<td>Subcelular</td>
+<td>~500 genes (panel)</td>
+<td>P1, P2, P4, P5 CRC</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p>Al usar <strong>secciones seriadas</strong>, los tipos celulares en el scRNA-seq representan fielmente lo que está en el tejido espacial.</p>
+</div>
+</section>
+<section id="chromium-flex-qué-es" class="slide level2">
+<h2>Chromium Flex: ¿Qué es?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Diferencias con Chromium 3’/5’:</strong></p>
+<ul>
+<li>Basado en <strong>sondas</strong> (como Visium HD), no poly-dT</li>
+<li>Compatible con <strong>FFPE</strong>: mismo tejido que el espacial</li>
+<li>Permite <strong>multiplexeo</strong>: múltiples muestras en un mismo GEM well</li>
+<li>Probe barcodes (BC001–BC004) identifican cada muestra</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Estructura del multiplexeo:</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Pool</th>
+<th>Muestras</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pool 1 (L1–L4)</td>
+<td>P2CRC, P4CRC</td>
+</tr>
+<tr class="even">
+<td>Pool 2 (L1–L4)</td>
+<td>P1CRC, P3CRC, P5CRC, P2NAT</td>
+</tr>
+<tr class="odd">
+<td>Pool 3 (L1–L4)</td>
+<td>P5NAT, P3NAT</td>
+</tr>
+</tbody>
+</table>
+<p>8 muestras × 4 librerías técnicas = 32 combinaciones</p>
+</div></div>
+<div class="fragment">
+<p>Cell Ranger <code>multi</code> demultiplexa por probe barcode, luego <code>aggr</code> combina todo en una sola matriz con sufijos -1 a -32.</p>
+<p>Aunque el flex parece más de todas sus tecnologías 💪</p>
+</div>
+</section>
+<section id="datos-descargados-de-10x-genomics" class="slide level2">
+<h2>Datos descargados de 10x Genomics</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># Archivos descargados de cf.10xgenomics.com:</span></span>
+<span id="cb1-2"><a href=""></a><span class="co"># 1. HumanColonCancer_Flex_Multiplex_count_filtered_feature_bc_matrix.tar.gz</span></span>
+<span id="cb1-3"><a href=""></a><span class="co"># 2. HumanColonCancer_Flex_Multiplex_count_analysis.tar.gz</span></span>
+<span id="cb1-4"><a href=""></a></span>
+<span id="cb1-5"><a href=""></a><span class="co"># Después de descomprimir:</span></span>
+<span id="cb1-6"><a href=""></a><span class="co"># filtered_feature_bc_matrix/   ← matriz de conteo (MTX)</span></span>
+<span id="cb1-7"><a href=""></a><span class="co">#   ├── barcodes.tsv.gz          (278,610 barcodes con sufijo -1 a -32)</span></span>
+<span id="cb1-8"><a href=""></a><span class="co">#   ├── features.tsv.gz</span></span>
+<span id="cb1-9"><a href=""></a><span class="co">#   └── matrix.mtx.gz</span></span>
+<span id="cb1-10"><a href=""></a><span class="co"># analysis/</span></span>
+<span id="cb1-11"><a href=""></a><span class="co">#   └── umap/gene_expression_2_components/projection.csv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>¿Por qué MTX y no H5?</strong></p>
+</div>
+<div class="callout-content">
+<p>Porque lo hice en Ken y requiere <code>hdf5r</code>, que a su vez necesita la librería del sistema HDF5 correctamente configurada. En nuestro cluster, la instalación de HDF5 tenía un path roto. El formato MTX (Matrix Market) se lee con <code>Read10X()</code> sin dependencias adicionales.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="cargando-los-datos-y-asignando-pacientes" class="slide level2">
+<h2>Cargando los datos y asignando pacientes</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb2-2"><a href=""></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-3"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-4"><a href=""></a></span>
+<span id="cb2-5"><a href=""></a>flex_counts <span class="ot">&lt;-</span> <span class="fu">Read10X</span>(<span class="st">"flex_scrna/filtered_feature_bc_matrix/"</span>)</span>
+<span id="cb2-6"><a href=""></a><span class="fu">cat</span>(<span class="st">"Matrix dim:"</span>, <span class="fu">dim</span>(flex_counts), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-7"><a href=""></a><span class="co"># 36170 genes × 278610 cells</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># El sufijo del barcode (-1 a -32) indica la muestra</span></span>
+<span id="cb3-2"><a href=""></a><span class="co"># Orden determinado por cellranger aggr</span></span>
+<span id="cb3-3"><a href=""></a>sample_map <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-4"><a href=""></a>  <span class="at">suffix =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">32</span>,</span>
+<span id="cb3-5"><a href=""></a>  <span class="at">patient =</span> <span class="fu">c</span>(</span>
+<span id="cb3-6"><a href=""></a>    <span class="st">"P2CRC"</span>,<span class="st">"P4CRC"</span>,<span class="st">"P2CRC"</span>,<span class="st">"P4CRC"</span>,<span class="st">"P2CRC"</span>,<span class="st">"P4CRC"</span>,<span class="st">"P2CRC"</span>,<span class="st">"P4CRC"</span>,</span>
+<span id="cb3-7"><a href=""></a>    <span class="st">"P1CRC"</span>,<span class="st">"P3CRC"</span>,<span class="st">"P5CRC"</span>,<span class="st">"P2NAT"</span>,<span class="st">"P1CRC"</span>,<span class="st">"P3CRC"</span>,<span class="st">"P5CRC"</span>,<span class="st">"P2NAT"</span>,</span>
+<span id="cb3-8"><a href=""></a>    <span class="st">"P1CRC"</span>,<span class="st">"P3CRC"</span>,<span class="st">"P5CRC"</span>,<span class="st">"P2NAT"</span>,<span class="st">"P1CRC"</span>,<span class="st">"P3CRC"</span>,<span class="st">"P5CRC"</span>,<span class="st">"P2NAT"</span>,</span>
+<span id="cb3-9"><a href=""></a>    <span class="st">"P5NAT"</span>,<span class="st">"P3NAT"</span>,<span class="st">"P5NAT"</span>,<span class="st">"P3NAT"</span>,<span class="st">"P5NAT"</span>,<span class="st">"P3NAT"</span>,<span class="st">"P5NAT"</span>,<span class="st">"P3NAT"</span>),</span>
+<span id="cb3-10"><a href=""></a>  <span class="at">tissue =</span> <span class="fu">c</span>(</span>
+<span id="cb3-11"><a href=""></a>    <span class="st">"CRC"</span>,<span class="st">"CRC"</span>,<span class="st">"CRC"</span>,<span class="st">"CRC"</span>,<span class="st">"CRC"</span>,<span class="st">"CRC"</span>,<span class="st">"CRC"</span>,<span class="st">"CRC"</span>,</span>
+<span id="cb3-12"><a href=""></a>    <span class="st">"CRC"</span>,<span class="st">"CRC"</span>,<span class="st">"CRC"</span>,<span class="st">"NAT"</span>,<span class="st">"CRC"</span>,<span class="st">"CRC"</span>,<span class="st">"CRC"</span>,<span class="st">"NAT"</span>,</span>
+<span id="cb3-13"><a href=""></a>    <span class="st">"CRC"</span>,<span class="st">"CRC"</span>,<span class="st">"CRC"</span>,<span class="st">"NAT"</span>,<span class="st">"CRC"</span>,<span class="st">"CRC"</span>,<span class="st">"CRC"</span>,<span class="st">"NAT"</span>,</span>
+<span id="cb3-14"><a href=""></a>    <span class="st">"NAT"</span>,<span class="st">"NAT"</span>,<span class="st">"NAT"</span>,<span class="st">"NAT"</span>,<span class="st">"NAT"</span>,<span class="st">"NAT"</span>,<span class="st">"NAT"</span>,<span class="st">"NAT"</span>)</span>
+<span id="cb3-15"><a href=""></a>)</span>
+<span id="cb3-16"><a href=""></a></span>
+<span id="cb3-17"><a href=""></a>barcode_suffix <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">".*-(</span><span class="sc">\\</span><span class="st">d+)$"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>, <span class="fu">colnames</span>(flex_counts)))</span>
+<span id="cb3-18"><a href=""></a>flex <span class="ot">&lt;-</span> <span class="fu">CreateSeuratObject</span>(<span class="at">counts =</span> flex_counts, <span class="at">project =</span> <span class="st">"ColonCancer_Flex"</span>, <span class="at">min.cells =</span> <span class="dv">3</span>)</span>
+<span id="cb3-19"><a href=""></a>flex<span class="sc">$</span>patient <span class="ot">&lt;-</span> sample_map<span class="sc">$</span>patient[barcode_suffix]</span>
+<span id="cb3-20"><a href=""></a>flex<span class="sc">$</span>tissue  <span class="ot">&lt;-</span> sample_map<span class="sc">$</span>tissue[barcode_suffix]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="umap-de-cell-ranger-pacientes-bien-separados" class="slide level2">
+<h2>UMAP de Cell Ranger: ¿Pacientes bien separados?</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="co"># Cell Ranger calcula un UMAP durante el pipeline aggr</span></span>
+<span id="cb4-2"><a href=""></a>umap_cr <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"flex_scrna/analysis/umap/gene_expression_2_components/projection.csv"</span>)</span>
+<span id="cb4-3"><a href=""></a><span class="fu">rownames</span>(umap_cr) <span class="ot">&lt;-</span> umap_cr<span class="sc">$</span>Barcode</span>
+<span id="cb4-4"><a href=""></a>umap_cr <span class="ot">&lt;-</span> umap_cr[<span class="fu">colnames</span>(flex), ]</span>
+<span id="cb4-5"><a href=""></a></span>
+<span id="cb4-6"><a href=""></a>flex[[<span class="st">"umap"</span>]] <span class="ot">&lt;-</span> <span class="fu">CreateDimReducObject</span>(</span>
+<span id="cb4-7"><a href=""></a>  <span class="at">embeddings =</span> <span class="fu">as.matrix</span>(umap_cr[, <span class="fu">c</span>(<span class="st">"UMAP.1"</span>, <span class="st">"UMAP.2"</span>)]),</span>
+<span id="cb4-8"><a href=""></a>  <span class="at">key =</span> <span class="st">"UMAP_"</span>, <span class="at">assay =</span> <span class="st">"RNA"</span></span>
+<span id="cb4-9"><a href=""></a>)</span>
+<span id="cb4-10"><a href=""></a></span>
+<span id="cb4-11"><a href=""></a><span class="fu">DimPlot</span>(flex, <span class="at">group.by =</span> <span class="st">"patient"</span>, <span class="at">reduction =</span> <span class="st">"umap"</span>, <span class="at">pt.size =</span> <span class="fl">0.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+
+<img data-src="images/umap_cellranger_by_patient.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"></section>
+<section id="control-de-calidad-y-filtrado" class="slide level2">
+<h2>Control de calidad y filtrado</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>flex[[<span class="st">"MT.percent"</span>]] <span class="ot">&lt;-</span> <span class="fu">PercentageFeatureSet</span>(flex, <span class="at">pattern =</span> <span class="st">"^MT-"</span>)</span>
+<span id="cb5-2"><a href=""></a></span>
+<span id="cb5-3"><a href=""></a><span class="co"># Umbrales: percentiles 2.5% y 97.5% + MT &lt; 25%</span></span>
+<span id="cb5-4"><a href=""></a>UMI_TH  <span class="ot">&lt;-</span> <span class="fu">quantile</span>(flex<span class="sc">$</span>nCount_RNA,   <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb5-5"><a href=""></a>Gene_TH <span class="ot">&lt;-</span> <span class="fu">quantile</span>(flex<span class="sc">$</span>nFeature_RNA, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb5-6"><a href=""></a></span>
+<span id="cb5-7"><a href=""></a>flex <span class="ot">&lt;-</span> <span class="fu">subset</span>(flex,</span>
+<span id="cb5-8"><a href=""></a>  MT.percent   <span class="sc">&lt;</span> <span class="dv">25</span> <span class="sc">&amp;</span></span>
+<span id="cb5-9"><a href=""></a>  nCount_RNA   <span class="sc">&gt;</span> UMI_TH[<span class="dv">1</span>]  <span class="sc">&amp;</span> nCount_RNA   <span class="sc">&lt;</span> UMI_TH[<span class="dv">2</span>] <span class="sc">&amp;</span></span>
+<span id="cb5-10"><a href=""></a>  nFeature_RNA <span class="sc">&gt;</span> Gene_TH[<span class="dv">1</span>] <span class="sc">&amp;</span> nFeature_RNA <span class="sc">&lt;</span> Gene_TH[<span class="dv">2</span>]</span>
+<span id="cb5-11"><a href=""></a>)</span>
+<span id="cb5-12"><a href=""></a><span class="fu">cat</span>(<span class="st">"Cells after QC:"</span>, <span class="fu">ncol</span>(flex), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="fragment">
+<p>La estrategia de filtrado es idéntica a la del artículo original: remover el 2.5% extremo en UMIs y genes, más un umbral de 25% para genes mitocondriales.</p>
+</div>
+</section>
+<section id="procesamiento-estándar-con-seurat" class="slide level2">
+<h2>Procesamiento estándar con Seurat</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>flex <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(flex)</span>
+<span id="cb6-2"><a href=""></a>flex <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(flex)</span>
+<span id="cb6-3"><a href=""></a>flex <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(flex)</span>
+<span id="cb6-4"><a href=""></a>flex <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(flex)</span>
+<span id="cb6-5"><a href=""></a>flex <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(flex, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>)</span>
+<span id="cb6-6"><a href=""></a>flex <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(flex, <span class="at">resolution =</span> <span class="fl">0.6</span>)</span>
+<span id="cb6-7"><a href=""></a>flex <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(flex, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, <span class="at">reduction.name =</span> <span class="st">"umap.seurat"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/umap_seurat_clusters.png" style="width:95.0%"></p>
+<figcaption>Clusters de Seurat</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/umap_seurat_by_patient.png" style="width:95.0%"></p>
+<figcaption>Coloreado por paciente</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="anotación-automatizada-con-azimuth" class="slide level2">
+<h2>Anotación automatizada con Azimuth</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p><a href="https://azimuth.hubmapconsortium.org/">Azimuth</a> es un servicio de anotación automatizada basado en transferencia de etiquetas desde un atlas de referencia pre-anotado.</p>
+<p><strong>¿Cómo funciona?</strong></p>
+<ol type="1">
+<li>Tu objeto Seurat se envía al servicio en la nube</li>
+<li>Se proyecta sobre una referencia (Human Colon)</li>
+<li>Regresa con etiquetas de tipo celular + scores de confianza</li>
+</ol>
+<p><strong>Niveles de anotación:</strong></p>
+<ul>
+<li><code>azimuth_broad</code> → categorías amplias (Immune, Epithelial, Stromal)</li>
+<li><code>azimuth_medium</code> → subdivisiones (T cell, B cell, Macrophage)</li>
+<li><code>azimuth_fine</code> → tipos específicos (CD8+ TRM, Goblet, CAF)</li>
+<li><code>azimuth_label</code> → más detallado</li>
+</ul>
+</div><div class="column" style="width:45%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">library</span>(AzimuthAPI)</span>
+<span id="cb7-2"><a href=""></a></span>
+<span id="cb7-3"><a href=""></a>flex <span class="ot">&lt;-</span> <span class="fu">CloudAzimuth</span>(</span>
+<span id="cb7-4"><a href=""></a>  flex,</span>
+<span id="cb7-5"><a href=""></a>  <span class="at">assay =</span> <span class="st">"RNA"</span></span>
+<span id="cb7-6"><a href=""></a>)</span>
+<span id="cb7-7"><a href=""></a></span>
+<span id="cb7-8"><a href=""></a><span class="co"># Columnas nuevas:</span></span>
+<span id="cb7-9"><a href=""></a><span class="co"># azimuth_broad</span></span>
+<span id="cb7-10"><a href=""></a><span class="co"># azimuth_medium</span></span>
+<span id="cb7-11"><a href=""></a><span class="co"># azimuth_fine</span></span>
+<span id="cb7-12"><a href=""></a><span class="co"># azimuth_label</span></span>
+<span id="cb7-13"><a href=""></a><span class="co"># final_level_confidence</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+</section>
+<section id="resultado-de-azimuth-anotación-fina" class="slide level2">
+<h2>Resultado de Azimuth: anotación fina</h2>
+
+<img data-src="images/umap_seurat_azimuth_fine.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"></section>
+<section id="resultado-de-azimuth-anotación-amplia" class="slide level2">
+<h2>Resultado de Azimuth: anotación amplia</h2>
+
+<img data-src="images/umap_seurat_azimuth_broad.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"></section>
+<section id="validación-con-marcadores-canónicos" class="slide level2">
+<h2>Validación con marcadores canónicos</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>lineage_markers <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb8-2"><a href=""></a>  <span class="st">"EPCAM"</span>,<span class="st">"KRT8"</span>,<span class="st">"KRT20"</span>,<span class="st">"PIGR"</span>,           <span class="co"># epitelial</span></span>
+<span id="cb8-3"><a href=""></a>  <span class="st">"CEACAM5"</span>,<span class="st">"CEACAM6"</span>,<span class="st">"MUC2"</span>,              <span class="co"># tumor / goblet</span></span>
+<span id="cb8-4"><a href=""></a>  <span class="st">"CD3D"</span>,<span class="st">"CD3E"</span>,<span class="st">"CD8A"</span>,<span class="st">"CD4"</span>,<span class="st">"FOXP3"</span>,      <span class="co"># T cells</span></span>
+<span id="cb8-5"><a href=""></a>  <span class="st">"NKG7"</span>,<span class="st">"GNLY"</span>,                           <span class="co"># NK</span></span>
+<span id="cb8-6"><a href=""></a>  <span class="st">"MS4A1"</span>,<span class="st">"CD79A"</span>,<span class="st">"JCHAIN"</span>,<span class="st">"MZB1"</span>,         <span class="co"># B / plasma</span></span>
+<span id="cb8-7"><a href=""></a>  <span class="st">"CD68"</span>,<span class="st">"CD163"</span>,<span class="st">"CSF1R"</span>,<span class="st">"LYZ"</span>,<span class="st">"S100A8"</span>,   <span class="co"># mieloides</span></span>
+<span id="cb8-8"><a href=""></a>  <span class="st">"COL1A1"</span>,<span class="st">"DCN"</span>,<span class="st">"LUM"</span>,                    <span class="co"># fibroblastos</span></span>
+<span id="cb8-9"><a href=""></a>  <span class="st">"PECAM1"</span>,<span class="st">"VWF"</span>,<span class="st">"CDH5"</span>,                   <span class="co"># endotelial</span></span>
+<span id="cb8-10"><a href=""></a>  <span class="st">"ACTA2"</span>,<span class="st">"DES"</span>,<span class="st">"MYH11"</span>                    <span class="co"># músculo liso</span></span>
+<span id="cb8-11"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="dotplot-marcadores-vs.-tipos-celulares" class="slide level2">
+<h2>DotPlot: marcadores vs.&nbsp;tipos celulares</h2>
+
+<img data-src="images/dotplot_markers_by_azimuth_medium.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section id="featureplot-expresión-de-marcadores-en-umap" class="slide level2">
+<h2>FeaturePlot: expresión de marcadores en UMAP</h2>
+
+<img data-src="images/featureplot_lineage_markers.png" class="quarto-figure quarto-figure-center r-stretch" style="width:95.0%"></section>
+<section id="confianza-de-la-anotación" class="slide level2">
+<h2>Confianza de la anotación</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/umap_seurat_final_level_confidence.png" style="width:95.0%"></p>
+<figcaption>Score de confianza en UMAP</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<p>El <code>final_level_confidence</code> indica qué tan segura es la asignación:</p>
+<ul>
+<li><strong>&gt; 0.8</strong>: alta confianza</li>
+<li><strong>0.5–0.8</strong>: aceptable</li>
+<li><strong>&lt; 0.5</strong>: revisar manualmente</li>
+</ul>
+<p>Las células con baja confianza suelen estar en:</p>
+<ul>
+<li>Transiciones entre tipos</li>
+<li>Tipos no representados en la referencia</li>
+<li>Doublets / baja calidad</li>
+</ul>
+</div></div>
+</section>
+<section id="cluster-vs.-tipo-celular-predicho" class="slide level2">
+<h2>Cluster vs.&nbsp;tipo celular predicho</h2>
+
+<img data-src="images/heatmap_cluster_vs_azimuth_medium.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"><p>Cada fila es un cluster de Seurat, cada columna un tipo celular predicho por Azimuth. Si un cluster tiene una sola columna dominante, la anotación es consistente.</p>
+</section>
+<section id="el-objeto-anotado-flex_annotated.rds" class="slide level2">
+<h2>El objeto anotado: <code>flex_annotated.rds</code></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="co">#saveRDS(flex, "flex_scrna/flex_annotated.rds")</span></span>
+<span id="cb9-2"><a href=""></a></span>
+<span id="cb9-3"><a href=""></a><span class="co"># Para cargarlo en la clase:</span></span>
+<span id="cb9-4"><a href=""></a>flex <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"flex_scrna/flex_annotated.rds"</span>)</span>
+<span id="cb9-5"><a href=""></a></span>
+<span id="cb9-6"><a href=""></a><span class="co"># Contiene:</span></span>
+<span id="cb9-7"><a href=""></a><span class="co"># - Matriz de conteo normalizada (278K → ~250K tras QC)</span></span>
+<span id="cb9-8"><a href=""></a><span class="co"># - Metadatos: patient, tissue, library</span></span>
+<span id="cb9-9"><a href=""></a><span class="co"># - Anotaciones: azimuth_broad, azimuth_medium, azimuth_fine, azimuth_label</span></span>
+<span id="cb9-10"><a href=""></a><span class="co"># - UMAP de Cell Ranger + UMAP de Seurat</span></span>
+<span id="cb9-11"><a href=""></a><span class="co"># - Clusters de Seurat (resolution 0.6)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Punto de partida</strong></p>
+</div>
+<div class="callout-content">
+<p>Les entrego <code>flex_annotated.rds</code> con todo lo anterior ya procesado. A partir de aquí, lo usaremos como <strong>referencia</strong> para deconvolucionar los datos de Visium HD.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="qué-es-la-deconvolución-espacial" class="slide level2">
+<h2>¿Qué es la deconvolución espacial?</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p>Cada bin de Visium HD (8 µm) puede contener <strong>1–2 células</strong>. El perfil de expresión del bin es una <strong>mezcla</strong> de los tipos celulares presentes.</p>
+<p><strong>Deconvolución</strong> = estimar la composición de tipos celulares por bin, usando el atlas scRNA-seq como referencia.</p>
+<p><strong>Herramienta: spacexr / RCTD</strong></p>
+<ul>
+<li>Robust Cell Type Decomposition</li>
+<li>Modelo probabilístico que estima proporciones</li>
+<li>Modo <code>doublet</code>: asume máximo 2 tipos por bin (ideal para 8 µm)</li>
+</ul>
+</div><div class="column" style="width:45%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/rctd_deconvolution_flow.svg" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="instalando-spacexr-con-aceleración-para-visium-hd" class="slide level2 smaller">
+<h2>Instalando spacexr con aceleración para Visium HD</h2>
+<p>El artículo incluye un <a href="https://github.com/dmcable/spacexr/pull/206">PR con mejoras de velocidad</a> específicas para datos de alta definición (modo doublet):</p>
+<ul>
+<li>Paralelización con <code>foreach</code> + <code>doParallel</code> en lugar de <code>makeClusters</code></li>
+<li>Vectorización de <code>gather_results</code> (cuello de botella original)</li>
+<li>Barra de progreso para monitorear el avance</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="co"># Instalar desde el PR directamente</span></span>
+<span id="cb10-2"><a href=""></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"dmcable/spacexr#206"</span>)</span>
+<span id="cb10-3"><a href=""></a></span>
+<span id="cb10-4"><a href=""></a><span class="co"># O desde el fork del autor (Juan Pablo Romero, 10x Genomics)</span></span>
+<span id="cb10-5"><a href=""></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"jpromeror/spacexr@speed_up"</span>)</span>
+<span id="cb10-6"><a href=""></a></span>
+<span id="cb10-7"><a href=""></a><span class="co"># Dependencias necesarias</span></span>
+<span id="cb10-8"><a href=""></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"doParallel"</span>, <span class="st">"foreach"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<p>Esta rama solo acelera el modo <code>doublet</code>. Los modos <code>full</code> y <code>multi</code> no están optimizados todavía. Sinceramente no vi un gran cambio, y en la laptop no corrió por un bug.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="preparando-la-referencia-para-rctd" class="slide level2">
+<h2>Preparando la referencia para RCTD</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">library</span>(spacexr)</span>
+<span id="cb11-2"><a href=""></a></span>
+<span id="cb11-3"><a href=""></a><span class="co"># Cargar el atlas anotado</span></span>
+<span id="cb11-4"><a href=""></a>flex <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"flex_annotated.rds"</span>)</span>
+<span id="cb11-5"><a href=""></a></span>
+<span id="cb11-6"><a href=""></a><span class="fu">VlnPlot</span>(flex, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"CEACAM5"</span>, <span class="st">"CEACAM6"</span>), </span>
+<span id="cb11-7"><a href=""></a>        <span class="at">group.by =</span> <span class="st">"azimuth_fine"</span>, <span class="at">pt.size =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href=""></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb11-9"><a href=""></a></span>
+<span id="cb11-10"><a href=""></a><span class="co"># Relabel: epithelial cells with high CEACAM5/6 that are patient-specific → Tumor</span></span>
+<span id="cb11-11"><a href=""></a>flex<span class="sc">$</span>cell_type_final <span class="ot">&lt;-</span> <span class="fu">as.character</span>(flex<span class="sc">$</span>azimuth_medium)</span>
+<span id="cb11-12"><a href=""></a></span>
+<span id="cb11-13"><a href=""></a><span class="co"># Identify which cells express tumor markers</span></span>
+<span id="cb11-14"><a href=""></a>tumor_cells <span class="ot">&lt;-</span> <span class="fu">colnames</span>(flex)[</span>
+<span id="cb11-15"><a href=""></a>  <span class="fu">FetchData</span>(flex, <span class="st">"CEACAM5"</span>)[,<span class="dv">1</span>] <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> </span>
+<span id="cb11-16"><a href=""></a>  flex<span class="sc">$</span>azimuth_medium <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Epithelial cell of intestine"</span>, <span class="st">"Goblet cell"</span>)</span>
+<span id="cb11-17"><a href=""></a>]</span>
+<span id="cb11-18"><a href=""></a>flex<span class="sc">$</span>cell_type_final[<span class="fu">colnames</span>(flex) <span class="sc">%in%</span> tumor_cells] <span class="ot">&lt;-</span> <span class="st">"Tumor"</span></span>
+<span id="cb11-19"><a href=""></a></span>
+<span id="cb11-20"><a href=""></a><span class="fu">table</span>(flex<span class="sc">$</span>cell_type_final) <span class="sc">|&gt;</span> <span class="fu">sort</span>(<span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-21"><a href=""></a></span>
+<span id="cb11-22"><a href=""></a><span class="co"># Filtrar solo el paciente que corresponde al Visium HD</span></span>
+<span id="cb11-23"><a href=""></a><span class="co"># (ej. P1CRC si tu Visium HD es P1CRC)</span></span>
+<span id="cb11-24"><a href=""></a>flex_patient <span class="ot">&lt;-</span> <span class="fu">subset</span>(flex, patient <span class="sc">==</span> <span class="st">"P1CRC"</span>)</span>
+<span id="cb11-25"><a href=""></a></span>
+<span id="cb11-26"><a href=""></a><span class="co"># Remove cells with "False" or NA annotations</span></span>
+<span id="cb11-27"><a href=""></a>valid_cells <span class="ot">&lt;-</span> <span class="fu">colnames</span>(flex_patient)[</span>
+<span id="cb11-28"><a href=""></a>  <span class="sc">!</span><span class="fu">is.na</span>(flex_patient<span class="sc">$</span>cell_type_final) <span class="sc">&amp;</span> </span>
+<span id="cb11-29"><a href=""></a>  flex_patient<span class="sc">$</span>cell_type_final <span class="sc">!=</span> <span class="st">"False"</span></span>
+<span id="cb11-30"><a href=""></a>]</span>
+<span id="cb11-31"><a href=""></a>flex_patient <span class="ot">&lt;-</span> <span class="fu">subset</span>(flex_patient, <span class="at">cells =</span> valid_cells)</span>
+<span id="cb11-32"><a href=""></a></span>
+<span id="cb11-33"><a href=""></a><span class="co"># Extraer counts y etiquetas</span></span>
+<span id="cb11-34"><a href=""></a>counts_sc <span class="ot">&lt;-</span> <span class="fu">GetAssayData</span>(flex_patient, <span class="at">layer =</span> <span class="st">"counts"</span>)</span>
+<span id="cb11-35"><a href=""></a>cell_types <span class="ot">&lt;-</span> flex_patient<span class="sc">$</span>cell_type_final</span>
+<span id="cb11-36"><a href=""></a></span>
+<span id="cb11-37"><a href=""></a>cell_types <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">gsub</span>(<span class="st">"/"</span>, <span class="st">"_"</span>, flex_patient<span class="sc">$</span>cell_type_final))</span>
+<span id="cb11-38"><a href=""></a><span class="fu">names</span>(cell_types) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(flex_patient)</span>
+<span id="cb11-39"><a href=""></a>cell_types <span class="ot">&lt;-</span> <span class="fu">droplevels</span>(cell_types)</span>
+<span id="cb11-40"><a href=""></a></span>
+<span id="cb11-41"><a href=""></a></span>
+<span id="cb11-42"><a href=""></a>ct_counts <span class="ot">&lt;-</span> <span class="fu">table</span>(cell_types)</span>
+<span id="cb11-43"><a href=""></a>keep_types <span class="ot">&lt;-</span> <span class="fu">names</span>(ct_counts[ct_counts <span class="sc">&gt;=</span> <span class="dv">25</span>])</span>
+<span id="cb11-44"><a href=""></a>keep_cells <span class="ot">&lt;-</span> <span class="fu">names</span>(cell_types)[cell_types <span class="sc">%in%</span> keep_types]</span>
+<span id="cb11-45"><a href=""></a></span>
+<span id="cb11-46"><a href=""></a>counts_sc <span class="ot">&lt;-</span> counts_sc[, keep_cells]</span>
+<span id="cb11-47"><a href=""></a>cell_types <span class="ot">&lt;-</span> <span class="fu">droplevels</span>(cell_types[keep_cells])</span>
+<span id="cb11-48"><a href=""></a></span>
+<span id="cb11-49"><a href=""></a><span class="fu">cat</span>(<span class="st">"Removed"</span>, <span class="fu">length</span>(ct_counts) <span class="sc">-</span> <span class="fu">length</span>(keep_types), <span class="st">"rare cell types</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb11-50"><a href=""></a><span class="fu">cat</span>(<span class="st">"Remaining:"</span>, <span class="fu">length</span>(keep_types), <span class="st">"cell types,"</span>, <span class="fu">length</span>(cell_types), <span class="st">"cells</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb11-51"><a href=""></a></span>
+<span id="cb11-52"><a href=""></a></span>
+<span id="cb11-53"><a href=""></a><span class="co"># Crear objeto Reference de spacexr</span></span>
+<span id="cb11-54"><a href=""></a>reference <span class="ot">&lt;-</span> <span class="fu">Reference</span>(</span>
+<span id="cb11-55"><a href=""></a>  <span class="at">counts =</span> counts_sc,</span>
+<span id="cb11-56"><a href=""></a>  <span class="at">cell_types =</span> <span class="fu">as.factor</span>(cell_types)</span>
+<span id="cb11-57"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="cargando-y-preparando-los-datos-espaciales-para-rctd" class="slide level2">
+<h2>Cargando y preparando los datos espaciales para RCTD</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="co">#En ken, que no tiene hdf5r pero sí RAM</span></span>
+<span id="cb12-2"><a href=""></a>counts <span class="ot">&lt;-</span> <span class="fu">Read10X</span>(</span>
+<span id="cb12-3"><a href=""></a>  <span class="st">"/mnt/data/transcriptomica/jmiranda/sra_visium_hd/P1CRC_GSM8594567_results/outs/binned_outputs/square_016um/filtered_feature_bc_matrix/"</span></span>
+<span id="cb12-4"><a href=""></a>)</span>
+<span id="cb12-5"><a href=""></a></span>
+<span id="cb12-6"><a href=""></a>visium <span class="ot">&lt;-</span> <span class="fu">CreateSeuratObject</span>(<span class="at">counts =</span> counts, <span class="at">assay =</span> <span class="st">"Spatial"</span>)</span>
+<span id="cb12-7"><a href=""></a></span>
+<span id="cb12-8"><a href=""></a><span class="fu">library</span>(arrow)</span>
+<span id="cb12-9"><a href=""></a>positions <span class="ot">&lt;-</span> <span class="fu">read_parquet</span>(</span>
+<span id="cb12-10"><a href=""></a>  <span class="st">"/mnt/data/transcriptomica/jmiranda/sra_visium_hd/P1CRC_GSM8594567_results/outs/binned_outputs/square_016um/spatial/tissue_positions.parquet"</span></span>
+<span id="cb12-11"><a href=""></a>)</span>
+<span id="cb12-12"><a href=""></a></span>
+<span id="cb12-13"><a href=""></a><span class="co"># Match to barcodes in the object</span></span>
+<span id="cb12-14"><a href=""></a><span class="fu">rownames</span>(positions) <span class="ot">&lt;-</span> positions<span class="sc">$</span>barcode</span>
+<span id="cb12-15"><a href=""></a>positions <span class="ot">&lt;-</span> positions[<span class="fu">colnames</span>(visium), ]</span>
+<span id="cb12-16"><a href=""></a></span>
+<span id="cb12-17"><a href=""></a>visium<span class="sc">$</span>spatial_row <span class="ot">&lt;-</span> positions<span class="sc">$</span>pxl_row_in_fullres</span>
+<span id="cb12-18"><a href=""></a>visium<span class="sc">$</span>spatial_col <span class="ot">&lt;-</span> positions<span class="sc">$</span>pxl_col_in_fullres</span>
+<span id="cb12-19"><a href=""></a></span>
+<span id="cb12-20"><a href=""></a></span>
+<span id="cb12-21"><a href=""></a>coords <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb12-22"><a href=""></a>  <span class="at">x =</span> visium<span class="sc">$</span>spatial_col,</span>
+<span id="cb12-23"><a href=""></a>  <span class="at">y =</span> visium<span class="sc">$</span>spatial_row,</span>
+<span id="cb12-24"><a href=""></a>  <span class="at">row.names =</span> <span class="fu">colnames</span>(visium)</span>
+<span id="cb12-25"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="co"># Cargar el objeto Visium HD procesado</span></span>
+<span id="cb13-2"><a href=""></a></span>
+<span id="cb13-3"><a href=""></a>visium <span class="ot">&lt;-</span> <span class="fu">Load10X_Spatial</span>(</span>
+<span id="cb13-4"><a href=""></a>  <span class="at">data.dir =</span> <span class="st">"/mnt/data/transcriptomica/jmiranda/sra_visium_hd/P1CRC_GSM8594567_results/outs"</span>,</span>
+<span id="cb13-5"><a href=""></a>  <span class="co">#En laptop y con HDF5R</span></span>
+<span id="cb13-6"><a href=""></a>  <span class="at">bin.size =</span> <span class="dv">16</span></span>
+<span id="cb13-7"><a href=""></a>)</span>
+<span id="cb13-8"><a href=""></a></span>
+<span id="cb13-9"><a href=""></a></span>
+<span id="cb13-10"><a href=""></a><span class="co"># Extraer counts y coordenadas</span></span>
+<span id="cb13-11"><a href=""></a>coords <span class="ot">&lt;-</span> <span class="fu">GetTissueCoordinates</span>(visium)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="subsetting-opcional-para-que-no-tarde-tanto">Subsetting opcional para que no tarde tanto</h4>
+<p><a href="https://jerolon.github.io/Transcriptomica_espacial_2026/clase2_spatial_seq.html#/21">(De la clase 2)</a></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>count.plot <span class="ot">&lt;-</span> <span class="fu">SpatialFeaturePlot</span>(object, <span class="at">features =</span> <span class="st">"nCount_Spatial"</span>) <span class="sc">+</span></span>
+<span id="cb14-2"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span>
+<span id="cb14-3"><a href=""></a><span class="co"># Extract everything we need</span></span>
+<span id="cb14-4"><a href=""></a>plot_data <span class="ot">&lt;-</span> <span class="fu">ggplot_build</span>(count.plot)<span class="sc">$</span>data[[<span class="dv">1</span>]]</span>
+<span id="cb14-5"><a href=""></a></span>
+<span id="cb14-6"><a href=""></a>x_cuts <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(plot_data<span class="sc">$</span>x), <span class="fu">max</span>(plot_data<span class="sc">$</span>x), <span class="at">length.out =</span> <span class="dv">9</span>)</span>
+<span id="cb14-7"><a href=""></a>y_cuts <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(plot_data<span class="sc">$</span>y), <span class="fu">max</span>(plot_data<span class="sc">$</span>y), <span class="at">length.out =</span> <span class="dv">9</span>)</span>
+<span id="cb14-8"><a href=""></a></span>
+<span id="cb14-9"><a href=""></a><span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> fill)) <span class="sc">+</span></span>
+<span id="cb14-10"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.1</span>, <span class="at">shape =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb14-11"><a href=""></a>  <span class="fu">scale_color_identity</span>() <span class="sc">+</span></span>
+<span id="cb14-12"><a href=""></a>  <span class="co"># Grid</span></span>
+<span id="cb14-13"><a href=""></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>,</span>
+<span id="cb14-14"><a href=""></a>    <span class="at">x =</span> x_cuts, <span class="at">xend =</span> x_cuts,</span>
+<span id="cb14-15"><a href=""></a>    <span class="at">y =</span> <span class="fu">min</span>(plot_data<span class="sc">$</span>y), <span class="at">yend =</span> <span class="fu">max</span>(plot_data<span class="sc">$</span>y),</span>
+<span id="cb14-16"><a href=""></a>    <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb14-17"><a href=""></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>,</span>
+<span id="cb14-18"><a href=""></a>    <span class="at">x =</span> <span class="fu">min</span>(plot_data<span class="sc">$</span>x), <span class="at">xend =</span> <span class="fu">max</span>(plot_data<span class="sc">$</span>x),</span>
+<span id="cb14-19"><a href=""></a>    <span class="at">y =</span> y_cuts, <span class="at">yend =</span> y_cuts,</span>
+<span id="cb14-20"><a href=""></a>    <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb14-21"><a href=""></a>  <span class="co"># Column labels</span></span>
+<span id="cb14-22"><a href=""></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>,</span>
+<span id="cb14-23"><a href=""></a>    <span class="at">x =</span> <span class="fu">head</span>(x_cuts, <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span> <span class="fu">diff</span>(x_cuts) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb14-24"><a href=""></a>    <span class="at">y =</span> <span class="fu">rep</span>(<span class="fu">max</span>(plot_data<span class="sc">$</span>y) <span class="sc">+</span> <span class="dv">5</span>, <span class="dv">8</span>),</span>
+<span id="cb14-25"><a href=""></a>    <span class="at">label =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">color =</span> <span class="st">"yellow"</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
+<span id="cb14-26"><a href=""></a>  <span class="co"># Row labels</span></span>
+<span id="cb14-27"><a href=""></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>,</span>
+<span id="cb14-28"><a href=""></a>    <span class="at">x =</span> <span class="fu">rep</span>(<span class="fu">min</span>(plot_data<span class="sc">$</span>x) <span class="sc">-</span> <span class="dv">5</span>, <span class="dv">8</span>),</span>
+<span id="cb14-29"><a href=""></a>    <span class="at">y =</span> <span class="fu">head</span>(y_cuts, <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span> <span class="fu">diff</span>(y_cuts) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb14-30"><a href=""></a>    <span class="at">label =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>], <span class="at">color =</span> <span class="st">"yellow"</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
+<span id="cb14-31"><a href=""></a>  <span class="fu">coord_fixed</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb14-32"><a href=""></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb14-33"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb14-34"><a href=""></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"black"</span>, <span class="at">color =</span> <span class="cn">NA</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+
+<img data-src="images/quadrants.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+<section class="slide level2">
+
+<h4 id="elijan-un-bloque-o-no-pero-tardará-más">Elijan un bloque (o no, pero tardará más)</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>plot_data<span class="sc">$</span>cell <span class="ot">&lt;-</span> <span class="fu">colnames</span>(object)</span>
+<span id="cb15-2"><a href=""></a></span>
+<span id="cb15-3"><a href=""></a><span class="co"># Function to pick a block</span></span>
+<span id="cb15-4"><a href=""></a>pick_block <span class="ot">&lt;-</span> <span class="cf">function</span>(row_letter, col_number, plot_data, x_cuts, y_cuts) {</span>
+<span id="cb15-5"><a href=""></a>  r <span class="ot">&lt;-</span> <span class="fu">match</span>(<span class="fu">toupper</span>(row_letter), LETTERS)</span>
+<span id="cb15-6"><a href=""></a>  c <span class="ot">&lt;-</span> col_number</span>
+<span id="cb15-7"><a href=""></a>  cells <span class="ot">&lt;-</span> plot_data<span class="sc">$</span>cell[</span>
+<span id="cb15-8"><a href=""></a>    plot_data<span class="sc">$</span>x <span class="sc">&gt;=</span> x_cuts[c] <span class="sc">&amp;</span> plot_data<span class="sc">$</span>x <span class="sc">&lt;</span> x_cuts[c <span class="sc">+</span> <span class="dv">1</span>] <span class="sc">&amp;</span></span>
+<span id="cb15-9"><a href=""></a>    plot_data<span class="sc">$</span>y <span class="sc">&gt;=</span> y_cuts[r] <span class="sc">&amp;</span> plot_data<span class="sc">$</span>y <span class="sc">&lt;</span> y_cuts[r <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb15-10"><a href=""></a>  ]</span>
+<span id="cb15-11"><a href=""></a>  <span class="fu">return</span>(cells)</span>
+<span id="cb15-12"><a href=""></a>}</span>
+<span id="cb15-13"><a href=""></a></span>
+<span id="cb15-14"><a href=""></a><span class="co"># </span></span>
+<span id="cb15-15"><a href=""></a>cells_block <span class="ot">&lt;-</span> <span class="fu">pick_block</span>(<span class="st">"C"</span>, <span class="dv">1</span>, plot_data, x_cuts, y_cuts)</span>
+<span id="cb15-16"><a href=""></a>object <span class="ot">&lt;-</span> <span class="fu">subset</span>(object, <span class="at">cells =</span> cells_block)</span>
+<span id="cb15-17"><a href=""></a><span class="co">#cat("Bins in block D3:", ncol(object_block), "\n")</span></span>
+<span id="cb15-18"><a href=""></a></span>
+<span id="cb15-19"><a href=""></a><span class="fu">SpatialFeaturePlot</span>(object, <span class="at">features =</span> <span class="st">"nCount_Spatial"</span>, <span class="at">pt.size.factor =</span> <span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="section" class="slide level2">
+<h2><img data-src="images/subsetquadrant.png" class="quarto-figure quarto-figure-center" height="800"></h2>
+</section>
+<section id="corriendo-deconvolucion" class="slide level2">
+<h2>Corriendo deconvolucion</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="co"># Crear objeto SpatialRNA de spacexr</span></span>
+<span id="cb16-2"><a href=""></a>counts_spatial <span class="ot">&lt;-</span> <span class="fu">GetAssayData</span>(visium, <span class="at">layer =</span> <span class="st">"counts"</span>)</span>
+<span id="cb16-3"><a href=""></a>spatial_rna <span class="ot">&lt;-</span> <span class="fu">SpatialRNA</span>(</span>
+<span id="cb16-4"><a href=""></a>  <span class="at">coords =</span> coords,</span>
+<span id="cb16-5"><a href=""></a>  <span class="at">counts =</span> counts_spatial</span>
+<span id="cb16-6"><a href=""></a>)</span>
+<span id="cb16-7"><a href=""></a></span>
+<span id="cb16-8"><a href=""></a><span class="co"># Crear y ejecutar RCTD</span></span>
+<span id="cb16-9"><a href=""></a></span>
+<span id="cb16-10"><a href=""></a>rctd <span class="ot">&lt;-</span> <span class="fu">create.RCTD</span>(spatial_rna, reference, <span class="at">max_cores =</span> <span class="dv">30</span>)</span>
+<span id="cb16-11"><a href=""></a>rctd <span class="ot">&lt;-</span> <span class="fu">run.RCTD</span>(rctd, <span class="at">doublet_mode =</span> <span class="st">"doublet"</span>)</span>
+<span id="cb16-12"><a href=""></a><span class="co"># doublet_mode: máximo 2 tipos por bin (apropiado para 8 µm)</span></span>
+<span id="cb16-13"><a href=""></a></span>
+<span id="cb16-14"><a href=""></a><span class="fu">saveRDS</span>(rctd, <span class="st">"resultsRCTD_P1CRC_c1.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="visualizando-la-deconvolución" class="slide level2">
+<h2>Visualizando la deconvolución</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="co"># Extraer los resultados</span></span>
+<span id="cb17-2"><a href=""></a>rctd <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"resultsRCTD_P1CRC_c1.rds"</span>)</span>
+<span id="cb17-3"><a href=""></a>results <span class="ot">&lt;-</span> rctd<span class="sc">@</span>results</span>
+<span id="cb17-4"><a href=""></a></span>
+<span id="cb17-5"><a href=""></a><span class="co"># Para modo doublet: tipo celular 1 y 2 por bin + proporciones</span></span>
+<span id="cb17-6"><a href=""></a>cell_type_1 <span class="ot">&lt;-</span> results<span class="sc">$</span>results_df<span class="sc">$</span>first_type</span>
+<span id="cb17-7"><a href=""></a><span class="co">#weirdly stored as scond_type (sic)</span></span>
+<span id="cb17-8"><a href=""></a>cell_type_2 <span class="ot">&lt;-</span> results<span class="sc">$</span>results_df<span class="sc">$</span>scond_type</span>
+<span id="cb17-9"><a href=""></a></span>
+<span id="cb17-10"><a href=""></a>visium<span class="sc">$</span>rctd_class <span class="ot">&lt;-</span> results<span class="sc">$</span>results_df<span class="sc">$</span>spot_class</span>
+<span id="cb17-11"><a href=""></a>visium<span class="sc">$</span>rctd_weight1 <span class="ot">&lt;-</span> results<span class="sc">$</span>weights_doublet[, <span class="st">"first_type"</span>]</span>
+<span id="cb17-12"><a href=""></a></span>
+<span id="cb17-13"><a href=""></a><span class="co"># Agregar al objeto Seurat</span></span>
+<span id="cb17-14"><a href=""></a>visium<span class="sc">$</span>rctd_type1 <span class="ot">&lt;-</span> cell_type_1</span>
+<span id="cb17-15"><a href=""></a>visium<span class="sc">$</span>rctd_type2 <span class="ot">&lt;-</span> cell_type_2</span>
+<span id="cb17-16"><a href=""></a></span>
+<span id="cb17-17"><a href=""></a><span class="co"># Visualizar el tipo celular dominante</span></span>
+<span id="cb17-18"><a href=""></a>coords <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb17-19"><a href=""></a>  <span class="at">x =</span> visium<span class="sc">$</span>spatial_col,</span>
+<span id="cb17-20"><a href=""></a>  <span class="at">y =</span> visium<span class="sc">$</span>spatial_row,</span>
+<span id="cb17-21"><a href=""></a>  <span class="at">type =</span> visium<span class="sc">$</span>rctd_type1,</span>
+<span id="cb17-22"><a href=""></a>  <span class="at">class =</span> visium<span class="sc">$</span>rctd_class</span>
+<span id="cb17-23"><a href=""></a>)</span>
+<span id="cb17-24"><a href=""></a></span>
+<span id="cb17-25"><a href=""></a></span>
+<span id="cb17-26"><a href=""></a>coords_good <span class="ot">&lt;-</span> coords[coords<span class="sc">$</span>class <span class="sc">!=</span> <span class="st">"reject"</span>, ]</span>
+<span id="cb17-27"><a href=""></a></span>
+<span id="cb17-28"><a href=""></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(coords_good, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> <span class="sc">-</span>y, <span class="at">color =</span> type)) <span class="sc">+</span></span>
+<span id="cb17-29"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.1</span>, <span class="at">shape =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb17-30"><a href=""></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb17-31"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-32"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb17-33"><a href=""></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">3</span>))) <span class="sc">+</span></span>
+<span id="cb17-34"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"RCTD deconvolution — dominant cell type"</span>)</span>
+<span id="cb17-35"><a href=""></a></span>
+<span id="cb17-36"><a href=""></a><span class="fu">ggsave</span>(<span class="st">"rctd_spatial_celltypes.png"</span>, p, <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+
+<img data-src="images/rctd_spatial_celltypes.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+<section id="o-por-paneles" class="slide level2">
+<h2>O por paneles</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb18-2"><a href=""></a>weights <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(results<span class="sc">$</span>weights)</span>
+<span id="cb18-3"><a href=""></a><span class="fu">colnames</span>(weights) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">"_"</span>, <span class="fu">colnames</span>(weights))  <span class="co"># spaces break metadata</span></span>
+<span id="cb18-4"><a href=""></a><span class="cf">for</span> (ct <span class="cf">in</span> <span class="fu">colnames</span>(weights)) {</span>
+<span id="cb18-5"><a href=""></a>  visium[[ct]] <span class="ot">&lt;-</span> weights[[ct]]</span>
+<span id="cb18-6"><a href=""></a>}</span>
+<span id="cb18-7"><a href=""></a></span>
+<span id="cb18-8"><a href=""></a><span class="co"># Plot helper using your spatial coords</span></span>
+<span id="cb18-9"><a href=""></a>plot_weight <span class="ot">&lt;-</span> <span class="cf">function</span>(obj, feature) {</span>
+<span id="cb18-10"><a href=""></a>  df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-11"><a href=""></a>    <span class="at">x =</span> obj<span class="sc">$</span>spatial_col,</span>
+<span id="cb18-12"><a href=""></a>    <span class="at">y =</span> obj<span class="sc">$</span>spatial_row,</span>
+<span id="cb18-13"><a href=""></a>    <span class="at">val =</span> obj[[feature, <span class="at">drop =</span> <span class="cn">TRUE</span>]]</span>
+<span id="cb18-14"><a href=""></a>  )</span>
+<span id="cb18-15"><a href=""></a>  <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> <span class="sc">-</span>y, <span class="at">color =</span> val)) <span class="sc">+</span></span>
+<span id="cb18-16"><a href=""></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.3</span>, <span class="at">shape =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb18-17"><a href=""></a>    <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb18-18"><a href=""></a>    <span class="fu">labs</span>(<span class="at">title =</span> feature, <span class="at">color =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb18-19"><a href=""></a>    <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb18-20"><a href=""></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb18-21"><a href=""></a>}</span>
+<span id="cb18-22"><a href=""></a></span>
+<span id="cb18-23"><a href=""></a>ct_names <span class="ot">&lt;-</span> <span class="fu">colnames</span>(weights)</span>
+<span id="cb18-24"><a href=""></a></span>
+<span id="cb18-25"><a href=""></a>p <span class="ot">&lt;-</span> <span class="fu">lapply</span>(ct_names, \(ct) <span class="fu">plot_weight</span>(visium, ct)) <span class="sc">|&gt;</span></span>
+<span id="cb18-26"><a href=""></a>  <span class="fu">wrap_plots</span>(<span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">guides =</span> <span class="st">"collect"</span>) <span class="sc">&amp;</span></span>
+<span id="cb18-27"><a href=""></a>  <span class="fu">scale_color_gradientn</span>(<span class="at">colors =</span> <span class="fu">rev</span>(<span class="fu">hcl.colors</span>(<span class="dv">9</span>, <span class="st">"Rocket"</span>))) <span class="sc">&amp;</span></span>
+<span id="cb18-28"><a href=""></a>  <span class="fu">theme</span>(</span>
+<span id="cb18-29"><a href=""></a>    <span class="at">legend.key.width =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"lines"</span>),</span>
+<span id="cb18-30"><a href=""></a>    <span class="at">legend.key.height =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"lines"</span>)</span>
+<span id="cb18-31"><a href=""></a>  )</span>
+<span id="cb18-32"><a href=""></a></span>
+<span id="cb18-33"><a href=""></a><span class="fu">ggsave</span>(<span class="st">"rctd_all_weights_panels.png"</span>, p, <span class="at">width =</span> <span class="dv">20</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+
+<img data-src="images/rctd_all_weights_panels.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+<section id="igual-que-hace-dos-clases-usamos-banksy-clustering-spatial-aware" class="slide level2">
+<h2>Igual que hace dos clases usamos Banksy (clustering spatial aware)</h2>
+<p>Transformar seurat a spatial exp</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>coords <span class="ot">&lt;-</span> <span class="fu">GetTissueCoordinates</span>(object)</span>
+<span id="cb19-2"><a href=""></a>object_export <span class="ot">&lt;-</span> object</span>
+<span id="cb19-3"><a href=""></a></span>
+<span id="cb19-4"><a href=""></a>sce <span class="ot">&lt;-</span> <span class="fu">as.SingleCellExperiment</span>(object_export)</span>
+<span id="cb19-5"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">SpatialExperiment</span>(</span>
+<span id="cb19-6"><a href=""></a>  <span class="at">assays =</span> <span class="fu">assays</span>(sce),</span>
+<span id="cb19-7"><a href=""></a>  <span class="at">colData =</span> <span class="fu">colData</span>(sce),</span>
+<span id="cb19-8"><a href=""></a>  <span class="at">spatialCoords =</span> <span class="fu">as.matrix</span>(coords[<span class="fu">colnames</span>(sce), <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb19-9"><a href=""></a>)</span>
+<span id="cb19-10"><a href=""></a><span class="co">#Quitar los ceros</span></span>
+<span id="cb19-11"><a href=""></a>spe <span class="ot">&lt;-</span> spe[, <span class="fu">colSums</span>(<span class="fu">counts</span>(spe)) <span class="sc">&gt;</span> <span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>spe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(spe)</span>
+<span id="cb20-2"><a href=""></a>dec <span class="ot">&lt;-</span> <span class="fu">modelGeneVar</span>(spe)</span>
+<span id="cb20-3"><a href=""></a>hvg <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(dec, <span class="at">n=</span><span class="fl">3e3</span>)</span>
+<span id="cb20-4"><a href=""></a><span class="co"># set seed for random number generation</span></span>
+<span id="cb20-5"><a href=""></a><span class="co"># in order to make results reproducible</span></span>
+<span id="cb20-6"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">112358</span>)</span>
+<span id="cb20-7"><a href=""></a><span class="co"># 'Banksy' parameter settings</span></span>
+<span id="cb20-8"><a href=""></a>k <span class="ot">&lt;-</span> <span class="dv">8</span>   <span class="co"># consider first order neighbors</span></span>
+<span id="cb20-9"><a href=""></a>l <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="co"># use little spatial information</span></span>
+<span id="cb20-10"><a href=""></a>a <span class="ot">&lt;-</span> <span class="st">"logcounts"</span></span>
+<span id="cb20-11"><a href=""></a>xy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"array_row"</span>, <span class="st">"array_col"</span>)</span>
+<span id="cb20-12"><a href=""></a><span class="co"># restrict to selected features</span></span>
+<span id="cb20-13"><a href=""></a>tmp <span class="ot">&lt;-</span> spe[hvg, ]</span>
+<span id="cb20-14"><a href=""></a></span>
+<span id="cb20-15"><a href=""></a><span class="co"># compute spatially aware 'Banksy' PCs</span></span>
+<span id="cb20-16"><a href=""></a>tmp <span class="ot">&lt;-</span> <span class="fu">computeBanksy</span>(tmp, <span class="at">assay_name=</span>a, <span class="at">coord_names=</span>xy, <span class="at">k_geom=</span>k)</span>
+<span id="cb20-17"><a href=""></a>tmp <span class="ot">&lt;-</span> <span class="fu">runBanksyPCA</span>(tmp, <span class="at">lambda=</span>l, <span class="at">npcs=</span><span class="dv">50</span>)</span>
+<span id="cb20-18"><a href=""></a><span class="fu">reducedDim</span>(spe, <span class="st">"PCA"</span>) <span class="ot">&lt;-</span> <span class="fu">reducedDim</span>(tmp)</span>
+<span id="cb20-19"><a href=""></a><span class="do">## run UMAP (for visualization purposes only)</span></span>
+<span id="cb20-20"><a href=""></a><span class="co"># .vhd16 &lt;- runUMAP(.vhd16, dimred="PCA")</span></span>
+<span id="cb20-21"><a href=""></a><span class="co"># build cellular shared nearest-neighbor (SNN) graph</span></span>
+<span id="cb20-22"><a href=""></a>g <span class="ot">&lt;-</span> <span class="fu">buildSNNGraph</span>(spe, <span class="at">use.dimred=</span><span class="st">"PCA"</span>, <span class="at">type=</span><span class="st">"jaccard"</span>, <span class="at">k=</span><span class="dv">20</span>)</span>
+<span id="cb20-23"><a href=""></a><span class="co"># cluster using Leiden community detection algorithm</span></span>
+<span id="cb20-24"><a href=""></a>k <span class="ot">&lt;-</span> <span class="fu">cluster_leiden</span>(g, <span class="at">objective_function=</span><span class="st">"modularity"</span>, <span class="at">resolution=</span><span class="fl">2.5</span>)</span>
+<span id="cb20-25"><a href=""></a><span class="fu">table</span>(spe<span class="sc">$</span>Banksy <span class="ot">&lt;-</span> <span class="fu">factor</span>(k<span class="sc">$</span>membership))</span>
+<span id="cb20-26"><a href=""></a>spe<span class="sc">$</span>in_tissue <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb20-27"><a href=""></a></span>
+<span id="cb20-28"><a href=""></a><span class="fu">plotCoords</span>(spe, <span class="at">annotate =</span> <span class="st">"Banksy"</span>, <span class="at">point_size =</span> <span class="dv">2</span>, <span class="at">point_shape =</span> <span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="section-1" class="slide level2">
+<h2><img data-src="images/banksyclusters.png" class="quarto-figure quarto-figure-center" height="800"></h2>
+</section>
+<section id="comparar-deconvolución-con-banksy" class="slide level2">
+<h2>Comparar deconvolución con Banksy</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="co"># Get common barcodes (strip -1 suffix if needed)</span></span>
+<span id="cb21-2"><a href=""></a>barcodes_spe <span class="ot">&lt;-</span> <span class="fu">colnames</span>(spe)</span>
+<span id="cb21-3"><a href=""></a>barcodes_seurat <span class="ot">&lt;-</span> <span class="fu">colnames</span>(visium)</span>
+<span id="cb21-4"><a href=""></a></span>
+<span id="cb21-5"><a href=""></a>common <span class="ot">&lt;-</span> <span class="fu">intersect</span>(barcodes_spe, barcodes_seurat)</span>
+<span id="cb21-6"><a href=""></a><span class="fu">cat</span>(<span class="st">"Common barcodes:"</span>, <span class="fu">length</span>(common), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb21-7"><a href=""></a></span>
+<span id="cb21-8"><a href=""></a><span class="co"># If 0, check if one has -1 suffix and the other doesn't</span></span>
+<span id="cb21-9"><a href=""></a><span class="co"># head(barcodes_spe); head(barcodes_seurat)</span></span>
+<span id="cb21-10"><a href=""></a></span>
+<span id="cb21-11"><a href=""></a><span class="co"># Build the cross-table</span></span>
+<span id="cb21-12"><a href=""></a>banksy <span class="ot">&lt;-</span> spe<span class="sc">$</span>Banksy[<span class="fu">match</span>(common, <span class="fu">colnames</span>(spe))]</span>
+<span id="cb21-13"><a href=""></a>decon <span class="ot">&lt;-</span> visium<span class="sc">$</span>rctd_type1[<span class="fu">match</span>(common, <span class="fu">colnames</span>(visium))]</span>
+<span id="cb21-14"><a href=""></a></span>
+<span id="cb21-15"><a href=""></a>fq <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(banksy, decon), <span class="dv">1</span>)</span>
+<span id="cb21-16"><a href=""></a><span class="fu">pheatmap</span>(fq[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">5</span>)], <span class="at">cellwidth =</span> <span class="dv">10</span>, <span class="at">cellheight =</span> <span class="dv">10</span>, </span>
+<span id="cb21-17"><a href=""></a>         <span class="at">treeheight_row =</span> <span class="dv">5</span>, <span class="at">treeheight_col =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="section-2" class="slide level2">
+<h2><img data-src="images/banksy_vs_azimuth.png" class="quarto-figure quarto-figure-center" height="800"></h2>
+</section>
+<section id="xenium-validación-ortogonal" class="slide level2">
+<h2>Xenium: validación ortogonal</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p><strong>¿Por qué Xenium?</strong></p>
+<ul>
+<li>Resolución <strong>subcelular</strong> real (no bins)</li>
+<li>Detección <em>in situ</em> de transcritos individuales</li>
+<li>Panel de ~500 genes seleccionados</li>
+</ul>
+<p><strong>Complementa a Visium HD:</strong></p>
+<ul>
+<li>Visium HD: transcriptoma completo, resolución bin</li>
+<li>Xenium: panel limitado, resolución subcelular</li>
+</ul>
+<p>Los autores encontraron genes como <strong>SELENOP</strong> y <strong>JCHAIN</strong> que no estaban en el panel Xenium original, pero fueron identificados como relevantes gracias a Visium HD → los añadieron como panel Add-on.</p>
+</div><div class="column" style="width:45%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="co"># Los datos Xenium se descargaron</span></span>
+<span id="cb22-2"><a href=""></a><span class="co"># de GEO (GSE280314)</span></span>
+<span id="cb22-3"><a href=""></a><span class="co"># Contienen:</span></span>
+<span id="cb22-4"><a href=""></a><span class="co"># - transcripts.csv.gz</span></span>
+<span id="cb22-5"><a href=""></a><span class="co"># - cells.csv.gz</span></span>
+<span id="cb22-6"><a href=""></a><span class="co"># - cell_feature_matrix/</span></span>
+<span id="cb22-7"><a href=""></a><span class="co"># - cell_boundaries/</span></span>
+<span id="cb22-8"><a href=""></a></span>
+<span id="cb22-9"><a href=""></a><span class="co"># Cargar en Seurat:</span></span>
+<span id="cb22-10"><a href=""></a><span class="fu">library</span>(arrow)</span>
+<span id="cb22-11"><a href=""></a></span>
+<span id="cb22-12"><a href=""></a><span class="co"># Load transcript-level data</span></span>
+<span id="cb22-13"><a href=""></a>tx <span class="ot">&lt;-</span> <span class="fu">read_parquet</span>(<span class="st">"xenium_data/P1CRC_xenium/transcripts.parquet"</span>)</span>
+<span id="cb22-14"><a href=""></a><span class="fu">head</span>(tx)</span>
+<span id="cb22-15"><a href=""></a><span class="co"># Should have: x_location, y_location, feature_name, cell_id, etc.</span></span>
+<span id="cb22-16"><a href=""></a></span>
+<span id="cb22-17"><a href=""></a><span class="co"># Load the cell feature matrix (already extracted)</span></span>
+<span id="cb22-18"><a href=""></a>counts <span class="ot">&lt;-</span> <span class="fu">Read10X</span>(<span class="st">"xenium_data/P1CRC_xenium/cell_feature_matrix/"</span>)</span>
+<span id="cb22-19"><a href=""></a></span>
+<span id="cb22-20"><a href=""></a><span class="co"># If it's a list (multiple feature types), grab the gene expression one</span></span>
+<span id="cb22-21"><a href=""></a><span class="cf">if</span> (<span class="fu">is.list</span>(counts)) {</span>
+<span id="cb22-22"><a href=""></a>  <span class="fu">names</span>(counts)</span>
+<span id="cb22-23"><a href=""></a>  counts <span class="ot">&lt;-</span> counts[[<span class="st">"Gene Expression"</span>]]</span>
+<span id="cb22-24"><a href=""></a>}</span>
+<span id="cb22-25"><a href=""></a></span>
+<span id="cb22-26"><a href=""></a><span class="co"># Build a basic Seurat object</span></span>
+<span id="cb22-27"><a href=""></a>xenium <span class="ot">&lt;-</span> <span class="fu">CreateSeuratObject</span>(<span class="at">counts =</span> counts, <span class="at">assay =</span> <span class="st">"Xenium"</span>)</span>
+<span id="cb22-28"><a href=""></a></span>
+<span id="cb22-29"><a href=""></a><span class="co"># Get per-cell coordinates from transcripts</span></span>
+<span id="cb22-30"><a href=""></a><span class="co"># (average x,y of all transcripts assigned to each cell)</span></span>
+<span id="cb22-31"><a href=""></a>cell_coords <span class="ot">&lt;-</span> tx <span class="sc">|&gt;</span></span>
+<span id="cb22-32"><a href=""></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cell_id <span class="sc">!=</span> <span class="st">"UNASSIGNED"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-33"><a href=""></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(cell_id) <span class="sc">|&gt;</span></span>
+<span id="cb22-34"><a href=""></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">x =</span> <span class="fu">median</span>(x_location), <span class="at">y =</span> <span class="fu">median</span>(y_location), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-35"><a href=""></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb22-36"><a href=""></a><span class="fu">rownames</span>(cell_coords) <span class="ot">&lt;-</span> cell_coords<span class="sc">$</span>cell_id</span>
+<span id="cb22-37"><a href=""></a></span>
+<span id="cb22-38"><a href=""></a><span class="co"># Match to barcodes in the object</span></span>
+<span id="cb22-39"><a href=""></a>common <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="fu">colnames</span>(xenium), cell_coords<span class="sc">$</span>cell_id)</span>
+<span id="cb22-40"><a href=""></a>xenium <span class="ot">&lt;-</span> <span class="fu">subset</span>(xenium, <span class="at">cells =</span> common)</span>
+<span id="cb22-41"><a href=""></a>cell_coords <span class="ot">&lt;-</span> cell_coords[<span class="fu">colnames</span>(xenium), ]</span>
+<span id="cb22-42"><a href=""></a></span>
+<span id="cb22-43"><a href=""></a>xenium<span class="sc">$</span>x_centroid <span class="ot">&lt;-</span> cell_coords<span class="sc">$</span>x</span>
+<span id="cb22-44"><a href=""></a>xenium<span class="sc">$</span>y_centroid <span class="ot">&lt;-</span> cell_coords<span class="sc">$</span>y</span>
+<span id="cb22-45"><a href=""></a></span>
+<span id="cb22-46"><a href=""></a><span class="fu">cat</span>(<span class="st">"Xenium cells:"</span>, <span class="fu">ncol</span>(xenium), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb22-47"><a href=""></a><span class="fu">cat</span>(<span class="st">"Genes in panel:"</span>, <span class="fu">nrow</span>(xenium), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+</section>
+<section id="xenium" class="slide level2">
+<h2>Xenium</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb23-2"><a href=""></a>  <span class="at">x =</span> xenium<span class="sc">$</span>x_centroid,</span>
+<span id="cb23-3"><a href=""></a>  <span class="at">y =</span> xenium<span class="sc">$</span>y_centroid,</span>
+<span id="cb23-4"><a href=""></a>  <span class="at">counts =</span> xenium<span class="sc">$</span>nCount_Xenium</span>
+<span id="cb23-5"><a href=""></a>)</span>
+<span id="cb23-6"><a href=""></a></span>
+<span id="cb23-7"><a href=""></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> <span class="sc">-</span>y, <span class="at">color =</span> <span class="fu">log1p</span>(counts))) <span class="sc">+</span></span>
+<span id="cb23-8"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb23-9"><a href=""></a>  <span class="fu">scale_color_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb23-10"><a href=""></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb23-11"><a href=""></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb23-12"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Xenium P1CRC — UMIs per cell"</span>)</span>
+<span id="cb23-13"><a href=""></a></span>
+<span id="cb23-14"><a href=""></a><span class="fu">ggsave</span>(<span class="st">"xenium_P1CRC_counts.png"</span>, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">8</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+
+<img data-src="images/xenium_P1CRC_counts.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+<section id="hallazgos-principales-del-estudio" class="slide level2">
+<h2>Hallazgos principales del estudio</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Subpoblaciones de macrófagos:</strong></p>
+<ol type="1">
+<li><strong>Pro-tumorales</strong> — dos subpoblaciones con perfiles distintos, localizadas en regiones tumorales específicas</li>
+<li><strong>Anti-tumorales</strong> (SELENOP⁺ C1QC⁺) — colocalizados con células T clonalmente expandidas</li>
+</ol>
+<p><strong>Expansión clonal de T cells:</strong></p>
+<ul>
+<li>Identificaron clonotipos expandidos de CD8⁺ T cells</li>
+<li>Estos T cells se localizan <strong>cerca de macrófagos anti-tumorales</strong> y <strong>células CEACAM5⁺ tumorales</strong></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Sólo posible con datos espaciales:</strong></p>
+<ul>
+<li>scRNA-seq identifica los <em>tipos celulares</em></li>
+<li>Visium HD revela <em>dónde están</em> y <em>con quién interactúan</em></li>
+<li>Xenium valida a resolución subcelular</li>
+</ul>
+<p><strong>Lección metodológica:</strong></p>
+<p>Ninguna plataforma sola responde todas las preguntas. La integración de múltiples modalidades (Visium HD + Flex + Xenium) da el panorama completo.</p>
+</div></div>
+</section>
+<section id="actividad-práctica" class="slide level2">
+<h2>Actividad práctica</h2>
+<p>Si quieren aquí o con mejor conexión. En laptop o en clústers (ken o fenix)</p>
+<ol type="1">
+<li><strong>Cargar</strong> <code>flex_annotated.rds</code> como referencia
+<ol type="1">
+<li>Pero sin tumor (Ver diapo: Preparando la referencia para RCTD)</li>
+</ol></li>
+<li><strong>Cargar</strong> su objeto Visium HD procesado (de la clase 3, o pueden encontrarlos en mi carpeta de Ken)</li>
+<li><strong>Ejecutar RCTD</strong> para deconvolucionar su paciente (con 16mum y 30 cores tarda alrededor de 2 horas, try as slurm job).</li>
+<li><strong>Visualizar</strong> el mapa de tipos celulares en el espacio</li>
+<li><strong>Comparar</strong> con los clusters de Banksy</li>
+</ol>
+<div class="fragment">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Recursos computacionales</strong></p>
+</div>
+<div class="callout-content">
+<p>RCTD en modo <code>doublet</code> sobre ~500K bins puede tardar <strong>&gt;60 minutos</strong> y requiere ~16 GB de RAM (el pull request de spacexr no parece haber ayudado). Si su laptop no lo soporta, usen los bins de 16 µm o la subregión (block) que seleccionaron en la clase anterior.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="referencias" class="slide level2">
+<h2>Referencias</h2>
+<ul>
+<li><p>Oliveira MF <em>et al.</em> (2025). High-definition spatial transcriptomic profiling of immune cell populations in colorectal cancer. <em>Nature Genetics</em> 57: 1512–1523. <a href="https://doi.org/10.1038/s41588-025-02193-3">doi:10.1038/s41588-025-02193-3</a></p></li>
+<li><p>Cable DM <em>et al.</em> (2022). Robust decomposition of cell type mixtures in spatial transcriptomics. <em>Nature Biotechnology</em> 40: 517–526. <a href="https://doi.org/10.1038/s41587-021-00830-w">doi:10.1038/s41587-021-00830-w</a></p></li>
+<li><p>Hao Y <em>et al.</em> (2024). Dictionary learning for integrative, multimodal and scalable single-cell analysis. <em>Nature Biotechnology</em> 42: 293–304. <a href="https://doi.org/10.1038/s41587-023-01767-y">doi:10.1038/s41587-023-01767-y</a></p></li>
+<li><p>Azimuth: <a href="https://azimuth.hubmapconsortium.org/">azimuth.hubmapconsortium.org</a></p></li>
+<li><p>spacexr/RCTD: <a href="https://github.com/dmcable/spacexr">github.com/dmcable/spacexr</a></p></li>
+<li><p>Código del estudio: <a href="https://github.com/10XGenomics/HumanColonCancer_VisiumHD">github.com/10XGenomics/HumanColonCancer_VisiumHD</a></p></li>
+<li><p>OSTA Book: <a href="https://lmweber.org/OSTA/pages/seq-workflow-visium-crc.html">lmweber.org/OSTA</a></p></li>
+</ul>
+</section>
+<section id="section-3" class="slide level2" data-background-color="black">
+<h2></h2>
+<h3 id="gracias-la-última-clase-es-de-ustedes">¡Gracias! La última clase es de ustedes</h3>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Taller de Transcriptómica Espacial — Clase 4</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="ST_clase12_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="ST_clase12_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="ST_clase12_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="ST_clase12_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1900,
+
+        height: 820,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
