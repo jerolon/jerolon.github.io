@@ -106,7 +106,7 @@ Resumen conciso de tu análisis, **máximo 200 palabras**, asegúrate que incluy
 
 - **Orden en carpetas** con nombres claros.
 - **`scripts/`**: incluye los scripts con notas claras sobre su función y una descripción detallada de cada paso.
-- **resultados** guardados en la carpeta correspondiente y **subidos al clúster** en el caso de archivos grandes como .h5 o .rds.
+- **`resultados/`** guardados en la carpeta correspondiente y **subidos al clúster** en el caso de archivos grandes como .h5 o .rds.
 - En el reporte, indica la **ruta exacta** de todos tus resultados desde la carpeta principal del proyecto.
 - **No elimines los outlogs** de los programas.
 - La idea es que puedas leer tu reporte un año después y te sirva de guía (o sirva a alguien más que lo necesite).
