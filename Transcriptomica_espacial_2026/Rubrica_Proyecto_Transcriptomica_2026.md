@@ -190,7 +190,7 @@ Documenta **todos** los pasos del procesamiento y análisis. Realiza una compara
 - **Visualización espacial** de los clusters sobre el tejido y comparación con la histología (H&E)
 - Genes marcadores por cluster/región
 - *1 punto extra. Opcional según el estudio:* deconvolución con una referencia scRNA-seq (RCTD/spacexr), análisis de vecindades/nichos o interacciones ligando-receptor
-- *0.5 puntos extra porque no alcanzamos a verlo en clase ***Genes espacialmente variables (SVGs)** (ej. `FindSpatiallyVariableFeatures`, nnSVG, SpatialDE)
+- *0.5 puntos extra porque no alcanzamos a verlo en clase:* **Genes espacialmente variables (SVGs)** (ej. `FindSpatiallyVariableFeatures`, nnSVG, SpatialDE)
 
 ### Discusión  1 pt
 
