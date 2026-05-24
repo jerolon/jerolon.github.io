@@ -100,7 +100,7 @@ Resumen conciso de tu análisis, **máximo 200 palabras**, asegúrate que incluy
 
 ---
 
-## 3. Buenas prácticas de bioinformática  2 pts
+## 3. Buenas prácticas de bioinformática  1.5 pts
 
 **Para todas las modalidades:**
 
