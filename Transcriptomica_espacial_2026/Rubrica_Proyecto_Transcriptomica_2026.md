@@ -29,7 +29,7 @@ Los criterios y el puntaje son los mismos para las tres modalidades. Lo único q
 | 5 | Resultados y discusión | 3.0 |
 | 6 | Visualización gráfica | 1.0 |
 | 7 | Almacenar la información en GitHub | 0.5 |
-|   | **Total** | **9.0** |
+|   | **Total** | **8.5** |
 | 0  | **Presentación del proyecto 29 de junio (15 minutos)** | 1.5 pt | 
 |   | Punto extra (opcional) | +1.0 |
 
