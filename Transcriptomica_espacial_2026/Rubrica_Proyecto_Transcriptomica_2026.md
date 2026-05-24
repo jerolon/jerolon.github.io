@@ -45,7 +45,7 @@ Cada equipo presenta su proyecto en **15 minutos**.
 | **Infografía del pipeline** | Presentan una infografía visual que explique su pipeline (programas, entradas y salidas) de forma clara (sí, cuenta dos veces, pero sólo si es clara y la suben a github). | 0.25 |
 | **Contenido mínimo** | Cubren la descripción de los datos (criterio 1) y el abstract/resumen (criterio 2), como mínimo. | 0.25 |
 | **Respuesta a preguntas** | Responden con claridad y dominio del tema a las preguntas de compañeros y docentes. | 0.25 |
-|  **Respetan el tiempo de 15 minutos**  |   0.25  |
+|  **Respetan el tiempo de 15 minutos**  | |  0.25  |
 | **Claridad y orden de la exposición** | La presentación es comprensible y sigue un orden de lo general a lo particular | 0.4 |
 
 
