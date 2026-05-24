@@ -1,6 +1,6 @@
 # Rúbrica de evaluación  Proyecto final de Transcriptómica
 
-> Adaptada a partir de la rúbrica de proyectos de RNA-seq de [**Evelia Coss, PhD**](https://eveliacoss.github.io/)
+> Adaptada a partir de la rúbrica de proyectos de RNA-seq de [**Evelia Coss, PhD**](https://eveliacoss.github.io/).
 > Esta versión permite que cada equipo elija una de **tres modalidades**:
 > **(A) RNA-seq bulk**, **(B) single-cell RNA-seq (scRNA-seq)** o **(C) transcriptómica espacial (ST)**.
 
@@ -22,7 +22,7 @@ Los criterios y el puntaje son los mismos para las tres modalidades. Lo único q
 
 | # | Criterio | Puntaje |
 |---|----------|:-------:|
-| 1 | Descripción de los datos *(Entregable 1 si 🅱️)* | 0.5 |
+| 1 | Descripción de los datos (*Entregable 1 si* 🅱️) | 0.5 |
 | 2 | Abstract o resumen | 1.0 |
 | 3 | Buenas prácticas de bioinformática | 1.5 |
 | 4 | Diagrama de flujo | 1.0 |
@@ -30,7 +30,7 @@ Los criterios y el puntaje son los mismos para las tres modalidades. Lo único q
 | 6 | Visualización gráfica | 1.0 |
 | 7 | Almacenar la información en GitHub | 0.5 |
 |   | **Total** | **9.0** |
-| 0  | **Presentación del proyecto 29 de junio (15 minutos) ** | 1.5 pt | 
+| 0  | **Presentación del proyecto 29 de junio (15 minutos)** | 1.5 pt | 
 |   | Punto extra (opcional) | +1.0 |
 
 ---
