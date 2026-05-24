@@ -237,8 +237,8 @@ Entregables de datos según tu track:
 | Track | Tabla de cuentas | Resultados principales (CSV/TSV) |
 |-------|------------------|----------------------------------|
 | 🅰️ Bulk | Tabla de cuentas | Lista de genes diferencialmente expresados |
-| 🅱️ scRNA-seq | Matriz de cuentas u objeto Seurat* | Marcadores por cluster + anotación + DEGs |
-| 🅲️ Espacial | Matriz de cuentas u objeto Seurat/SpatialExperiment* | Tabla de clusters + SVGs/DEGs (+ deconvolución si aplica) |
+| 🅱️ scRNA-seq | Matriz de cuentas u objeto *Seurat* | Marcadores por cluster + anotación + DEGs |
+| 🅲️ Espacial | Matriz de cuentas u objeto *Seurat/SpatialExperiment* | Tabla de clusters + SVGs/DEGs (+ deconvolución si aplica) |
 
 > \*Si el objeto es muy pesado, súbelo al clúster / Zenodo / Git LFS y enlázalo; no es necesario subir el objeto crudo completo a GitHub.
 
