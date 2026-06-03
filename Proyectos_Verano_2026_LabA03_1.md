@@ -323,12 +323,13 @@ Disociación con acutasa y condiciones para optimizar la viabilidad de las célu
 
 ## 8. Lista de pendientes administrativos para Jerónimo
 
-- [ ] Confirmar asistencia de Ana Paula y fechas exactas.
-- [ ] Verificar disponibilidad de microesferas fluorescentes (volumen y vencimiento) y de EdU/F-ara-EdU.
+- [✅] Confirmar asistencia de Ana Paula y fechas exactas.
+- [✅] Verificar disponibilidad de microesferas fluorescentes (volumen y vencimiento) y de EdU/F-ara-EdU.
 - [ ] Coordinar con Wilbert para evitar solapamiento y formalizar la colaboración Wnt-PCP / Notch.
 - [ ] Reservar tiempo de criostato y epifluorescencia para semanas 3–6.
 - [ ] Solicitar al menos 2 sesiones de confocal en bloque (semanas 5–6).
-- [ ] Pedir cuentas HPC en servidor ken para las tres alumnas.
+- [✅] Pedir cuentas HPC en servidor Fénix para las tres alumnas (en espera)
+- [ ] Red internet y poner en lista para entrar en vacaciones
 - [ ] Preparar plantilla de informe final (1 archivo Markdown + figuras) que las tres puedan llenar al cierre.
 - [✅] Generar grupos de chat / canal Slack para los siete journal clubs.
 
