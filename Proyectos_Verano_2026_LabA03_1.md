@@ -5,7 +5,7 @@
 **Investigador asociado / supervisor de proyectos:** Dr. Jerónimo R. Miranda Rodríguez
 **Periodo:** 8 de junio a 24 de julio de 2026 (Ana Belén y Paulina, 7 semanas; Ana Paula, 6 semanas)
 
-> **Versión 1.1 — 28 jun 2026.** Modificaciones respecto a v1.0: (a) renumeración del cronograma — Semana 0 = inducción, Semanas 1–6 = trabajo de proyecto; (b) mid-term movido a Semana 3 (viernes 3 jul); (c) método transversal de compresión reposicionado como herramienta de fijación (in vivo como objetivo stretch); (d) Ana Belén — finding de permeabilidad embrionaria añadido como Objetivo 5; (e) Ana Paula — OrthoFinder reducido a 4 especies en lugar de 5–7; (f) Sección 8 — marcas de estatus actualizadas.
+> **Versión 1.1 — 21 jun 2026.** Modificaciones respecto a v1.0: (a) método transversal de compresión reposicionado como herramienta de **fijación primaria** (in vivo sostenido como stretch goal); (b) Ana Belén — finding de permeabilidad embrionaria añadido como **Objetivo 5** con resultado preliminar; (c) Ana Paula — OrthoFinder reducido a **4 especies** en lugar de 5–7; (d) Sección 8 — marcas de estatus actualizadas. Cronograma de v1.0 se mantiene íntegro. Mid-term confirmado: **viernes 3 julio, 9:00–11:30 (Semana 4)**.
 
 ---
 
@@ -33,37 +33,35 @@ El laboratorio ha establecido a la babosa terrestre *Deroceras laeve* como model
 
 ## 2. Estructura común
 
-### 2.1 Cronograma compartido (v1.1)
+### 2.1 Cronograma compartido
 
 | Semana | Fecha | Actividades comunes |
 |--------|-------|---------------------|
-| 0 (Inducción) | 8–14 jun | Inducción al lab, bioseguridad, manejo de colonia, lectura del paper G3 y de la pregunta motriz de cada proyecto. |
-| 1 | 15–21 jun | Journal club #1 (Accorsi et al. 2025, *Pomacea*) + arranque experimental/bioinfo. |
-| 2 | 22–28 jun | Producción de datos + journal club #2 (paper específico por proyecto). |
-| **3** | **29 jun – 5 jul** | **Mid-term: viernes 3 jul, 9:00–11:30 — cada estudiante presenta 15 min al grupo (Alfredo invitado).** Continuación experimental. |
-| 4 | 6–12 jul | Journal club #3 + producción de datos. |
-| 5 | 13–19 jul | Análisis e integración. |
-| 6 | 20–24 jul | Cierre, presentación final, redacción de informe. |
-
-> **Nota sobre renumeración**: La v1.0 contaba inducción como Semana 1. La v1.1 renumera con Semana 0 = inducción para que las semanas reflejen trabajo de proyecto efectivo. Ana Paula concluye en Semana 5 (17 jul).
+| 1 | 8–14 jun | Inducción al lab, bioseguridad, manejo de colonia, lectura del paper G3 y de la pregunta motriz de cada proyecto. |
+| 2 | 15–21 jun | Journal club #1 (Accorsi et al. 2025, *Pomacea*) + arranque experimental/bioinfo. |
+| 3 | 22–28 jun | Producción de datos. *(Journal club #2 desplazado por graduación de Rocío viernes 26 jun.)* |
+| **4** | **29 jun – 5 jul** | **Mid-term: viernes 3 jul, 9:00–11:30 — cada estudiante presenta 15 min al grupo (Alfredo invitado).** Continuación experimental. |
+| 5 | 6–12 jul | Journal club #2 (paper específico por proyecto, recuperado) + producción de datos. |
+| 6 | 13–19 jul | Journal club #3 + análisis e integración. |
+| 7 | 20–24 jul | Cierre, presentación final, redacción de informe. |
 
 Cada lunes en la mañana: mantenimiento de colonia de babosas y aprovechar para obtención de babosas juveniles.
 
 ### 2.2 Reuniones
 
 - Reunión semanal de proyecto con Jerónimo (1 hora por estudiante).
-- Reunión grupal los viernes (1 hora; en mid-term semana 3 se extiende a 2.5 horas): journal club o presentaciones rotativas (Sala 2D LAVIS).
+- Reunión grupal los viernes (1 hora; mid-term en Semana 4 extendido a 2.5 horas): journal club o presentaciones rotativas (Sala 2D LAVIS).
 - Disponibilidad de mentores rotativos por especialidad: **Wilbert** (Notch / bioinformática), **Rafa López** (metilación / WGBS + mentor PM de Ana Paula), **Rocío** (matriz extracelular / cola), **Carlos** (técnico del laboratorio) para entrenamiento técnico general, y los estudiantes de doctorado/maestría del laboratorio: Rocío, Sergio, Diego, Jess (regresa en julio de Praga?), disponibles para apoyo puntual en sus áreas.
 
 ### 2.3 Compromiso permanente con la colonia de babosas
 
-**Todas las estudiantes dedican medio día a la semana, durante todo el verano (semanas 1–6), al manejo de la colonia de *D. laeve*.** Esto incluye alimentación, limpieza de cajas, separación de juveniles, recolección y registro de puestas, monitoreo de salud y reposición de sustrato. La razón es triple: (a) mantener el recurso que el lab les está prestando para sus experimentos; (b) generar contacto sostenido con el animal; quien no entiende la biología del organismo no puede hacer buenos experimentos en él; (c) producir su propio material de trabajo, especialmente para Ana Belén que necesita puestas y juveniles tempranos en serie. Se asigna un día específico (sugerido: lunes por la mañana) para que el trabajo sea coordinado con Carlos y con quien tenga el turno de cuidado de la colonia esa semana.
+**Todas las estudiantes dedican medio día a la semana, durante todo el verano (semanas 1–7), al manejo de la colonia de *D. laeve*.** Esto incluye alimentación, limpieza de cajas, separación de juveniles, recolección y registro de puestas, monitoreo de salud y reposición de sustrato. La razón es triple: (a) mantener el recurso que el lab les está prestando para sus experimentos; (b) generar contacto sostenido con el animal; quien no entiende la biología del organismo no puede hacer buenos experimentos en él; (c) producir su propio material de trabajo, especialmente para Ana Belén que necesita puestas y juveniles tempranos en serie. Se asigna un día específico (sugerido: lunes por la mañana) para que el trabajo sea coordinado con Carlos y con quien tenga el turno de cuidado de la colonia esa semana.
 
-### 2.4 Método transversal: compresión bajo cubreobjetos para imagen sin cortes (v1.1)
+### 2.4 Método transversal: compresión bajo cubreobjetos para imagen sin cortes
 
-**Estatus actualizado (28 jun 2026):** El método se ha estandarizado para **fijación bajo compresión** — animales fijados en estado plano y semi-transparente, listos para inmunotinción / HCR / DAPI. El objetivo de imagen *in vivo* sostenida queda como **stretch goal** ya que la viabilidad bajo compresión sostenida sigue en estudio.
+**Estatus actualizado (21 jun 2026, v1.1):** El método se está estandarizando como herramienta de **fijación bajo compresión** — animales fijados en estado plano y semi-transparente, listos para inmunotinción / HCR / DAPI. El objetivo de imagen *in vivo* sostenida pasa a **stretch goal** ya que la viabilidad bajo compresión sostenida sigue en evaluación. La versión de fijación es la que sirve a Paulina para sus timepoints y a Ana Belén para procesamiento de embriones tratados.
 
-**Motivación.** Los juveniles de *D. laeve* sobreviven a una compresión transitoria de hasta 300 μm de grosor y se vuelven altamente translúcidos ([Video](https://www.linkedin.com/feed/update/urn:li:activity:7359239172257169409/)). El método estandarizado en este verano abre la posibilidad de hacer imagen de cuerpo entero sin necesidad de criostato o vibratomo en muestras fijadas, y se vuelve la herramienta central para el procesamiento de Paulina y para los embriones de Ana Belén. **No hay literatura específica para gasterópodos terrestres**: el desarrollo es contribución original del verano. Referencias inspirativas:
+**Motivación.** Los juveniles de *D. laeve* sobreviven a una compresión transitoria de hasta 300 μm de grosor y se vuelven altamente translúcidos ([Video](https://www.linkedin.com/feed/update/urn:li:activity:7359239172257169409/)). Si este método se estandariza para fijación en estado comprimido, abre la posibilidad de hacer imagen de cuerpo entero sin necesidad de criostato o vibratomo. **No hay literatura específica para gasterópodos terrestres**: el desarrollo es contribución original del verano. Referencias inspirativas:
 
 - O'Brien et al. 2009, *Journal of Visualized Experiments* ([10.3791/1129](https://doi.org/10.3791/1129)) — "Two-photon axotomy and time-lapse confocal imaging in live zebrafish embryos". Embriones anestesiados con tricaine y embebidos en agarosa de bajo punto de fusión sobre un cubreobjetos en cámara de imagen.
 - Williams, Nix & Bastiani 2011, *Journal of Visualized Experiments* ([10.3791/3331](https://doi.org/10.3791/3331)) — "Constructing a low-budget laser axotomy system to study axon regeneration in C. elegans". La referencia más cercana en espíritu: pad de agarosa al 10% con espaciadores de cinta time-tape (~200 μm), anestesia con muscimol, sello con vaselina.
@@ -75,15 +73,15 @@ Cada lunes en la mañana: mantenimiento de colonia de babosas y aprovechar para 
 
 Song et al. 2021 ([10.1007/s10709-020-00110-6](https://doi.org/10.1007/s10709-020-00110-6)) reportaron que el éxito de la anestesia con mentol varía con la línea genética en *Potamopyrgus antipodarum*, por lo que las estudiantes deben titular empíricamente si observan respuesta heterogénea.
 
-**Protocolo estandarizado (semanas 1–2):**
+**Protocolo a estandarizar (semanas 1–3):**
 
 1. **Anestesia / inmovilización previa.** Etanol 5% o mentol 1:400, ambos 10–15 min. Criterios de éxito: el animal deja de responder a estímulo táctil pero el corazón sigue latiendo. Al retirar, recobra movilidad. Enfriamiento en hielo 5 min como complemento o sustituto.
 2. **Espaciadores.** Pilas de cinta vinílica de doble cara (~80 μm/capa); grosor objetivo 200–300 μm.
 3. **Cámara de compresión.** Portaobjetos + dos espaciadores laterales + animal en gota de medio + cubreobjetos. Sellar uno de los lados con vaselina para flujo unidireccional.
-4. **Fijación bajo compresión.** Reemplazar medio por PFA 4% en PBS por capilaridad desde el lado abierto, usando tira de papel filtro. Incubar 30 min RT o sobrenoche 4 °C. ✅ **Estandarizado**.
+4. **Fijación bajo compresión.** Reemplazar medio por PFA 4% en PBS por capilaridad desde el lado abierto, usando tira de papel filtro. Incubar 30 min RT o sobrenoche 4 °C. ✅ Estandarización en curso.
 5. **Recuperación y procesamiento.** Liberar cubreobjetos, transferir a placa para inmunotinción / HCR / DAPI.
 
-**Stretch goal — imagen in vivo sostenida.** Requiere mantener viabilidad bajo compresión por horas. No prioritario para v1.1. Si Ana Belén tiene bandwidth en semanas 4–5, puede explorar.
+**Stretch goal — imagen in vivo sostenida.** Requiere mantener viabilidad bajo compresión por horas. No prioritario en v1.1.
 
 **Criterios de éxito:** transparencia suficiente para distinguir órganos internos en epifluorescencia; reproducibilidad entre operadores. Si la versión in vivo funciona en algún momento, considerar publicación como STAR Protocol o microPublication.
 
@@ -112,7 +110,7 @@ Song et al. 2021 ([10.1007/s10709-020-00110-6](https://doi.org/10.1007/s10709-02
 2. Estandarizar tratamientos farmacológicos de Wnt en embriones tempranos y juveniles de *D. laeve* con IWR-endo (inhibidor) y LY2090314 (activador).
 3. Caracterizar fenotípicamente los efectos de los tratamientos: tasa de eclosión, tiempo a eclosión, morfología post-eclosión, regeneración de cola en juveniles tratados.
 4. Probar el anticuerpo anti-Vangl2 en estadios embrionarios y juveniles tempranos.
-5. **(Nuevo — descubierto en semana 2)** Caracterizar la permeabilidad de la envoltura embrionaria de *D. laeve* a moléculas trazadoras de distinto tamaño y carga. **Resultado preliminar:** la jalea embrionaria es de carga negativa; moléculas catiónicas pequeñas (azul de metileno) son internalizadas, mientras que moléculas aniónicas o muy grandes (CFDA, dextranos fluorescentes) son excluidas. Implicación: los moduladores Wnt usados (IWR-endo, LY2090314) son moléculas pequeñas neutras, por lo que deberían penetrar; conviene validar con un control catiónico (e.g. tinte vital) y otro aniónico.
+5. **(Nuevo — descubierto en Semana 2)** Caracterizar la permeabilidad de la envoltura embrionaria de *D. laeve* a moléculas trazadoras de distinto tamaño y carga. **Resultado preliminar:** la jalea embrionaria es de carga negativa; moléculas catiónicas pequeñas (azul de metileno) son internalizadas, mientras que moléculas aniónicas o muy grandes (CFDA, dextranos fluorescentes) son excluidas. Implicación: los moduladores Wnt usados (IWR-endo, LY2090314) son moléculas pequeñas neutras, por lo que deberían penetrar; conviene confirmar con otras tinciones como azul alciano (catiónico) o rojo fenol (neutro), y dextranos catiónicos de distinto peso molecular para separar efecto de carga vs. tamaño.
 6. Realizar 1–2 hibridaciones HCR (*prickle* y/o *vangl*) en el estadio donde el anticuerpo o la inferencia bioinformática sugieran expresión.
 
 **Métodos.**
@@ -121,7 +119,7 @@ Song et al. 2021 ([10.1007/s10709-020-00110-6](https://doi.org/10.1007/s10709-02
 - *Comparación de anestésicos (objetivo 1)*. Cuatro condiciones en juveniles tempranos de tamaño/peso similar (n ≥ 5 por condición): (a) etanol 5%; (b) mentol 1:400; (c) MgCl₂ titulado; (d) hielo 5 min. Métricas: tiempo a inmovilidad, latido cardíaco, tiempo a recuperación, supervivencia a 24 h, compatibilidad con compresión + fijación.
 - *Tratamientos farmacológicos*. Diluciones seriadas de IWR-endo (1–50 μM) y LY2090314 (0.1–10 μM). Tiempos: tratamientos cortos de 4–6 h en ventanas embrionarias específicas y tratamientos sostenidos en juveniles de 1–3 días. Controles: vehículo (DMSO).
 - *Lectura fenotípica*. Imagen en estereoscopio diariamente para embriones; compresión bajo cubreobjetos + fijación para juveniles tratados.
-- *Caracterización de permeabilidad embrionaria (nuevo objetivo 5)*. Inmersión de embriones intactos en soluciones de trazadores fluorescentes/colorimétricos: azul de metileno 0.1%, azul de toluidina (catiónico), CFDA (aniónicos), dextrano-FITC 3 kDa y 70 kDa CFDA (mayor peso molecular). Tiempos de inmersión 15 min – 4 h. Lectura en estereoscopio y epifluorescencia. **Confirmar con otras tinciones como azul alciano (catiónico) o rojo fenol (neutro).**
+- *Caracterización de permeabilidad embrionaria (nuevo objetivo 5)*. Inmersión de embriones intactos en soluciones de trazadores fluorescentes/colorimétricos: azul de metileno 0.1% (catiónico), CFDA (aniónico), dextrano-FITC 3 kDa y 70 kDa (aniónicos, distinto peso). Tiempos de inmersión 15 min – 4 h. Lectura en estereoscopio y epifluorescencia. **Ampliar panel con azul alciano (catiónico), rojo fenol (neutro) y, si es posible, dextranos catiónicos de distinto peso molecular** para separar contribuciones de carga vs. tamaño.
 - *Inmunotinción anti-Vangl2*. Whole-mount en juveniles comprimidos y fijados. Protocolo estándar.
 - *HCR in situ (selectivo)*. Una vez identificado el estadio más prometedor, hacer HCR para *prickle* y/o *vangl*. Limitar a 1–2 ensayos por restricción de costo.
 - *Brazo bioinformático colaborativo* (con apoyo de Ana Paula). Catálogo de ortólogos de la familia Wnt y de PCP en el genoma anotado.
@@ -130,20 +128,19 @@ Song et al. 2021 ([10.1007/s10709-020-00110-6](https://doi.org/10.1007/s10709-02
 
 | Sem | Actividad |
 |-----|-----------|
-| 0 | Inducción, manejo de colonia, lectura del paper de Takahashi et al. 2019. Inicio de colección sistemática de puestas. |
-| 1 | Comparación de anestésicos + participación en estandarización del método de compresión. |
-| 2 | Tratamientos en embriones tempranos. Descubrimiento del finding de permeabilidad embrionaria con trazadores. |
-| **3** | Survival readout de tratamientos. Scoring fenotípico (Fiji). Dose-response salvage (3 dosis × 1 timepoint si los datos apoyan). Documentación del finding de permeabilidad. **Mid-term presentation viernes 3 jul.** |
-| 4 | Tratamientos en juveniles + amputación de cola en subset. Validación de permeabilidad con controles cargados. |
+| 1 *(ejecutada)* | Inducción, manejo de colonia, lectura paper Takahashi. Inicio de colección sistemática de puestas. Protocolo de anestesia para inyección corta establecido (no se completó la comparación formal de 4 condiciones — adecuado para los siguientes pasos). |
+| 2 *(ejecutada)* | Tratamientos en embriones tempranos iniciados (IWR-endo + LY2090314). **Descubrimiento del finding de permeabilidad embrionaria con trazadores** — la jalea es negativamente cargada. |
+| **3** *(esta semana)* | Survival readout de los tratamientos Wnt. Scoring fenotípico (Fiji). Documentación del finding de permeabilidad (figura limpia). Iniciar validación con controles cargados adicionales si hay puestas suficientes. |
+| **4** | Tratamientos en juveniles + amputación de cola en subset. Continuar validación de permeabilidad con controles adicionales. **Mid-term presentation viernes 3 jul.** |
 | 5 | Inmunotinción anti-Vangl2 en juveniles tratados y embriones de distintos estadios. |
-| 6 | HCR (1–2 condiciones); brazo bioinformático con Ana Paula; redacción de informe, presentación final. |
+| 6 | HCR (1–2 condiciones); brazo bioinformático con Ana Paula. |
+| 7 | Análisis de imagen, cuantificación de fenotipos, redacción de informe, presentación final. |
 
 **Productos esperados (v1.1).**
 
-- **Tabla comparativa cuantitativa de protocolos de anestesia** para juveniles tempranos de *D. laeve* con recomendación según aplicación.
-- Curva dosis-respuesta para los dos moduladores de Wnt en *D. laeve* (versión reducida si tiempo no alcanza).
-- Caracterización fenotípica preliminar de tratamientos en embriones y juveniles.
-- **Caracterización de permeabilidad embrionaria** — la jalea es negativamente cargada, moléculas catiónicas pequeñas pasan, aniónicas no. Resultado original con implicaciones para diseño futuro de tratamientos farmacológicos en babosas terrestres.
+- Recomendación de protocolo de anestesia para inyección corta + notas sobre compatibilidad con compresión/fijación.
+- Caracterización fenotípica preliminar de tratamientos Wnt en embriones y juveniles.
+- **Caracterización de permeabilidad embrionaria** — la jalea es negativamente cargada, moléculas catiónicas pequeñas pasan, aniónicas o grandes no. Resultado original con implicaciones para diseño futuro de tratamientos farmacológicos en babosas terrestres.
 - Resolución del estatus del anticuerpo anti-Vangl2 en estadios distintos a adulto.
 - 1–2 imágenes HCR de *prickle* y/o *vangl*.
 - Catálogo bioinformático de Wnt/PCP en *D. laeve* (compartido con Ana Paula).
@@ -183,22 +180,22 @@ Song et al. 2021 ([10.1007/s10709-020-00110-6](https://doi.org/10.1007/s10709-02
 
 - *Inyección.* Microesferas fluorescentes rojas (Fluoresbrite o equivalente, ~1 μm) en PBS estéril, inyectadas en hemocele con micropipeta de vidrio. Volumen 1–2 μL.
 - *Diseño temporal.* Amputación de cola + inyección en momentos definidos. 5 grupos: control intacto, 6 hpA, 24 hpA, 48 hpA, 5 d, 10 d. n ≥ 4.
-- *Procesamiento.* Fijar 4 h después de la inyección. **Método de compresión + fijación** (estandarizado en sem. 1–2) como alternativa preferida al criostato.
+- *Procesamiento.* Fijar 4 h después de la inyección. **Método de compresión + fijación** (estandarización en curso, ver Sec 2.4) como alternativa preferida al criostato.
 - *Imagen y cuantificación.* Epifluorescencia. DAPI + beads canal rojo. Fiji: número de células con ≥3 beads, distancia al sitio de amputación, área blastema vs. distal. Análisis: ANOVA dos vías (tiempo × región).
 - *EdU opcional.* Si la cinética llega bien, repetir subset con co-inyección EdU 4 h antes de fijar.
 - *Soporte bioinformático* (con Ana Paula). Marcadores putativos de hemocitos: TLRs, complemento C1q, scavenger receptors, FREPs.
 
-**Cronograma semanal (v1.1).**
+**Cronograma semanal.**
 
 | Sem | Actividad |
 |-----|-----------|
-| 0 | Inducción, manejo de colonia, entrenamiento en bisturí y amputación. Lectura de Sullivan 2023 y Lynch et al. 2022. |
-| 1 | Estandarización de inyección con beads (controles sin amputación + con amputación). Estandarización de fijación / compresión con Rocío. |
-| 2 | Inicio del experimento principal: 6 hpA y 24 hpA. Imagen y conteo preliminar. |
-| **3** | 48 hpA + 5 d. Inicio de cuantificación Fiji de timepoints colectados. **Mid-term presentation viernes 3 jul.** |
-| 4 | 10 d + réplicas faltantes. EdU opcional si tiempo lo permite. |
-| 5 | Cuantificación completa, estadística, soporte bioinformático con Ana Paula. |
-| 6 | Redacción de informe, figuras, presentación final. |
+| 1 *(ejecutada)* | Inducción, manejo de colonia, entrenamiento en bisturí y amputación. Lectura de Sullivan 2023 y Lynch et al. 2022. |
+| 2 *(ejecutada)* | Estandarización de inyección con beads (incluso con amputación + anestésico — completada). Estandarización de fijación / compresión con Rocío. |
+| **3** *(esta semana)* | Comienzo del experimento principal: 6 hpA y 24 hpA. Imagen y conteo preliminar. |
+| **4** | Continuación: 48 hpA y 5 d. **Mid-term presentation viernes 3 jul.** |
+| 5 | Punto temporal 10 d + réplicas faltantes. EdU opcional si tiempo lo permite. |
+| 6 | Cuantificación completa, estadística, soporte bioinformático con Ana Paula. |
+| 7 | Redacción de informe, figuras, presentación final. |
 
 **Productos esperados.**
 
@@ -210,7 +207,7 @@ Song et al. 2021 ([10.1007/s10709-020-00110-6](https://doi.org/10.1007/s10709-02
 **Riesgos y mitigaciones.**
 
 - Si la inyección causa mortalidad alta inicial, ajustar volumen y concentración.
-- Si la cuantificación en epifluorescencia es ruidosa, agendar 1 sesión de confocal en sem. 4–5 para puntos temporales clave.
+- Si la cuantificación en epifluorescencia es ruidosa, agendar 1 sesión de confocal en sem. 5–6 para puntos temporales clave.
 - Si el confocal no se materializa, los datos de epifluorescencia son suficientes para una historia robusta.
 
 ### Alternativa por desarrollar
@@ -231,16 +228,16 @@ Disociación con acutasa y condiciones para optimizar viabilidad de las células
 
 **Objetivos (v1.1).**
 
-1. **(Warm-up, semanas 0–1)** Análisis básico del transcriptoma de exposición a fungicida en *D. laeve*: control de calidad, expresión diferencial. *(Nota: el warm-up es para familiarización con el pipeline; no es un deliverable crítico — sirve como punto de partida.)*
-2. Extraer la lista completa de genes "unknown" del output OMArk de *D. laeve* (proteome ya cargado en sem. 2, extracción pendiente).
+1. **(Warm-up, semanas 1–2)** Análisis básico del transcriptoma de exposición a fungicida en *D. laeve*: control de calidad, expresión diferencial. *(El warm-up es para familiarización con el pipeline; no requiere pulido — sirve como punto de partida.)*
+2. Extraer la lista completa de genes "unknown" del output OMArk de *D. laeve* (proteome ya cargado).
 3. Buscar ortólogos en proteomas de **4 gasterópodos** seleccionados (reducido de 5–7 en v1.0): *Pomacea canaliculata*, *Biomphalaria glabrata*, *Lymnaea stagnalis*, *Lottia gigantea*.
 4. Cruzar con datos transcriptómicos del lab: expresión por tejido (5 tejidos) y condición (regeneración, irradiación), módulos WGCNA de Rafa.
 5. Producir una shortlist priorizada de candidatos "unknown pero conservados y diferencialmente expresados".
 
 **Métodos.**
 
-- *Warm-up con fungicide RNA-seq*. Pipeline guiado: salmon o STAR + featureCounts → tximport en R → DESeq2 → enriquecimiento GO con clusterProfiler. Output: familiarización con R + Bioconductor. **No requiere pulido para mid-term — basta con mostrarlo como punto de partida.**
-- *Extracción del set "unknown"*. Parsing del output de OMArk en Python/bash. *(Esto es el bottleneck actual y la prioridad #1.)*
+- *Warm-up con fungicide RNA-seq*. Pipeline guiado: salmon o STAR + featureCounts → tximport en R → DESeq2 → enriquecimiento GO con clusterProfiler. Output: familiarización con R + Bioconductor. **No requiere pulido para mid-term — basta como punto de partida.**
+- *Extracción del set "unknown"*. Parsing del output de OMArk en Python/bash. *(Bottleneck actual y prioridad #1 de Semana 3.)*
 - *Búsqueda de ortólogos*. OrthoFinder2 con los 4 proteomas seleccionados (algunos ya descargados). Identificar grupos donde el "unknown" de *D. laeve* clusterea con genes de otras especies.
 - *Análisis de expresión*. Matrices de expresión existentes. Heatmaps por tejido y condición. Mapear unknowns a módulos WGCNA de Wilbert/Rafa.
 - *Anotación funcional ligera para la shortlist*. Top 20–50 candidatos: dominios con InterProScan, predicción estructural con ESMFold (ColabFold), contexto sintético.
@@ -251,21 +248,21 @@ Disociación con acutasa y condiciones para optimizar viabilidad de las células
 
 | Sem | Actividad |
 |-----|-----------|
-| 0 | Inducción, lectura de Nevers et al. 2024 y G3, instalación de R/Conda. |
-| 1 | Pipeline de fungicida (warm-up). Carga del proteome en OMArk. |
-| 2 | DE + GO enrichment de fungicida. Inicio de extracción del set "unknown". |
-| **3** | Extracción del set "unknown" (prioridad #1). Inicio de OrthoFinder2 con 4 especies. **Mid-term presentation viernes 3 jul.** |
-| 4 | Cruce con expresión por tejido y por condición regeneración/irradiación. Generar shortlist. |
-| 5 | Anotación funcional ligera de shortlist (dominios, estructura, sintenia). Limpieza del notebook, redacción de reporte, presentación final. |
+| 1 *(ejecutada)* | Inducción, lectura de Nevers et al. 2024 y G3, instalación de R/Conda, comienzo de pipeline de fungicida. |
+| 2 *(ejecutada)* | Proteome cargado en OMArk. Warm-up de fungicida en proceso. Extracción del set "unknown" **pendiente** (bottleneck). |
+| **3** *(esta semana)* | **Extracción del set "unknown" — prioridad #1**. Inicio de OrthoFinder2 con 4 especies seleccionadas. |
+| **4** | Continuación de OrthoFinder. Cruce con expresión por tejido y por condición regeneración/irradiación. Generar shortlist. **Mid-term presentation viernes 3 jul.** |
+| 5 | Anotación funcional ligera de shortlist (dominios, estructura, sintenia). |
+| 6 | Limpieza del notebook, redacción de reporte, presentación final. |
 
 **Productos esperados.**
 
-- Reporte breve sobre transcriptoma de fungicida (deliverable de ~1 página + figuras).
+- Reporte breve sobre transcriptoma de fungicida (deliverable de ~1 página + figuras, sin pulir).
 - Tabla ranqueada de "unknown genes" de *D. laeve* con columnas: ortólogos en 4 gasterópodos, expresión por tejido, expresión en regeneración, dominios predichos, contexto sintético.
 - Jupyter notebook o quarto markdown reproducible.
 - Lista de 5–10 candidatos top para seguimiento experimental futuro.
 
-**Soporte cruzado.** Ana Paula puede invertir 2–3 horas semanales (semanas 4–5) apoyando a Ana Belén con catálogo de Wnt/PCP y a Paulina con marcadores de hemocitos, ambas a partir del mismo transcriptoma anotado.
+**Soporte cruzado.** Ana Paula puede invertir 2–3 horas semanales (semanas 4–6) apoyando a Ana Belén con catálogo de Wnt/PCP y a Paulina con marcadores de hemocitos, ambas a partir del mismo transcriptoma anotado.
 
 **Riesgos y mitigaciones.**
 
@@ -307,7 +304,7 @@ Disociación con acutasa y condiciones para optimizar viabilidad de las células
 
 ---
 
-## 7. Logística e instrucciones para arranque (Semana 0)
+## 7. Logística e instrucciones para arranque (Semana 1)
 
 **Lectura previa enviada a las estudiantes:**
 1. El paper G3 del lab.
@@ -339,13 +336,13 @@ Disociación con acutasa y condiciones para optimizar viabilidad de las células
 - [✅] Verificar disponibilidad de microesferas fluorescentes y de EdU/F-ara-EdU.
 - [⏳] Coordinar con Wilbert para evitar solapamiento y formalizar la colaboración Wnt-PCP / Notch.
 - [⏳] Reservar acceso a criostato y epifluorescencia para uso propio (Jero usa el equipo directamente, no requiere sesiones con operador) — semanas 3–6.
-- [⏳] Reservar acceso a confocal en bloque (semanas 4–5) para uso propio.
+- [⏳] Reservar acceso a confocal en bloque (semanas 5–6) para uso propio.
 - [✅] Pedir cuentas HPC en servidor Fénix para las tres alumnas — confirmado.
-- [✅] Red internet — confirmado.
+- [✅] Red internet para las internas — confirmado.
 - [ ] Preparar plantilla de informe final (1 archivo Markdown + figuras).
 - [✅] Generar grupos de chat / canal Slack para los siete journal clubs.
 
 ---
 
 *Documento original generado el 13 de mayo de 2026. Versión 1.0.*
-*Versión 1.1 generada el 28 de junio de 2026, reflejando: renumeración del cronograma (Sem 0 = inducción), mid-term movido a Semana 3, método de compresión reposicionado como fijación primaria, finding de permeabilidad embrionaria añadido al proyecto de Ana Belén, OrthoFinder reducido a 4 especies para Ana Paula, marcas de estatus actualizadas en sección 8.*
+*Versión 1.1 generada el 21 de junio de 2026, reflejando: método de compresión reposicionado como fijación primaria (in vivo como stretch goal), finding de permeabilidad embrionaria añadido al proyecto de Ana Belén (Objetivo 5), OrthoFinder reducido a 4 especies para Ana Paula, marcas de estatus actualizadas en sección 8. Cronograma original preservado.*
