@@ -811,7 +811,7 @@ SpatialDimPlot(object, label = T, repel = T, label.size = 4, pt.size.factor = 10
 ```{r}
 #| message: false
 #| warning: false
-#| label: heatmap
+#| label: heatmap-clase2
 DefaultAssay(object) <- "Spatial"
 Idents(object) <- "seurat_cluster.projected"
 #Downsampled object to make visualization easier
